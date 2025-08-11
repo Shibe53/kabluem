@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvpll4vdnq1xu"]
+
+[ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
+[ext_resource type="Texture2D" uid="uid://uvqwfv56qsth" path="res://icon.svg" id="2_gk8ng"]
+[ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
+[ext_resource type="PackedScene" uid="uid://dyd2eul54mrkl" path="res://Hitboxes/hitbox.tscn" id="3_8wvsg"]
+[ext_resource type="PackedScene" uid="uid://bhxmbarg6pbr6" path="res://Hitboxes/soft_collision.tscn" id="4_gk8ng"]
+[ext_resource type="PackedScene" uid="uid://dtomwktlsxn84" path="res://stats.tscn" id="5_4o6mh"]
+[ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="5_8wvsg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk8ng"]
+radius = 26.0
+height = 52.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
+radius = 189.169
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_3ih25")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_gk8ng")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_gk8ng")
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_rt1x0")]
+
+[node name="Hitbox" parent="." instance=ExtResource("3_8wvsg")]
+
+[node name="SoftCollision" parent="." instance=ExtResource("4_gk8ng")]
+
+[node name="PlayerDetection" parent="." instance=ExtResource("5_8wvsg")]
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+shape = SubResource("CircleShape2D_gk8ng")
+
+[node name="Stats" parent="." instance=ExtResource("5_4o6mh")]
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]
+[editable path="PlayerDetection"]

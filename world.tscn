@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2jp5r7ha4ove"]
+[gd_scene load_steps=4 format=3 uid="uid://d2jp5r7ha4ove"]
 
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://w34eiaasakh6" path="res://placeholder_bg.jpg" id="1_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://cvpll4vdnq1xu" path="res://Enemies/enemy.tscn" id="3_tlwt5"]
 
 [node name="World" type="Node2D"]
 
@@ -15,3 +16,6 @@ position = Vector2(351, 315)
 
 [node name="Camera" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
+
+[node name="Enemy" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(667, 81)

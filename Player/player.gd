@@ -2,10 +2,10 @@ extends CharacterBody2D
 
 #const PlayerHurtSound = preload("res://Music and Sounds/player_hurt_sound.tscn")
 
-const ACCELERATION = 800
-const MAX_SPEED = 200
-const DODGE_SPEED = 115
-const FRICTION = 500
+@export var ACCELERATION = 800
+@export var MAX_SPEED = 200
+@export var DODGE_SPEED = 115
+@export var FRICTION = 500
 
 enum {
 	MOVE,

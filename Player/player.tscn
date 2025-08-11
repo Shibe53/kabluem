@@ -13,6 +13,7 @@ states/Start/position = Vector2(220, 100)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.972317, 1.01184)
+collision_layer = 2
 script = ExtResource("1_l8h54")
 
 [node name="Sprite" type="Sprite2D" parent="."]
