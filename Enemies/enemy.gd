@@ -36,7 +36,7 @@ func _physics_process(delta):
 		SHOOT:
 			var player = playerDetectionZone.player
 			if player != null:
-				bulletSpawner.shoot_at_pos(player.global_position)
+				bulletSpawner.shoot_at_pos(player.hurtbox.global_position)
 			else:
 				state = IDLE
 			

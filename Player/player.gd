@@ -16,14 +16,13 @@ enum {
 var state = MOVE
 var dodge_vector = Vector2.DOWN
 var stats = PlayerStats
-'''
-@onready var animationPlayer = $AnimationPlayer
-@onready var animationTree = $AnimationTree
-@onready var animationState = animationTree.get("parameters/playback")
-@onready var swordHitbox = $HitboxPivot/SwordHitbox
+
+#@onready var animationPlayer = $AnimationPlayer
+#@onready var animationTree = $AnimationTree
+#@onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $Hurtbox
-@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
-'''
+#@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+
 func _ready():
 	randomize()
 	stats.no_health.connect(queue_free)
@@ -75,7 +74,7 @@ func dodge_state():
 	velocity = dodge_vector * DODGE_SPEED
 #	animationState.travel("Roll")
 	move_and_slide()
-#	hurtbox.start_invincibility(0.15)
+	hurtbox.start_invincibility(0.15)
 
 func dodge_animation_finished():
 	state = MOVE
@@ -85,7 +84,7 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	var knockback_direction = area.owner.position.direction_to(position)
 	velocity = knockback_direction * 200
-#	hurtbox.start_invincibility(0.6)
+	hurtbox.start_invincibility(0.6)
 #	start_blinking()
 #	hurtbox.create_hit_effect()
 #	var playerHurtSound = PlayerHurtSound.instantiate()

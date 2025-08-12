@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvpll4vdnq1xu"]
+[gd_scene load_steps=13 format=3 uid="uid://cvpll4vdnq1xu"]
 
 [ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
-[ext_resource type="Texture2D" uid="uid://uvqwfv56qsth" path="res://icon.svg" id="2_gk8ng"]
+[ext_resource type="Texture2D" uid="uid://dgtxw2w3iud13" path="res://Assets/Sprites/Lesser_Vegan_WIP.png" id="2_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
 [ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="3_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://dyd2eul54mrkl" path="res://Hitboxes/hitbox.tscn" id="3_8wvsg"]
@@ -10,27 +10,50 @@
 [ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="5_8wvsg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk8ng"]
-radius = 26.0
-height = 52.0
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o6mh"]
+radius = 7.0
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_koi6q"]
+radius = 6.0
+height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
-radius = 132.306
+radius = 389.005
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_3ih25")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_gk8ng")
+position = Vector2(0, -21)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_4o6mh")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
-visible = false
+rotation = -1.5708
 shape = SubResource("CapsuleShape2D_gk8ng")
 
 [node name="BulletSpawner" parent="." instance=ExtResource("3_4o6mh")]
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_rt1x0")]
+position = Vector2(0, -16)
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_4o6mh")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_8wvsg")]
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape" parent="Hitbox" index="0"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_koi6q")
 
 [node name="SoftCollision" parent="." instance=ExtResource("4_gk8ng")]
 

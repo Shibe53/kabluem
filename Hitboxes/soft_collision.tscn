@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ck44ewf6i2fde" path="res://Hitboxes/soft_collision.gd" id="1_gj3ir"]
 
 [node name="SoftCollision" type="Area2D"]
+collision_layer = 128
+collision_mask = 128
 script = ExtResource("1_gj3ir")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]

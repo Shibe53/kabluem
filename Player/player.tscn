@@ -1,25 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwxgusqqwr28s"]
+[gd_scene load_steps=7 format=3 uid="uid://cwxgusqqwr28s"]
 
 [ext_resource type="Script" uid="uid://pbbpkc0mevn4" path="res://Player/player.gd" id="1_l8h54"]
-[ext_resource type="Texture2D" uid="uid://uvqwfv56qsth" path="res://icon.svg" id="2_4ntmi"]
+[ext_resource type="Texture2D" uid="uid://b01e6xj3g6m8e" path="res://Assets/Sprites/Player_WIP.png" id="2_btcbx"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="3_btcbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
-radius = 54.0
-height = 108.0
+height = 26.0
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4ntmi"]
 states/Start/position = Vector2(220, 100)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
+radius = 12.0
+height = 56.0
+
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.972317, 1.01184)
+position = Vector2(-2.38419e-07, 0)
 collision_layer = 2
 script = ExtResource("1_l8h54")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_4ntmi")
+position = Vector2(2.38419e-07, -33)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_btcbx")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+position = Vector2(2.38419e-07, 0)
+rotation = -1.5708
 shape = SubResource("CapsuleShape2D_4ntmi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -28,7 +35,15 @@ shape = SubResource("CapsuleShape2D_4ntmi")
 tree_root = SubResource("AnimationNodeStateMachine_4ntmi")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_btcbx")]
+position = Vector2(2.38419e-07, -18)
+collision_layer = 4
+collision_mask = 80
+
+[node name="CollisionShape" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_btcbx")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+
+[editable path="Hurtbox"]
