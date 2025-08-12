@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 #const EnemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
 
