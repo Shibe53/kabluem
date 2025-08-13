@@ -16,7 +16,7 @@ func _ready():
 	resize(scale_workaround)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Slows down the flying animation based on current velocity
 	animated_sprite_2d.speed_scale = linear_velocity.length() / max_velocity
 

@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn0reeabirvw7"]
+
+[ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="1_fdgg4"]
+[ext_resource type="Script" uid="uid://lt0g2wx7384v" path="res://UI/transition_screen.gd" id="1_u2oau"]
+[ext_resource type="PackedScene" uid="uid://bcb1jvpsfabrb" path="res://UI/main_menu.tscn" id="2_1mlag"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u2oau"]
+font = ExtResource("1_fdgg4")
+font_size = 64
+font_color = Color(0.678431, 0.764706, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1mlag"]
+font = ExtResource("1_fdgg4")
+font_size = 128
+font_color = Color(0.678431, 0.764706, 0.909804, 1)
+
+[node name="TransitionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u2oau")
+load_scene = ExtResource("2_1mlag")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 469.0
+offset_right = 530.0
+offset_bottom = 525.0
+text = "Press any key"
+label_settings = SubResource("LabelSettings_u2oau")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 190.0
+offset_right = 675.0
+offset_bottom = 302.0
+text = "LOGO HERE"
+label_settings = SubResource("LabelSettings_1mlag")

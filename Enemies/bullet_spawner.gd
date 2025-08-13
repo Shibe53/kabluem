@@ -9,12 +9,12 @@ const Bullet = preload("res://Enemies/bullet.tscn")
 
 var onCooldown = false
 
-func shoot_at_pos(position):
+func shoot_at_pos(pos):
 	if !onCooldown:
 		onCooldown = true
 		var bullet = Bullet.instantiate()
 		bullet.global_position = global_position
-		bullet.set_values(position, SPEED, DAMAGE)
+		bullet.set_values(pos, SPEED, DAMAGE)
 		var main = get_tree().current_scene
 		main.add_child(bullet)
 		timer.start(COOLDOWN)

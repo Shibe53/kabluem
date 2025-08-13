@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b07y3ubpuyer2" path="res://UI/splash_screen.gd" id="1_20jiu"]
 [ext_resource type="Texture2D" uid="uid://bkvjs4kb1sf28" path="res://Assets/Sprites/GodotLogo.png" id="1_oclqc"]
-[ext_resource type="PackedScene" uid="uid://bcb1jvpsfabrb" path="res://UI/main_menu.tscn" id="2_xaoxa"]
+[ext_resource type="PackedScene" uid="uid://dn0reeabirvw7" path="res://UI/transition_screen.tscn" id="2_xaoxa"]
 
 [node name="SplashScreen" type="Control" node_paths=PackedStringArray("splash_screen")]
 layout_mode = 3

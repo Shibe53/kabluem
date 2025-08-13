@@ -33,7 +33,7 @@ func _ready():
 	state = IDLE
 #	sprite.frame = randi_range(0, 4)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 #	if velocity.length() > 0.1:
 #		$Pivot.rotation = velocity.angle()
 	if player != null:

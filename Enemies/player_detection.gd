@@ -7,8 +7,8 @@ var player = null
 func can_see_player():
 	return player != null
 
-func change_detection_range(range : float):
-	collisionShape.shape.radius = range
+func change_detection_range(newRange : float):
+	collisionShape.shape.radius = newRange
 
 func _on_body_entered(body):
 	player = body

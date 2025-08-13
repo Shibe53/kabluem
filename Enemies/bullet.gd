@@ -19,7 +19,7 @@ func set_values(point, speed, damage):
 	SPEED = speed
 	DAMAGE = damage
 
-func _on_hitbox_area_entered(area: Area2D) -> void:
+func _on_hitbox_area_entered(_area: Area2D) -> void:
 	queue_free()
 
 func _on_timer_timeout() -> void:
