@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 #const PlayerHurtSound = preload("res://Music and Sounds/player_hurt_sound.tscn")
-
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
 @export var DODGE_SPEED = 115
@@ -13,9 +12,12 @@ enum {
 	THROW
 }
 
+const grnd = preload("res://Grenade/grenade.tscn")
+
 var state = MOVE
 var dodge_vector = Vector2.DOWN
 var stats = PlayerStats
+var charge = 0
 
 #@onready var animationPlayer = $AnimationPlayer
 #@onready var animationTree = $AnimationTree
@@ -65,6 +67,17 @@ func move_state(delta):
 
 func throw_state():
 	velocity = Vector2.ZERO
+	charge += 20
+	if Input.is_action_just_released("throw"):
+		var grenade = grnd.instantiate()
+		grenade.global_position = global_position
+		get_tree().current_scene.add_child(grenade)
+		
+		var dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
+		grenade.apply_impulse(dir * charge)
+		
+		charge = 0
+		state = MOVE
 #	animationState.travel("Attack")
 
 func throw_animation_finished():

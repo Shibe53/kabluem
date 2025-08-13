@@ -2,7 +2,6 @@ extends CharacterBody2D
 class_name Enemy
 
 #const EnemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
-
 @export var ACCELERATION = 260
 @export var MAX_SPEED = 30
 @export var FRICTION = 200
@@ -58,7 +57,7 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	var knockback_direction = area.owner.position.direction_to(position)
 	velocity = knockback_direction * 120
-	hurtbox.create_hit_effect()
+	#hurtbox.create_hit_effect()
 	hurtbox.start_invincibility(0.4)
 	start_blinking()
 
