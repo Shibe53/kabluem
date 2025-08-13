@@ -30,7 +30,7 @@ var onThrowCooldown = false
 
 func _ready():
 	randomize()
-	stats.no_health.connect(queue_free)
+	stats.no_health.connect(player_death)
 #	animationTree.active = true
 
 func _physics_process(delta):
@@ -109,6 +109,13 @@ func _on_hurtbox_area_entered(area):
 #	hurtbox.create_hit_effect()
 #	var playerHurtSound = PlayerHurtSound.instantiate()
 #	get_tree().current_scene.add_child(playerHurtSound)
+
+func player_death():
+	var newCamera = Camera2D.new()
+	newCamera.enabled = true
+	newCamera.global_position = self.global_position
+	get_tree().current_scene.add_child(newCamera)
+	queue_free()
 
 func start_blinking():
 #	blinkAnimationPlayer.play("Start")
