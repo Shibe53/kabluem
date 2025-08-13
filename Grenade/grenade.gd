@@ -13,15 +13,10 @@ class_name Grenade
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(global_position, position)
-	print(hitbox.global_position, position)
 	resize(scale_workaround)
-	print(global_position, position)
-	print(hitbox.global_position, position)
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	# Slows down the flying animation based on current velocity
 	animated_sprite_2d.speed_scale = linear_velocity.length() / max_velocity
 

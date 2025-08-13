@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
 #const PlayerHurtSound = preload("res://Music and Sounds/player_hurt_sound.tscn")
+const grnd = preload("res://Grenade/grenade.tscn")
+
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
 @export var DODGE_SPEED = 115
 @export var FRICTION = 500
+@export var THROW_COOLDOWN = 1.0
 
 enum {
 	MOVE,
@@ -12,17 +15,17 @@ enum {
 	THROW
 }
 
-const grnd = preload("res://Grenade/grenade.tscn")
-
 var state = MOVE
 var dodge_vector = Vector2.DOWN
 var stats = PlayerStats
 var charge = 0
+var onThrowCooldown = false
 
 #@onready var animationPlayer = $AnimationPlayer
 #@onready var animationTree = $AnimationTree
 #@onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $Hurtbox
+@onready var throwCDTimer = $ThrowCooldownTimer
 #@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
@@ -62,7 +65,7 @@ func move_state(delta):
 	if Input.is_action_just_pressed("dodge"):
 		state = DODGE
 	
-	if Input.is_action_just_pressed("throw"):
+	if Input.is_action_just_pressed("throw") and not onThrowCooldown:
 		state = THROW
 
 func throw_state():
@@ -76,11 +79,16 @@ func throw_state():
 		grenade.apply_impulse(dir * charge)
 		
 		charge = 0
+		onThrowCooldown = true
+		throwCDTimer.start(THROW_COOLDOWN)
 		state = MOVE
 #	animationState.travel("Attack")
 
 func throw_animation_finished():
 	state = MOVE
+	
+func _on_throw_cooldown_timer_timeout() -> void:
+	onThrowCooldown = false
 
 func dodge_state():
 	velocity = dodge_vector * DODGE_SPEED

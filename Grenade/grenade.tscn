@@ -1,9 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bs1arnju4mlti"]
+[gd_scene load_steps=17 format=3 uid="uid://bs1arnju4mlti"]
 
 [ext_resource type="Script" uid="uid://drvkjqi41bq4a" path="res://Grenade/grenade.gd" id="1_8s8jj"]
 [ext_resource type="Texture2D" uid="uid://bc47no5ivxj0p" path="res://Assets/Sprites/Grenade-Sheet.png" id="2_qugth"]
 [ext_resource type="PackedScene" uid="uid://dyd2eul54mrkl" path="res://Hitboxes/hitbox.tscn" id="3_5qpki"]
 [ext_resource type="Texture2D" uid="uid://bdrol8syyxm5r" path="res://Assets/Sprites/seed_particle.png" id="4_3kepi"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3kepi"]
+friction = 0.75
+bounce = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ri6gl"]
 atlas = ExtResource("2_qugth")
@@ -46,7 +50,7 @@ radius = 40.0
 height = 90.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fb86f"]
-radius = 497.001
+radius = 400.0
 
 [sub_resource type="Animation" id="Animation_20fyy"]
 resource_name = "Exuplode"
@@ -155,13 +159,15 @@ point_count = 4
 [node name="Grenade" type="RigidBody2D"]
 collision_layer = 0
 collision_mask = 17
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_3kepi")
 gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 linear_damp_mode = 1
 linear_damp = 1.0
 script = ExtResource("1_8s8jj")
-scale_workaround = 0.4
+scale_workaround = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xjsbx")
