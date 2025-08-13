@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bj6kluya5cly6"]
+
+[ext_resource type="Texture2D" uid="uid://bkq07hjd4ppyd" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Damage_Death-Sheet.png" id="1_nakw1"]
+[ext_resource type="Script" uid="uid://6w453og0rxrd" path="res://Effects/effect.gd" id="2_d7mso"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7mso"]
+atlas = ExtResource("1_nakw1")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7gj4"]
+atlas = ExtResource("1_nakw1")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gnmxm"]
+atlas = ExtResource("1_nakw1")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwj4s"]
+atlas = ExtResource("1_nakw1")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8bhjm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7mso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7gj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gnmxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwj4s")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 5.0
+}]
+
+[node name="LesserVeganDeath" type="AnimatedSprite2D"]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_8bhjm")
+animation = &"Animate"
+frame_progress = 0.85111
+script = ExtResource("2_d7mso")

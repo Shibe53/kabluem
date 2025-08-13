@@ -1,13 +1,83 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvpll4vdnq1xu"]
+[gd_scene load_steps=24 format=3 uid="uid://cvpll4vdnq1xu"]
 
 [ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
-[ext_resource type="Texture2D" uid="uid://dgtxw2w3iud13" path="res://Assets/Sprites/Lesser_Vegan_WIP.png" id="2_4o6mh"]
+[ext_resource type="Texture2D" uid="uid://ddb24c1ul66b8" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Idle-Sheet.png" id="2_koi6q"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
 [ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="3_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://dyd2eul54mrkl" path="res://Hitboxes/hitbox.tscn" id="3_8wvsg"]
+[ext_resource type="Texture2D" uid="uid://ci43j0wrwnm32" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Walk-Sheet.png" id="3_jlnat"]
 [ext_resource type="PackedScene" uid="uid://bhxmbarg6pbr6" path="res://Hitboxes/soft_collision.tscn" id="4_gk8ng"]
 [ext_resource type="PackedScene" uid="uid://dtomwktlsxn84" path="res://stats.tscn" id="5_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="5_8wvsg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlnat"]
+atlas = ExtResource("2_koi6q")
+region = Rect2(0, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8uwx"]
+atlas = ExtResource("2_koi6q")
+region = Rect2(160, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tligp"]
+atlas = ExtResource("2_koi6q")
+region = Rect2(320, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud0f3"]
+atlas = ExtResource("2_koi6q")
+region = Rect2(480, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xcb7"]
+atlas = ExtResource("3_jlnat")
+region = Rect2(0, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okpwn"]
+atlas = ExtResource("3_jlnat")
+region = Rect2(160, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc8db"]
+atlas = ExtResource("3_jlnat")
+region = Rect2(320, 0, 160, 190)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq7gr"]
+atlas = ExtResource("3_jlnat")
+region = Rect2(480, 0, 160, 190)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1xcb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlnat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8uwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tligp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud0f3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xcb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okpwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc8db")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq7gr")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk8ng"]
 radius = 5.0
@@ -26,7 +96,7 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
-radius = 400.0
+radius = 300.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 16
@@ -35,10 +105,11 @@ script = ExtResource("1_3ih25")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -21)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_4o6mh")
+sprite_frames = SubResource("SpriteFrames_1xcb7")
+animation = &"Move"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
 visible = false
@@ -80,7 +151,6 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_jlnat")
 
 [node name="PlayerDetection" parent="." instance=ExtResource("5_8wvsg")]
-visible = false
 light_mask = 0
 visibility_layer = 0
 collision_layer = 0

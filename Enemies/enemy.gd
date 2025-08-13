@@ -1,14 +1,12 @@
 extends CharacterBody2D
 class_name Enemy
 
-#const EnemyDeathEffect = preload("res://Effects/enemy_death_effect.tscn")
+const LesserVeganEffect = preload("res://Effects/lesser_vegan_death.tscn")
+
 @export var ACCELERATION = 260
 @export var MAX_SPEED = 30
-@export var FRICTION = 200
-@export var DETECTION_RANGE = 400.0
-@export var SHOOT_RANGE = 250
-
-var move_speed = MAX_SPEED
+@export var FRICTION = 100
+@export var SHOOT_RANGE = 300
 
 enum {
 	IDLE,
@@ -17,25 +15,28 @@ enum {
 }
 
 var state = SHOOT
+var move_speed = MAX_SPEED
+var last_hit_direction: Vector2 = Vector2.ZERO
+
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetection
-@onready var sprite = $Sprite
 @onready var hurtbox = $Hurtbox
 @onready var softCollision = $SoftCollision
 @onready var bulletSpawner = $Pivot/BulletSpawner
 @onready var rayCast = $Pivot/RayCast2D
-#@onready var animationPlayer = $AnimationPlayer
-
+@onready var animations = $AnimatedSprite2D
 @onready var navAgent = $NavigationAgent2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():
 	state = IDLE
-#	sprite.frame = randi_range(0, 4)
+	animations.frame = randi_range(0, 4)
 
 func _process(_delta: float) -> void:
-#	if velocity.length() > 0.1:
-#		$Pivot.rotation = velocity.angle()
+	if velocity.length() > 0.1:
+		animations.play("Move")
+	else:
+		animations.play("Idle")
 	if player != null:
 		var dir_player = (player.global_position - $Pivot.global_position)
 		var dist = $Pivot.global_position.distance_to(player.global_position)
@@ -45,34 +46,33 @@ func _process(_delta: float) -> void:
 		rayCast.target_position = dir_player
 
 func _physics_process(delta):
-	velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+	move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
 	move_and_slide()
 	
 	match state:
 		IDLE:
-			velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
+			move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
 			seek_player()
 		
 		REACH:
+			move_speed = MAX_SPEED
 			if player != null:
 				update_target_position(player.global_transform.origin)
 				var dist = global_position.distance_to(player.global_position)
 				if dist <= SHOOT_RANGE and not rayCast.is_colliding():
 					state = SHOOT
+			check_detection()
 		
 		SHOOT:
 			if player != null:
 				var dist = global_position.distance_to(player.global_position)
 				if dist > SHOOT_RANGE or rayCast.is_colliding():
 					state = REACH
-					move_speed = MAX_SPEED
 				else:
 					move_speed = lerp(0, MAX_SPEED, dist / SHOOT_RANGE)
 					update_target_position(player.global_transform.origin)
 					bulletSpawner.shoot_at_pos(player.hurtbox.global_position)
-			else:
-				state = IDLE
-				move_speed = MAX_SPEED
+			check_detection()
 			
 	if softCollision.has_overlapping_areas():
 		velocity += softCollision.get_push_vector() * delta * 500
@@ -83,24 +83,30 @@ func seek_player():
 	if playerDetectionZone.can_see_player():
 		state = REACH
 
+func check_detection():
+	if not playerDetectionZone.can_see_player():
+		state = IDLE
+
 func has_line_of_sight(player_pos: Vector2) -> bool:
 	rayCast.target_position = to_local(player_pos)
 	rayCast.force_raycast_update()
 	return not rayCast.is_colliding()
 
 func _on_hurtbox_area_entered(area):
+	last_hit_direction = area.owner.position.direction_to(position)
 	stats.health -= area.damage
-	var knockback_direction = area.owner.position.direction_to(position)
-	velocity = knockback_direction * 120
+	velocity = last_hit_direction * 120
 	#hurtbox.create_hit_effect()
 	hurtbox.start_invincibility(0.4)
 	start_blinking()
 
 func _on_stats_no_health():
 	queue_free()
-#	var enemyDeathEffect = EnemyDeathEffect.instantiate()
-#	get_parent().add_child(enemyDeathEffect)
-#	enemyDeathEffect.position = position
+	var lesserVeganEffect = LesserVeganEffect.instantiate()
+	get_parent().add_child(lesserVeganEffect)
+	lesserVeganEffect.position = position
+	if last_hit_direction != Vector2.ZERO:
+		lesserVeganEffect.velocity = last_hit_direction * 60
 
 func start_blinking():
 #	animationPlayer.play("Start")
@@ -129,3 +135,10 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 		var smooth_dir = current_dir.lerp(target_dir, 0.075).normalized()
 		velocity = smooth_dir * move_speed
 	move_and_slide()
+
+func move_toward_int(current: int, target: int, step: int) -> int:
+	if current < target:
+		return min(current + step, target)
+	elif current > target:
+		return max(current - step, target)
+	return current
