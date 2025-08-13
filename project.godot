@@ -11,8 +11,10 @@ config_version=5
 [application]
 
 config/name="Kabluem"
-run/main_scene="uid://d2jp5r7ha4ove"
+run/main_scene="uid://bcb1jvpsfabrb"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.054902, 0.117647, 0.368627, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,6 +25,10 @@ PlayerStats="*res://Player/player_stats.tscn"
 
 window/size/viewport_width=720
 window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/abfi/plugin.cfg")
 
 [input]
 

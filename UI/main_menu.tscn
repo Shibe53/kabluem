@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcb1jvpsfabrb"]
+
+[ext_resource type="Script" uid="uid://c256cy736peh7" path="res://UI/menu.gd" id="1_d8nwk"]
+[ext_resource type="Texture2D" uid="uid://w34eiaasakh6" path="res://placeholder_bg.jpg" id="2_4cwpn"]
+[ext_resource type="Texture2D" uid="uid://b01e6xj3g6m8e" path="res://Assets/Sprites/Player_WIP.png" id="3_f40uw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d8nwk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 718.0
+offset_bottom = 647.0
+texture = ExtResource("2_4cwpn")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 107.0
+offset_right = 332.0
+offset_bottom = 325.0
+icon = ExtResource("3_f40uw")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

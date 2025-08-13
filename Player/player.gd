@@ -66,7 +66,6 @@ func move_state(delta):
 		state = THROW
 
 func throw_state():
-	velocity = Vector2.ZERO
 	charge += 20
 	if Input.is_action_just_released("throw"):
 		var grenade = grnd.instantiate()
