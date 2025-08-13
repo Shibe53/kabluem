@@ -30,6 +30,10 @@ window/vsync/vsync_mode=0
 
 enabled=PackedStringArray("res://addons/abfi/plugin.cfg")
 
+[global_group]
+
+player="Player"
+
 [input]
 
 ui_left={

@@ -14,7 +14,7 @@ states/Start/position = Vector2(220, 100)
 radius = 12.0
 height = 56.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(-2.38419e-07, 0)
 collision_layer = 2
 script = ExtResource("1_l8h54")

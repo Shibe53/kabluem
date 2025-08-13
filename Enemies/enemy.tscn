@@ -22,11 +22,14 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
-radius = 389.005
+radius = 400.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_3ih25")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -21)
@@ -34,10 +37,17 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_4o6mh")
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_gk8ng")
 
-[node name="BulletSpawner" parent="." instance=ExtResource("3_4o6mh")]
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="BulletSpawner" parent="Pivot" instance=ExtResource("3_4o6mh")]
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot"]
+target_position = Vector2(254, 0)
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_rt1x0")]
 position = Vector2(0, -16)
@@ -45,6 +55,7 @@ collision_layer = 32
 collision_mask = 8
 
 [node name="CollisionShape" parent="Hurtbox" index="0"]
+visible = false
 shape = SubResource("CapsuleShape2D_4o6mh")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_8wvsg")]
@@ -52,10 +63,14 @@ collision_layer = 16
 collision_mask = 4
 
 [node name="CollisionShape" parent="Hitbox" index="0"]
+visible = false
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_koi6q")
 
 [node name="SoftCollision" parent="." instance=ExtResource("4_gk8ng")]
+
+[node name="CollisionShape" parent="SoftCollision" index="0"]
+visible = false
 
 [node name="PlayerDetection" parent="." instance=ExtResource("5_8wvsg")]
 light_mask = 0
@@ -68,6 +83,7 @@ shape = SubResource("CircleShape2D_gk8ng")
 
 [node name="Stats" parent="." instance=ExtResource("5_4o6mh")]
 
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
 [connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
