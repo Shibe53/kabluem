@@ -161,9 +161,9 @@ max_contacts_reported = 1
 linear_damp_mode = 1
 linear_damp = 1.0
 script = ExtResource("1_8s8jj")
+scale_workaround = 0.4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_xjsbx")
 animation = &"Flying"
 autoplay = "Flying"
@@ -172,13 +172,11 @@ frame_progress = 0.373266
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
-scale = Vector2(0.4, 0.4)
 shape = SubResource("CapsuleShape2D_nlrie")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5qpki")]
-scale = Vector2(0.4, 0.4)
 collision_layer = 8
-collision_mask = 32
+collision_mask = 288
 
 [node name="CollisionShape" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_fb86f")
@@ -195,7 +193,6 @@ libraries = {
 }
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
-scale = Vector2(0.4, 0.4)
 emitting = false
 amount = 32
 texture = ExtResource("4_3kepi")
@@ -211,10 +208,9 @@ initial_velocity_max = 1000.0
 linear_accel_min = -100.0
 linear_accel_max = -100.0
 linear_accel_curve = SubResource("Curve_8ygyc")
-scale_amount_min = 0.4
-scale_amount_max = 0.4
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="exuplode"]
 
 [editable path="Hitbox"]

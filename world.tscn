@@ -1,25 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2jp5r7ha4ove"]
+[gd_scene load_steps=7 format=4 uid="uid://d2jp5r7ha4ove"]
 
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Texture2D" uid="uid://w34eiaasakh6" path="res://placeholder_bg.jpg" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://cvpll4vdnq1xu" path="res://Enemies/enemy.tscn" id="3_tlwt5"]
-[ext_resource type="PackedScene" uid="uid://cbc1fmns707ji" path="res://Room/obstacle.tscn" id="4_aqk2v"]
+[ext_resource type="PackedScene" uid="uid://cbc1fmns707ji" path="res://Room/obstacle.tscn" id="4_036b0"]
+[ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_aqk2v"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aqk2v"]
-vertices = PackedVector2Array(623.75, 266.25, 623.75, 113.75, 688.773, 16.5781, 700.219, 616.617, 13.2422, 610.359, 470.25, 266.25, 16.7578, 26.4219, 412.25, 212.25, 565.75, 113.75, 565.75, 59.75, 412.25, 59.75, 470.25, 212.25)
+vertices = PackedVector2Array(630.75, 274.25, 630.75, 121.75, 688.773, 16.5781, 700.219, 616.617, 13.2422, 610.359, 477.25, 274.25, 16.7578, 26.4219, 413.25, 210.25, 566.75, 121.75, 566.75, 57.75, 413.25, 57.75, 477.25, 210.25)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(5, 4, 6, 7), PackedInt32Array(1, 8, 9, 2), PackedInt32Array(6, 2, 9, 10), PackedInt32Array(7, 11, 5), PackedInt32Array(7, 6, 10)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-23, -13, -27, 650, 741, 657, 728, -24)])
 agent_radius = 40.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqk2v"]
-size = Vector2(57.5, 51.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
-size = Vector2(61.25, 56)
-
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
+z_index = -2
 position = Vector2(397, 297)
 scale = Vector2(3.185, 3.33082)
 texture = ExtResource("1_fj7yv")
@@ -35,28 +31,19 @@ position_smoothing_enabled = true
 
 [node name="Enemy" parent="." instance=ExtResource("3_tlwt5")]
 position = Vector2(667, 81)
-ACCELERATION = 260
-MAX_SPEED = 30
-FRICTION = 200
-SHOOT_RANGE = 250
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")
 
-[node name="Obstacle" parent="NavigationRegion2D" instance=ExtResource("4_aqk2v")]
-position = Vector2(489, 136)
+[node name="Obstacle" parent="NavigationRegion2D" instance=ExtResource("4_036b0")]
+position = Vector2(490, 134)
 
-[node name="CollisionShape" parent="NavigationRegion2D/Obstacle/Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_aqk2v")
+[node name="Obstacle2" parent="NavigationRegion2D" instance=ExtResource("4_036b0")]
+position = Vector2(554, 198)
 
-[node name="Obstacle2" parent="NavigationRegion2D" instance=ExtResource("4_aqk2v")]
-position = Vector2(547, 190)
+[node name="TileMap" parent="." instance=ExtResource("4_aqk2v")]
 
-[node name="CollisionShape" parent="NavigationRegion2D/Obstacle2/Hurtbox" index="0"]
-position = Vector2(-1, -1)
-shape = SubResource("RectangleShape2D_036b0")
+[node name="TileMapLayer" parent="TileMap" index="0"]
+tile_map_data = PackedByteArray("AAAAAAAAAAABAAQAAAABAAAAAAABAAQAAAACAAAAAAABAAQAAAADAAAAAAABAAQAAAAEAAAAAAABAAQAAAAFAAAAAAABAAQAAAAGAAAAAAABAAQAAAAHAAAAAAABAAQAAAAIAAAAAAABAAQAAAAJAAAAAAABAAQAAAAKAAAAAAABAAQAAAAKAAEAAAABAAQAAAAKAAIAAAABAAQAAAAKAAMAAAABAAQAAAAKAAQAAAABAAQAAAAKAAUAAAABAAQAAAAKAAYAAAABAAQAAAAKAAcAAAABAAQAAAAKAAgAAAABAAQAAAAKAAkAAAABAAQAAAAJAAkAAAABAAQAAAAIAAkAAAABAAQAAAAHAAkAAAABAAQAAAAGAAkAAAABAAQAAAAFAAkAAAABAAQAAAAEAAkAAAABAAQAAAADAAkAAAABAAQAAAACAAkAAAABAAQAAAABAAkAAAABAAQAAAAAAAkAAAABAAQAAAAAAAgAAAABAAQAAAAAAAcAAAABAAQAAAAAAAYAAAABAAQAAAAAAAUAAAABAAQAAAAAAAQAAAABAAQAAAAAAAMAAAABAAQAAAAAAAIAAAABAAQAAAAAAAEAAAABAAQAAAABAAEAAAABAAQAAAACAAEAAAABAAQAAAADAAEAAAABAAQAAAAEAAEAAAABAAQAAAAFAAEAAAABAAQAAAAGAAEAAAABAAQAAAAHAAEAAAABAAQAAAAIAAEAAAABAAQAAAAJAAEAAAABAAQAAAAJAAIAAAABAAQAAAAJAAMAAAABAAQAAAAJAAQAAAABAAQAAAAJAAUAAAABAAQAAAAJAAYAAAABAAQAAAAJAAcAAAABAAQAAAAJAAgAAAABAAQAAAAIAAgAAAABAAQAAAAHAAgAAAABAAQAAAAGAAgAAAABAAQAAAAFAAgAAAABAAQAAAAGAAcAAAABAAQAAAAHAAYAAAABAAQAAAAIAAYAAAABAAQAAAAIAAUAAAABAAQAAAAHAAcAAAABAAQAAAAIAAcAAAABAAQAAAAIAAQAAAABAAQAAAAIAAMAAAABAAQAAAAIAAIAAAABAAQAAAAHAAMAAAABAAQAAAAHAAQAAAABAAQAAAAHAAUAAAABAAQAAAAGAAYAAAABAAQAAAAFAAcAAAABAAQAAAAEAAgAAAABAAQAAAAFAAYAAAABAAQAAAAGAAUAAAABAAQAAAAGAAQAAAABAAQAAAAHAAIAAAABAAQAAAAGAAIAAAABAAQAAAAGAAMAAAABAAQAAAAFAAQAAAABAAQAAAAFAAUAAAABAAQAAAAEAAYAAAABAAQAAAAEAAcAAAABAAQAAAADAAcAAAABAAQAAAADAAgAAAABAAQAAAAEAAUAAAABAAQAAAAFAAMAAAABAAQAAAAFAAIAAAABAAQAAAAEAAIAAAABAAQAAAAEAAMAAAABAAQAAAADAAQAAAABAAQAAAADAAUAAAABAAQAAAACAAUAAAABAAQAAAACAAYAAAABAAQAAAABAAcAAAABAAQAAAABAAgAAAABAAQAAAACAAgAAAABAAQAAAACAAcAAAABAAQAAAADAAYAAAABAAQAAAAEAAQAAAABAAQAAAACAAQAAAABAAQAAAABAAUAAAABAAQAAAABAAYAAAABAAQAAAABAAQAAAABAAQAAAABAAMAAAABAAQAAAABAAIAAAABAAQAAAACAAIAAAABAAQAAAADAAMAAAABAAQAAAACAAMAAAABAAQAAAADAAIAAAABAAQAAAA=")
 
-[editable path="NavigationRegion2D/Obstacle"]
-[editable path="NavigationRegion2D/Obstacle/Hurtbox"]
-[editable path="NavigationRegion2D/Obstacle2"]
-[editable path="NavigationRegion2D/Obstacle2/Hurtbox"]
+[editable path="TileMap"]

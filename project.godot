@@ -89,3 +89,4 @@ throw={
 2d_physics/layer_6="Enemy Hurtbox"
 2d_physics/layer_7="Bullet Hitbox"
 2d_physics/layer_8="Soft Collisions"
+2d_physics/layer_9="Floor Tiles"
