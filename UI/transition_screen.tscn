@@ -35,18 +35,18 @@ color = Color(0.054902, 0.117647, 0.368627, 1)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 174.0
-offset_top = 469.0
-offset_right = 530.0
-offset_bottom = 525.0
+offset_left = 217.0
+offset_top = 482.0
+offset_right = 573.0
+offset_bottom = 538.0
 text = "Press any key"
 label_settings = SubResource("LabelSettings_u2oau")
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 0
-offset_left = 59.0
-offset_top = 190.0
-offset_right = 675.0
-offset_bottom = 302.0
+offset_left = 95.0
+offset_top = 180.0
+offset_right = 711.0
+offset_bottom = 292.0
 text = "LOGO HERE"
 label_settings = SubResource("LabelSettings_1mlag")

@@ -15,17 +15,17 @@ script = ExtResource("1_d8nwk")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 718.0
-offset_bottom = 647.0
+offset_right = 800.0
+offset_bottom = 723.0
 texture = ExtResource("2_4cwpn")
 expand_mode = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 214.0
-offset_top = 107.0
-offset_right = 332.0
-offset_bottom = 325.0
+offset_left = 312.0
+offset_top = 142.0
+offset_right = 430.0
+offset_bottom = 360.0
 icon = ExtResource("3_f40uw")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

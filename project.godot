@@ -23,7 +23,8 @@ PlayerStats="*res://Player/player_stats.tscn"
 
 [display]
 
-window/size/viewport_width=720
+window/size/viewport_width=800
+window/size/viewport_height=720
 window/vsync/vsync_mode=0
 
 [editor_plugins]
