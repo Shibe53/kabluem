@@ -45,7 +45,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("dodge"):
 				state = DODGE
 	
-			if Input.is_action_just_pressed("throw") and not onThrowCooldown:
+			if Input.is_action_pressed("throw") and not onThrowCooldown:
 				chargeMeter.visible = true
 				state = THROW
 		DODGE:
