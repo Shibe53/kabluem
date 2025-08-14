@@ -18,14 +18,13 @@ enum {
 var state = SHOOT
 var move_speed = MAX_SPEED
 var last_hit_direction: Vector2 = Vector2.ZERO
-var last_hit_object = null
 
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetection
 @onready var hurtbox = $Hurtbox
 @onready var softCollision = $SoftCollision
 @onready var bulletSpawner = $Pivot/BulletSpawner
-@onready var rayCast = $Pivot/RayCast2D
+@onready var mainRC = $Pivot/Raycasts/MainRC
 @onready var animations = $AnimatedSprite2D
 @onready var navAgent = $NavigationAgent2D
 @onready var animationPlayer = $AnimationPlayer
@@ -47,7 +46,7 @@ func _process(_delta: float) -> void:
 #		$Pivot.rotation = dir_player.angle()
 		if dist > SHOOT_RANGE:
 			dir_player = dir_player.normalized() * SHOOT_RANGE
-		rayCast.target_position = dir_player
+		mainRC.target_position = dir_player
 
 func _physics_process(delta):
 	move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
@@ -101,17 +100,15 @@ func shoot_state():
 	check_detection()
 
 func has_los():
-	return (not rayCast.is_colliding()) or (rayCast.is_colliding() and is_instance_of(rayCast.get_collider(), Grenade))
+	return (not mainRC.is_colliding()) or (mainRC.is_colliding() and is_instance_of(mainRC.get_collider(), Grenade))
 
 func _on_hurtbox_area_entered(area):
-	if last_hit_object != area.owner:
-		last_hit_direction = area.owner.position.direction_to(position)
-		stats.health -= area.damage
-		velocity = last_hit_direction * 120
-		#hurtbox.create_hit_effect()
-		hurtbox.start_invincibility(0.5)
-		start_blinking()
-	last_hit_object = area.owner
+	last_hit_direction = area.owner.position.direction_to(position)
+	stats.health -= area.damage
+	velocity = last_hit_direction * 120
+	#hurtbox.create_hit_effect()
+	hurtbox.start_invincibility(0.5)
+	start_blinking()
 
 func _on_stats_no_health():
 	queue_free()
