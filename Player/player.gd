@@ -6,7 +6,8 @@ const grnd = preload("res://Grenade/grenade.tscn")
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
 @export var MAX_THROW_SPEED = 100
-@export var DODGE_SPEED = 115
+@export var DODGE_SPEED = 300
+@export var DODGE_INV = 0.35
 @export var FRICTION = 500
 @export var THROW_COOLDOWN = 1.0
 
@@ -18,6 +19,7 @@ enum {
 
 var state = MOVE
 var dodge_vector = Vector2.DOWN
+var dodge_timer = 0.0
 var last_facing = 1
 var stats = PlayerStats
 var charge = 0
@@ -47,7 +49,7 @@ func _physics_process(delta):
 				chargeMeter.visible = true
 				state = THROW
 		DODGE:
-			dodge_state()
+			dodge_state(delta)
 		THROW:
 			move_state(delta, MAX_THROW_SPEED)
 			throw_state()
@@ -64,7 +66,7 @@ func move_state(delta, speed):
 			last_facing = sign(input_vector.x)
 		animationTree.set("parameters/Idle/blend_position", last_facing)
 		animationTree.set("parameters/Walk/blend_position", last_facing)
-#		animationTree.set("parameters/Roll/blend_position", input_vector)
+		animationTree.set("parameters/Dodge/blend_position", last_facing)
 		animationState.travel("Walk")
 		velocity = velocity.move_toward(input_vector * speed, ACCELERATION * delta)
 	else:
@@ -94,14 +96,17 @@ func throw_state():
 func _on_throw_cooldown_timer_timeout() -> void:
 	onThrowCooldown = false
 
-func dodge_state():
-	velocity = dodge_vector * DODGE_SPEED
-#	animationState.travel("Roll")
+func dodge_state(delta):
+	dodge_timer += delta
+	var speed_factor = sin(dodge_timer * PI / 0.8)
+	velocity = dodge_vector * DODGE_SPEED * speed_factor
+	animationState.travel("Dodge")
 	move_and_slide()
-	hurtbox.start_invincibility(0.15)
+	hurtbox.start_invincibility(DODGE_INV)
 
 func dodge_animation_finished():
 	state = MOVE
+	dodge_timer = 0.0
 	velocity /= 1.5
 
 func _on_hurtbox_area_entered(area):
@@ -126,3 +131,6 @@ func start_blinking():
 
 func _on_hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+
+func _on_hurtbox_invincibility_started() -> void:
+	pass

@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://cvpll4vdnq1xu"]
 
 [ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
-[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/WhiteColor.gdshader" id="2_jlnat"]
+[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/CyanColor.gdshader" id="2_jlnat"]
 [ext_resource type="Texture2D" uid="uid://ddb24c1ul66b8" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Idle-Sheet.png" id="2_koi6q"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
 [ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="3_4o6mh"]

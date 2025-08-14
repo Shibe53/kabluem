@@ -1,12 +1,13 @@
-[gd_scene load_steps=31 format=3 uid="uid://cwxgusqqwr28s"]
+[gd_scene load_steps=39 format=3 uid="uid://cwxgusqqwr28s"]
 
 [ext_resource type="Script" uid="uid://pbbpkc0mevn4" path="res://Player/player.gd" id="1_l8h54"]
-[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/WhiteColor.gdshader" id="2_vtle1"]
+[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/CyanColor.gdshader" id="2_vtle1"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="3_btcbx"]
 [ext_resource type="Texture2D" uid="uid://gmy4cm2tv6je" path="res://Assets/Sprites/Player/Player_Idle-Sheet.png" id="3_fhl08"]
 [ext_resource type="Texture2D" uid="uid://ysx1w4uk01v3" path="res://Assets/Sprites/progress_bar_empty.png" id="4_k53q1"]
 [ext_resource type="Texture2D" uid="uid://ceewxstvqvhhb" path="res://Assets/Sprites/Player/Player_Walk-Sheet.png" id="4_vtle1"]
 [ext_resource type="Texture2D" uid="uid://dcoowp11gi60f" path="res://Assets/Sprites/progress_bar_fill.png" id="5_fhl08"]
+[ext_resource type="Texture2D" uid="uid://c0ibcx347gsl4" path="res://Assets/Sprites/Player/Player_Dodge-Sheet.png" id="5_od3ui"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od3ui"]
 shader = ExtResource("2_vtle1")
@@ -14,6 +15,138 @@ shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 height = 26.0
+
+[sub_resource type="Animation" id="Animation_p5o4e"]
+resource_name = "DodgeLeft"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_od3ui")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dodge_animation_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gu6f8"]
+resource_name = "DodgeRight"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_od3ui")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dodge_animation_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_k53q1"]
 resource_name = "IdleLeft"
@@ -54,6 +187,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_fhl08"]
@@ -96,6 +241,69 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_5htga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_fhl08")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
 [sub_resource type="Animation" id="Animation_vtle1"]
 resource_name = "WalkLeft"
@@ -136,6 +344,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
 }
 
 [sub_resource type="Animation" id="Animation_od3ui"]
@@ -178,54 +398,42 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
-
-[sub_resource type="Animation" id="Animation_5htga"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:texture")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_fhl08")]
+"values": [4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00tjw"]
 _data = {
+&"DodgeLeft": SubResource("Animation_p5o4e"),
+&"DodgeRight": SubResource("Animation_gu6f8"),
 &"IdleLeft": SubResource("Animation_k53q1"),
 &"IdleRight": SubResource("Animation_fhl08"),
 &"RESET": SubResource("Animation_5htga"),
 &"WalkLeft": SubResource("Animation_vtle1"),
 &"WalkRight": SubResource("Animation_od3ui")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_apopc"]
+animation = &"DodgeLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5htga"]
+animation = &"DodgeRight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_p5o4e"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_apopc")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_5htga")
+blend_point_1/pos = 1.0
+blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vtle1"]
 animation = &"IdleLeft"
@@ -260,19 +468,40 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p5o4e"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gu6f8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dkpta"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4ntmi"]
+states/Dodge/node = SubResource("AnimationNodeBlendSpace1D_p5o4e")
+states/Dodge/position = Vector2(447, 28)
 states/End/position = Vector2(1004, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace1D_00tjw")
 states/Idle/position = Vector2(447, 100)
 states/Start/position = Vector2(260, 100)
 states/Walk/node = SubResource("AnimationNodeBlendSpace1D_x3vf3")
 states/Walk/position = Vector2(603, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_apopc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5htga"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_p5o4e")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_apopc"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_5htga"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_p5o4e"), "Dodge", "Idle", SubResource("AnimationNodeStateMachineTransition_gu6f8"), "Idle", "Dodge", SubResource("AnimationNodeStateMachineTransition_dkpta")]
 graph_offset = Vector2(112, -3)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
 radius = 13.0
 height = 36.0
+
+[sub_resource type="Animation" id="Animation_apopc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_00tjw"]
 resource_name = "Start"
@@ -293,21 +522,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_x3vf3"]
 resource_name = "Stop"
 length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_apopc"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -353,6 +567,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_4ntmi")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Dodge/blend_position = 0
 parameters/Idle/blend_position = 0.370196
 parameters/Walk/blend_position = 0.0
 
@@ -390,6 +605,7 @@ libraries = {
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
 [connection signal="timeout" from="ThrowCooldownTimer" to="." method="_on_throw_cooldown_timer_timeout"]
 
 [editable path="Hurtbox"]
