@@ -5,6 +5,7 @@ const grnd = preload("res://Grenade/grenade.tscn")
 
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
+@export var MAX_THROW_SPEED = 75
 @export var DODGE_SPEED = 115
 @export var FRICTION = 500
 @export var THROW_COOLDOWN = 1.0
@@ -37,13 +38,20 @@ func _ready():
 func _physics_process(delta):
 	match state:
 		MOVE:
-			move_state(delta)
+			move_state(delta, MAX_SPEED)
+			if Input.is_action_just_pressed("dodge"):
+				state = DODGE
+	
+			if Input.is_action_just_pressed("throw") and not onThrowCooldown:
+				chargeMeter.visible = true
+				state = THROW
 		DODGE:
 			dodge_state()
 		THROW:
+			move_state(delta, MAX_THROW_SPEED)
 			throw_state()
 
-func move_state(delta):
+func move_state(delta, speed):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -56,19 +64,12 @@ func move_state(delta):
 #		animationTree.set("parameters/Attack/blend_position", input_vector)
 #		animationTree.set("parameters/Roll/blend_position", input_vector)
 #		animationState.travel("Run")
-		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
+		velocity = velocity.move_toward(input_vector * speed, ACCELERATION * delta)
 	else:
 #		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
 	move_and_slide()
-	
-	if Input.is_action_just_pressed("dodge"):
-		state = DODGE
-	
-	if Input.is_action_just_pressed("throw") and not onThrowCooldown:
-		chargeMeter.visible = true
-		state = THROW
 
 func throw_state():
 	charge = clamp(charge + chargeMeter.step, chargeMeter.min_value, chargeMeter.max_value)
@@ -88,9 +89,6 @@ func throw_state():
 		chargeMeter.visible = false
 		state = MOVE
 #	animationState.travel("Attack")
-
-func throw_animation_finished():
-	state = MOVE
 	
 func _on_throw_cooldown_timer_timeout() -> void:
 	onThrowCooldown = false
