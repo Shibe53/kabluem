@@ -92,6 +92,11 @@ func throw_state():
 		throwCDTimer.start(THROW_COOLDOWN)
 		chargeMeter.visible = false
 		state = MOVE
+	elif Input.is_action_just_pressed("dodge"):
+		charge = 0
+		chargeMeter.value = charge
+		chargeMeter.visible = false
+		state = DODGE
 	
 func _on_throw_cooldown_timer_timeout() -> void:
 	onThrowCooldown = false
