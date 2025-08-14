@@ -26,6 +26,7 @@ var onThrowCooldown = false
 #@onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $Hurtbox
 @onready var throwCDTimer = $ThrowCooldownTimer
+@onready var chargeMeter = $AspectRatioContainer/ChargeMeter
 #@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
@@ -66,21 +67,25 @@ func move_state(delta):
 		state = DODGE
 	
 	if Input.is_action_just_pressed("throw") and not onThrowCooldown:
+		chargeMeter.visible = true
 		state = THROW
 
 func throw_state():
-	charge += 20
+	charge = clamp(charge + chargeMeter.step, chargeMeter.min_value, chargeMeter.max_value)
+	chargeMeter.value = charge
 	if Input.is_action_just_released("throw"):
+		var dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 		var grenade = grnd.instantiate()
-		grenade.global_position = global_position
+		grenade.global_position = global_position + dir * 10
 		get_tree().current_scene.add_child(grenade)
 		
-		var dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 		grenade.apply_impulse(dir * charge)
 		
 		charge = 0
+		chargeMeter.value = charge
 		onThrowCooldown = true
 		throwCDTimer.start(THROW_COOLDOWN)
+		chargeMeter.visible = false
 		state = MOVE
 #	animationState.travel("Attack")
 

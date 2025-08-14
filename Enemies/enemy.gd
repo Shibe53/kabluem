@@ -33,6 +33,7 @@ var last_hit_direction: Vector2 = Vector2.ZERO
 func _ready():
 	state = IDLE
 	animations.frame = randi_range(0, 4)
+	mainRC.target_position.x = SHOOT_RANGE
 
 func _process(_delta: float) -> void:
 	playerDetectionZone.change_range(DETECTION_RANGE)
@@ -105,7 +106,7 @@ func has_los():
 func _on_hurtbox_area_entered(area):
 	last_hit_direction = area.owner.position.direction_to(position)
 	stats.health -= area.damage
-	velocity = last_hit_direction * 120
+	velocity = last_hit_direction * 20
 	#hurtbox.create_hit_effect()
 	hurtbox.start_invincibility(0.5)
 	start_blinking()

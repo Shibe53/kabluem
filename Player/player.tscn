@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwxgusqqwr28s"]
+[gd_scene load_steps=9 format=3 uid="uid://cwxgusqqwr28s"]
 
 [ext_resource type="Script" uid="uid://pbbpkc0mevn4" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="Texture2D" uid="uid://b01e6xj3g6m8e" path="res://Assets/Sprites/Player_WIP.png" id="2_btcbx"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="3_btcbx"]
+[ext_resource type="Texture2D" uid="uid://ysx1w4uk01v3" path="res://Assets/Sprites/progress_bar_empty.png" id="4_k53q1"]
+[ext_resource type="Texture2D" uid="uid://dcoowp11gi60f" path="res://Assets/Sprites/progress_bar_fill.png" id="5_fhl08"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 height = 26.0
@@ -43,6 +45,22 @@ collision_mask = 80
 shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="ThrowCooldownTimer" type="Timer" parent="."]
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+offset_left = -36.0
+offset_top = -96.0
+offset_right = 37.0
+offset_bottom = -75.0
+ratio = 4.0
+
+[node name="ChargeMeter" type="TextureProgressBar" parent="AspectRatioContainer"]
+visible = false
+layout_mode = 2
+max_value = 750.0
+step = 15.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_k53q1")
+texture_progress = ExtResource("5_fhl08")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
