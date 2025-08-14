@@ -44,8 +44,8 @@ func get_spread(player_pos: Vector2, enemy_pos: Vector2) -> Array:
 	var base_angle = atan2(delta.y, delta.x)
 	
 	var results = []
-	for sign in [1, -1]:
-		var angle = base_angle + sign * angle_offset
+	for sgn in [1, -1]:
+		var angle = base_angle + sgn * angle_offset
 		var dir = Vector2(cos(angle), sin(angle))
 		
 		# Solve for λ where x = x_A

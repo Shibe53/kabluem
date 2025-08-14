@@ -27,7 +27,8 @@ var last_hit_direction: Vector2 = Vector2.ZERO
 @onready var mainRC = $Pivot/MainRC
 @onready var animations = $AnimatedSprite2D
 @onready var navAgent = $NavigationAgent2D
-@onready var animationPlayer = $AnimationPlayer
+@onready var animationPlayer = $BlinkAnimationPlayer
+@onready var animatedSprite = $AnimatedSprite2D
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():
@@ -39,6 +40,7 @@ func _process(_delta: float) -> void:
 	playerDetectionZone.change_range(DETECTION_RANGE)
 	if velocity.length() > 0.1:
 		animations.play("Move")
+		animatedSprite.flip_h = velocity.x < 0
 	else:
 		animations.play("Idle")
 	if player != null:
@@ -116,8 +118,9 @@ func _on_stats_no_health():
 	var lesserVeganEffect = LesserVeganEffect.instantiate()
 	get_parent().add_child(lesserVeganEffect)
 	lesserVeganEffect.position = position
+	lesserVeganEffect.flip_h = last_hit_direction.x > 0
 	if last_hit_direction != Vector2.ZERO:
-		lesserVeganEffect.velocity = last_hit_direction * 60
+		lesserVeganEffect.velocity = last_hit_direction * 80
 
 func start_blinking():
 	animationPlayer.play("Start")

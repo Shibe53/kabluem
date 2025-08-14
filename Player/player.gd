@@ -18,22 +18,23 @@ enum {
 
 var state = MOVE
 var dodge_vector = Vector2.DOWN
+var last_facing = 1
 var stats = PlayerStats
 var charge = 0
 var onThrowCooldown = false
 
-#@onready var animationPlayer = $AnimationPlayer
-#@onready var animationTree = $AnimationTree
-#@onready var animationState = animationTree.get("parameters/playback")
+@onready var animationPlayer = $AnimationPlayer
+@onready var animationTree = $AnimationTree
+@onready var animationState = animationTree.get("parameters/playback")
 @onready var hurtbox = $Hurtbox
 @onready var throwCDTimer = $ThrowCooldownTimer
 @onready var chargeMeter = $AspectRatioContainer/ChargeMeter
-#@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
+@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
 	randomize()
 	stats.no_health.connect(player_death)
-#	animationTree.active = true
+	animationTree.active = true
 
 func _physics_process(delta):
 	match state:
@@ -59,14 +60,15 @@ func move_state(delta, speed):
 	
 	if input_vector != Vector2.ZERO:
 		dodge_vector = input_vector
-#		animationTree.set("parameters/Idle/blend_position", input_vector)
-#		animationTree.set("parameters/Run/blend_position", input_vector)
-#		animationTree.set("parameters/Attack/blend_position", input_vector)
+		if input_vector.x != 0:
+			last_facing = sign(input_vector.x)
+		animationTree.set("parameters/Idle/blend_position", last_facing)
+		animationTree.set("parameters/Walk/blend_position", last_facing)
 #		animationTree.set("parameters/Roll/blend_position", input_vector)
-#		animationState.travel("Run")
+		animationState.travel("Walk")
 		velocity = velocity.move_toward(input_vector * speed, ACCELERATION * delta)
 	else:
-#		animationState.travel("Idle")
+		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
 	move_and_slide()
@@ -88,7 +90,6 @@ func throw_state():
 		throwCDTimer.start(THROW_COOLDOWN)
 		chargeMeter.visible = false
 		state = MOVE
-#	animationState.travel("Attack")
 	
 func _on_throw_cooldown_timer_timeout() -> void:
 	onThrowCooldown = false
@@ -108,7 +109,7 @@ func _on_hurtbox_area_entered(area):
 	var knockback_direction = area.owner.position.direction_to(position)
 	velocity = knockback_direction * 200
 	hurtbox.start_invincibility(0.6)
-#	start_blinking()
+	start_blinking()
 #	hurtbox.create_hit_effect()
 #	var playerHurtSound = PlayerHurtSound.instantiate()
 #	get_tree().current_scene.add_child(playerHurtSound)
@@ -121,12 +122,7 @@ func player_death():
 	queue_free()
 
 func start_blinking():
-#	blinkAnimationPlayer.play("Start")
-	pass
+	blinkAnimationPlayer.play("Start")
 
 func _on_hurtbox_invincibility_ended():
-#	blinkAnimationPlayer.play("Stop")
-	pass
-
-func _on_hurtbox_invincibility_started():
-	pass
+	blinkAnimationPlayer.play("Stop")
