@@ -98,7 +98,7 @@ func _on_throw_cooldown_timer_timeout() -> void:
 
 func dodge_state(delta):
 	dodge_timer += delta
-	var speed_factor = sin(dodge_timer * PI / 0.8)
+	var speed_factor = clampf(sin(dodge_timer + PI / 2),0,1)
 	velocity = dodge_vector * DODGE_SPEED * speed_factor
 	animationState.travel("Dodge")
 	move_and_slide()
