@@ -1,6 +1,7 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvpll4vdnq1xu"]
+[gd_scene load_steps=30 format=3 uid="uid://cvpll4vdnq1xu"]
 
 [ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
+[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/WhiteColor.gdshader" id="2_jlnat"]
 [ext_resource type="Texture2D" uid="uid://ddb24c1ul66b8" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Idle-Sheet.png" id="2_koi6q"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
 [ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="3_4o6mh"]
@@ -9,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://bhxmbarg6pbr6" path="res://Hitboxes/soft_collision.tscn" id="4_gk8ng"]
 [ext_resource type="PackedScene" uid="uid://dtomwktlsxn84" path="res://stats.tscn" id="5_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="5_8wvsg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8uwx"]
+shader = ExtResource("2_jlnat")
+shader_parameter/active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jlnat"]
 atlas = ExtResource("2_koi6q")
@@ -98,6 +103,61 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
 radius = 300.0
 
+[sub_resource type="Animation" id="Animation_koi6q"]
+resource_name = "Start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jlnat"]
+resource_name = "Stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_t8uwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8uwx"]
+_data = {
+&"RESET": SubResource("Animation_t8uwx"),
+&"Start": SubResource("Animation_koi6q"),
+&"Stop": SubResource("Animation_jlnat")
+}
+
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_3ih25")
@@ -106,6 +166,7 @@ script = ExtResource("1_3ih25")
 avoidance_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_t8uwx")
 position = Vector2(0, -21)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_1xcb7")
@@ -117,13 +178,13 @@ rotation = -1.5708
 shape = SubResource("CapsuleShape2D_gk8ng")
 
 [node name="Pivot" type="Node2D" parent="."]
-visible = false
 position = Vector2(0, -16)
 
 [node name="BulletSpawner" parent="Pivot" instance=ExtResource("3_4o6mh")]
 
 [node name="RayCast2D" type="RayCast2D" parent="Pivot"]
 target_position = Vector2(254, 0)
+collision_mask = 513
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_rt1x0")]
 position = Vector2(0, -16)
@@ -160,6 +221,12 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_gk8ng")
 
 [node name="Stats" parent="." instance=ExtResource("5_4o6mh")]
+max_health = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t8uwx")
+}
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

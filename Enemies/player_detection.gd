@@ -1,5 +1,7 @@
 extends Area2D
 
+@onready var collisionShape = $CollisionShape2D
+
 var player = null
 
 func can_see_player():
@@ -10,3 +12,6 @@ func _on_body_entered(body):
 
 func _on_body_exited(_body):
 	player = null
+
+func change_range(newRange):
+	collisionShape.shape.radius = newRange

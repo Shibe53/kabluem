@@ -7,6 +7,7 @@ const LesserVeganEffect = preload("res://Effects/lesser_vegan_death.tscn")
 @export var MAX_SPEED = 30
 @export var FRICTION = 100
 @export var SHOOT_RANGE = 300
+@export var DETECTION_RANGE = 300
 
 enum {
 	IDLE,
@@ -17,6 +18,7 @@ enum {
 var state = SHOOT
 var move_speed = MAX_SPEED
 var last_hit_direction: Vector2 = Vector2.ZERO
+var last_hit_object = null
 
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetection
@@ -26,6 +28,7 @@ var last_hit_direction: Vector2 = Vector2.ZERO
 @onready var rayCast = $Pivot/RayCast2D
 @onready var animations = $AnimatedSprite2D
 @onready var navAgent = $NavigationAgent2D
+@onready var animationPlayer = $AnimationPlayer
 @onready var player = get_tree().get_first_node_in_group("player")
 
 func _ready():
@@ -33,6 +36,7 @@ func _ready():
 	animations.frame = randi_range(0, 4)
 
 func _process(_delta: float) -> void:
+	playerDetectionZone.change_range(DETECTION_RANGE)
 	if velocity.length() > 0.1:
 		animations.play("Move")
 	else:
@@ -51,28 +55,11 @@ func _physics_process(delta):
 	
 	match state:
 		IDLE:
-			move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
-			seek_player()
-		
+			idle_state(delta)
 		REACH:
-			move_speed = MAX_SPEED
-			if player != null:
-				update_target_position(player.global_transform.origin)
-				var dist = global_position.distance_to(player.global_position)
-				if dist <= SHOOT_RANGE and not rayCast.is_colliding():
-					state = SHOOT
-			check_detection()
-		
+			reach_state()
 		SHOOT:
-			if player != null:
-				var dist = global_position.distance_to(player.global_position)
-				if dist > SHOOT_RANGE or rayCast.is_colliding():
-					state = REACH
-				else:
-					move_speed = lerp(0, MAX_SPEED, dist / SHOOT_RANGE)
-					update_target_position(player.global_transform.origin)
-					bulletSpawner.shoot_at_pos(player.hurtbox.global_position)
-			check_detection()
+			shoot_state()
 			
 	if softCollision.has_overlapping_areas():
 		velocity += softCollision.get_push_vector() * delta * 500
@@ -87,18 +74,44 @@ func check_detection():
 	if not playerDetectionZone.can_see_player():
 		state = IDLE
 
-func has_line_of_sight(player_pos: Vector2) -> bool:
-	rayCast.target_position = to_local(player_pos)
-	rayCast.force_raycast_update()
-	return not rayCast.is_colliding()
+func idle_state(delta):
+	DETECTION_RANGE = 300
+	move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
+	seek_player()
+	
+func reach_state():
+	DETECTION_RANGE = 400
+	move_speed = MAX_SPEED
+	if player != null:
+		update_target_position(player.global_transform.origin)
+		var dist = global_position.distance_to(player.global_position)
+		if dist <= SHOOT_RANGE and has_los():
+			state = SHOOT
+	check_detection()
+
+func shoot_state():
+	if player != null:
+		var dist = global_position.distance_to(player.global_position)
+		if dist > SHOOT_RANGE or not has_los():
+			state = REACH
+		else:
+			move_speed = lerp(0, MAX_SPEED, dist / SHOOT_RANGE)
+			update_target_position(player.global_transform.origin)
+			bulletSpawner.shoot_at_pos(player.hurtbox.global_position)
+	check_detection()
+
+func has_los():
+	return (not rayCast.is_colliding()) or (rayCast.is_colliding() and is_instance_of(rayCast.get_collider(), Grenade))
 
 func _on_hurtbox_area_entered(area):
-	last_hit_direction = area.owner.position.direction_to(position)
-	stats.health -= area.damage
-	velocity = last_hit_direction * 120
-	#hurtbox.create_hit_effect()
-	hurtbox.start_invincibility(0.4)
-	start_blinking()
+	if last_hit_object != area.owner:
+		last_hit_direction = area.owner.position.direction_to(position)
+		stats.health -= area.damage
+		velocity = last_hit_direction * 120
+		#hurtbox.create_hit_effect()
+		hurtbox.start_invincibility(0.5)
+		start_blinking()
+	last_hit_object = area.owner
 
 func _on_stats_no_health():
 	queue_free()
@@ -109,11 +122,11 @@ func _on_stats_no_health():
 		lesserVeganEffect.velocity = last_hit_direction * 60
 
 func start_blinking():
-#	animationPlayer.play("Start")
+	animationPlayer.play("Start")
 	pass
 
 func _on_hurtbox_invincibility_ended():
-#	animationPlayer.play("Stop")
+	animationPlayer.play("Stop")
 	pass
 
 func _on_hurtbox_invincibility_started():
