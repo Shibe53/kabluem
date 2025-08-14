@@ -25,6 +25,10 @@ position = Vector2(351, 315)
 y_sort_enabled = true
 position = Vector2(667, 81)
 
+[node name="BulletSpawner" parent="Enemy/Pivot" index="0"]
+COOLDOWN = 2.0
+SPREAD = true
+
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")
 
@@ -43,4 +47,9 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAQAAAABAAAAAAABAAQAAAACAAAAAAABAAQ
 
 [node name="Gui" parent="CanvasLayer" instance=ExtResource("6_dwbse")]
 
+[editable path="Enemy"]
+[editable path="Enemy/Hurtbox"]
+[editable path="Enemy/Hitbox"]
+[editable path="Enemy/SoftCollision"]
+[editable path="Enemy/PlayerDetection"]
 [editable path="TileMap"]
