@@ -182,15 +182,9 @@ position = Vector2(0, -16)
 
 [node name="BulletSpawner" parent="Pivot" instance=ExtResource("3_4o6mh")]
 
-[node name="Raycasts" type="Node2D" parent="Pivot"]
-
-[node name="MainRC" type="RayCast2D" parent="Pivot/Raycasts"]
-target_position = Vector2(254, 0)
+[node name="MainRC" type="RayCast2D" parent="Pivot"]
+target_position = Vector2(250, 0)
 collision_mask = 513
-
-[node name="RightRC" type="RayCast2D" parent="Pivot/Raycasts"]
-
-[node name="LeftRC" type="RayCast2D" parent="Pivot/Raycasts"]
 
 [node name="Hurtbox" parent="." instance=ExtResource("2_rt1x0")]
 position = Vector2(0, -16)
