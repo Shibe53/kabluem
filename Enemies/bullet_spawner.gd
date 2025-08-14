@@ -12,13 +12,14 @@ const Bullet = preload("res://Enemies/bullet.tscn")
 var onCooldown = false
 
 func shoot_at_pos(pos):
-	if !onCooldown:
+	if not onCooldown:
 		onCooldown = true
 		var bullet = Bullet.instantiate()
 		var main = get_tree().current_scene
 		
 		bullet.global_position = global_position
 		bullet.set_values(pos, SPEED, DAMAGE)
+		main.add_child(bullet)
 		
 		if SPREAD:
 			var bullets_pos = get_spread(pos, global_position)
@@ -32,27 +33,23 @@ func shoot_at_pos(pos):
 			bullet3.global_position = global_position
 			bullet3.set_values(bullets_pos[1], SPEED, DAMAGE)
 			main.add_child(bullet3)
-			
-		main.add_child(bullet)
 		timer.start(COOLDOWN)
 
 func get_spread(player_pos: Vector2, enemy_pos: Vector2) -> Array:
 	var delta = player_pos - enemy_pos
 	var angle_offset = deg_to_rad(SPREAD_ANGLE)
 	
-	# Direct angle from B to A
+	# Direct angle from enemy to player
 	var base_angle = atan2(delta.y, delta.x)
+	var max_range = 500.0  # Change to your desired bullet travel distance
 	
 	var results = []
 	for sgn in [1, -1]:
 		var angle = base_angle + sgn * angle_offset
 		var dir = Vector2(cos(angle), sin(angle))
-		
-		# Solve for λ where x = x_A
-		var lambda = (player_pos.x - enemy_pos.x) / dir.x
-		var y_intersect = enemy_pos.y + lambda * dir.y
-		
-		results.append(Vector2(player_pos.x, y_intersect))
+		var end_point = enemy_pos + dir * max_range
+		results.append(end_point)
+	
 	return results
 
 func _on_timer_timeout() -> void:
