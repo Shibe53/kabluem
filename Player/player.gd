@@ -82,7 +82,9 @@ func throw_state():
 		var dir: Vector2 = (get_global_mouse_position() - global_position).normalized()
 		var grenade = grnd.instantiate()
 		grenade.global_position = global_position + dir * 10
-		get_tree().current_scene.add_child(grenade)
+		var world = get_tree().current_scene
+		world.add_child(grenade)
+		grenade.set_owner(world)
 		
 		grenade.apply_impulse(dir * charge)
 		
@@ -128,7 +130,9 @@ func player_death():
 	var newCamera = Camera2D.new()
 	newCamera.enabled = true
 	newCamera.global_position = self.global_position
-	get_tree().current_scene.add_child(newCamera)
+	var world = get_tree().current_scene
+	world.add_child(newCamera)
+	newCamera.set_owner(world)
 	queue_free()
 
 func start_blinking():

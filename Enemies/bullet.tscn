@@ -17,7 +17,7 @@ texture = ExtResource("2_s6aeo")
 
 [node name="Hitbox" parent="." instance=ExtResource("2_qrxae")]
 collision_layer = 320
-collision_mask = 5
+collision_mask = 1029
 
 [node name="CollisionShape" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_s6aeo")

@@ -5206,7 +5206,6 @@ z_index = -1
 scale = Vector2(0.4, 0.4)
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
-scale = Vector2(1, 1)
 tile_set = SubResource("TileSet_ai5y3")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -5214,5 +5213,4 @@ tile_set = SubResource("TileSet_a1iue")
 script = ExtResource("2_s4j8i")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
-scale = Vector2(1, 1)
 tile_set = SubResource("TileSet_ti35y")

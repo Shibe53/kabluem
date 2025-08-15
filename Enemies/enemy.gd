@@ -117,6 +117,7 @@ func _on_stats_no_health():
 	queue_free()
 	var lesserVeganEffect = LesserVeganEffect.instantiate()
 	get_parent().add_child(lesserVeganEffect)
+	lesserVeganEffect.set_owner(get_parent())
 	lesserVeganEffect.position = position
 	lesserVeganEffect.flip_h = last_hit_direction.x > 0
 	if last_hit_direction != Vector2.ZERO:

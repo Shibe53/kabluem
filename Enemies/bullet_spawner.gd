@@ -20,6 +20,7 @@ func shoot_at_pos(pos):
 		bullet.global_position = global_position
 		bullet.set_values(pos, SPEED, DAMAGE)
 		main.add_child(bullet)
+		bullet.set_owner(main)
 		
 		if SPREAD:
 			var bullets_pos = get_spread(pos, global_position)
@@ -28,11 +29,13 @@ func shoot_at_pos(pos):
 			bullet2.global_position = global_position
 			bullet2.set_values(bullets_pos[0], SPEED, DAMAGE)
 			main.add_child(bullet2)
+			bullet2.set_owner(main)
 			
 			var bullet3 = Bullet.instantiate()
 			bullet3.global_position = global_position
 			bullet3.set_values(bullets_pos[1], SPEED, DAMAGE)
 			main.add_child(bullet3)
+			bullet3.set_owner(main)
 		timer.start(COOLDOWN)
 
 func get_spread(player_pos: Vector2, enemy_pos: Vector2) -> Array:
