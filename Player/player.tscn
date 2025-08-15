@@ -14,7 +14,7 @@ shader = ExtResource("2_vtle1")
 shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
-height = 26.0
+height = 40.0
 
 [sub_resource type="Animation" id="Animation_p5o4e"]
 resource_name = "DodgeLeft"

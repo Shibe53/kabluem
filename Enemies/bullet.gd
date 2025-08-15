@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var timer = $Timer
 @onready var hitbox = $Hitbox
@@ -11,9 +11,12 @@ func _ready():
 	hitbox.damage = DAMAGE
 	timer.start(5)
 
-func _process(delta: float) -> void:
-	self.position += direction * SPEED * delta
-	
+func _physics_process(delta: float) -> void:
+	velocity = direction * SPEED * delta
+	var collision = move_and_collide(velocity)
+	if collision:
+		queue_free()
+
 func set_values(point, speed, damage):
 	direction = global_position.direction_to(point)
 	SPEED = speed
