@@ -14,7 +14,7 @@ font_size = 110
 font_color = Color(0.054902, 0.117647, 0.368627, 1)
 shadow_size = 13
 shadow_color = Color(0.678431, 0.764706, 0.909804, 1)
-shadow_offset = Vector2(1, 1.5)
+shadow_offset = Vector2(1, 2)
 
 [sub_resource type="Animation" id="Animation_pqlge"]
 resource_name = "Close"
@@ -89,19 +89,19 @@ texture = ExtResource("1_ltd3m")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 168.0
-offset_right = 690.0
-offset_bottom = 274.0
+offset_left = 125.0
+offset_top = 170.0
+offset_right = 679.0
+offset_bottom = 276.0
 text = "Game paused"
 label_settings = SubResource("LabelSettings_xv4gp")
 
 [node name="Resume" type="Button" parent="."]
 layout_mode = 2
-offset_left = 128.0
-offset_top = 384.0
-offset_right = 249.0
-offset_bottom = 516.0
+offset_left = 134.0
+offset_top = 378.0
+offset_right = 255.0
+offset_bottom = 510.0
 icon = ExtResource("3_0b5ob")
 flat = true
 icon_alignment = 1
@@ -110,9 +110,9 @@ script = ExtResource("5_xv4gp")
 
 [node name="Restart" type="Button" parent="."]
 layout_mode = 2
-offset_left = 336.0
+offset_left = 345.0
 offset_top = 384.0
-offset_right = 471.0
+offset_right = 480.0
 offset_bottom = 519.0
 icon = ExtResource("4_pqlge")
 flat = true
@@ -122,10 +122,10 @@ script = ExtResource("5_xv4gp")
 
 [node name="Quit" type="Button" parent="."]
 layout_mode = 2
-offset_left = 536.0
-offset_top = 376.0
-offset_right = 688.0
-offset_bottom = 528.0
+offset_left = 546.0
+offset_top = 384.0
+offset_right = 684.0
+offset_bottom = 525.0
 icon = ExtResource("5_nben2")
 flat = true
 icon_alignment = 1

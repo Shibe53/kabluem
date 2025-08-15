@@ -1,7 +1,7 @@
 extends Node2D
 
 const Bullet = preload("res://Enemies/bullet.tscn")
-@onready var timer = $Timer
+@onready var timerCD = $Timer
 
 @export var SPEED = 400
 @export var COOLDOWN = 5.0
@@ -14,7 +14,7 @@ var onCooldown = false
 func shoot_at_pos(pos):
 	if not onCooldown:
 		onCooldown = true
-		timer.start(COOLDOWN)
+		timerCD.start(COOLDOWN)
 		var timer = get_tree().create_timer(0.1)
 		await timer.timeout  
 		var bullet = Bullet.instantiate()
