@@ -4,9 +4,10 @@ extends Control
 @onready var resumeButton = $Resume
 @onready var restartButton = $Restart
 @onready var quitButton = $Quit
+@onready var label = $Label
 
 func resume():
-	get_tree().paused = false
+	turn_off_buttons()
 	animationPlayer.play("Close")
 
 func pause():
@@ -16,7 +17,26 @@ func pause():
 func restart():
 	pass
 
+func turn_on_buttons():
+	restartButton.disabled = false
+	resumeButton.disabled = false
+	quitButton.disabled = false
+	restartButton.visible = true
+	resumeButton.visible = true
+	quitButton.visible = true
+	label.visible = true
+
+func turn_off_buttons():
+	label.visible = false
+	restartButton.visible = false
+	resumeButton.visible = false
+	quitButton.visible = false
+	restartButton.disabled = true
+	resumeButton.disabled = true
+	quitButton.disabled = true
+
 func _ready() -> void:
+	turn_off_buttons()
 	animationPlayer.play("RESET")
 
 func _process(_delta):
@@ -33,3 +53,9 @@ func _on_restart_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+func _on_open_anim_finished():
+	turn_on_buttons()
+
+func _on_close_anim_finished():
+	get_tree().paused = false

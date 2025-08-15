@@ -56,6 +56,8 @@ position = Vector2(554, 198)
 [node name="Gui" parent="CanvasLayer" instance=ExtResource("6_dwbse")]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_pkg7o")]
+offset_top = -728.0
+offset_bottom = -728.0
 
 [editable path="Enemy"]
 [editable path="Enemy/Hurtbox"]

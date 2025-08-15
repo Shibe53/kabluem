@@ -24,6 +24,8 @@ var last_facing = 1
 var stats = PlayerStats
 var charge = 0
 var onThrowCooldown = false
+var normalCursor = load("res://Assets/Sprites/cursor.png")
+var grenadeCursor = load("res://Assets/Sprites/cursor_throw.png")
 
 @onready var animationPlayer = $AnimationPlayer
 @onready var animationTree = $AnimationTree
@@ -47,6 +49,7 @@ func _physics_process(delta):
 	
 			if Input.is_action_pressed("throw") and not onThrowCooldown:
 				chargeMeter.visible = true
+				Input.set_custom_mouse_cursor(grenadeCursor)
 				state = THROW
 		DODGE:
 			dodge_state(delta)
@@ -93,11 +96,13 @@ func throw_state():
 		onThrowCooldown = true
 		throwCDTimer.start(THROW_COOLDOWN)
 		chargeMeter.visible = false
+		Input.set_custom_mouse_cursor(normalCursor)
 		state = MOVE
 	elif Input.is_action_just_pressed("dodge"):
 		charge = 0
 		chargeMeter.value = charge
 		chargeMeter.visible = false
+		Input.set_custom_mouse_cursor(normalCursor)
 		state = DODGE
 	
 func _on_throw_cooldown_timer_timeout() -> void:

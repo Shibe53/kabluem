@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcb1jvpsfabrb"]
+[gd_scene load_steps=3 format=3 uid="uid://bcb1jvpsfabrb"]
 
 [ext_resource type="Script" uid="uid://c256cy736peh7" path="res://UI/menu.gd" id="1_d8nwk"]
 [ext_resource type="Texture2D" uid="uid://w34eiaasakh6" path="res://placeholder_bg.jpg" id="2_4cwpn"]
-[ext_resource type="Texture2D" uid="uid://b01e6xj3g6m8e" path="res://Assets/Sprites/Player_WIP.png" id="3_f40uw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -24,8 +23,8 @@ expand_mode = 2
 layout_mode = 0
 offset_left = 312.0
 offset_top = 142.0
-offset_right = 430.0
+offset_right = 519.0
 offset_bottom = 360.0
-icon = ExtResource("3_f40uw")
+text = "Touch me twin"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

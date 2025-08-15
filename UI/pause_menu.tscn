@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b7w2nsv2yrior"]
+[gd_scene load_steps=14 format=3 uid="uid://b7w2nsv2yrior"]
 
 [ext_resource type="Script" uid="uid://bqx6u3gkpvrx1" path="res://UI/pause_menu.gd" id="1_jfm1e"]
 [ext_resource type="Texture2D" uid="uid://2o25wvh5cn5r" path="res://Assets/Sprites/PauseScreenFrame.png" id="1_ltd3m"]
@@ -16,9 +16,12 @@ shadow_size = 13
 shadow_color = Color(0.678431, 0.764706, 0.909804, 1)
 shadow_offset = Vector2(1, 1.5)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv4gp"]
+bg_color = Color(0.054902, 0.117647, 0.368627, 1)
+
 [sub_resource type="Animation" id="Animation_pqlge"]
 resource_name = "Close"
-length = 0.01
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -26,15 +29,41 @@ tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 728)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_close_anim_finished"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_03fe5"]
 resource_name = "Open"
-length = 0.01
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,6 +75,32 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [Vector2(0, -728), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_open_anim_finished"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_0b5ob"]
@@ -61,6 +116,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -728)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pqlge"]
@@ -102,6 +181,9 @@ offset_left = 128.0
 offset_top = 384.0
 offset_right = 249.0
 offset_bottom = 516.0
+theme_override_colors/font_disabled_color = Color(0.678431, 0.764706, 0.909804, 1)
+theme_override_styles/disabled = SubResource("StyleBoxFlat_xv4gp")
+disabled = true
 icon = ExtResource("3_0b5ob")
 flat = true
 icon_alignment = 1
@@ -114,6 +196,7 @@ offset_left = 336.0
 offset_top = 384.0
 offset_right = 471.0
 offset_bottom = 519.0
+disabled = true
 icon = ExtResource("4_pqlge")
 flat = true
 icon_alignment = 1
@@ -126,6 +209,7 @@ offset_left = 536.0
 offset_top = 376.0
 offset_right = 688.0
 offset_bottom = 528.0
+disabled = true
 icon = ExtResource("5_nben2")
 flat = true
 icon_alignment = 1
