@@ -14,6 +14,9 @@ var onCooldown = false
 func shoot_at_pos(pos):
 	if not onCooldown:
 		onCooldown = true
+		timer.start(COOLDOWN)
+		var timer = get_tree().create_timer(0.1)
+		await timer.timeout  
 		var bullet = Bullet.instantiate()
 		var main = get_tree().current_scene
 		
@@ -36,7 +39,6 @@ func shoot_at_pos(pos):
 			bullet3.set_values(bullets_pos[1], SPEED, DAMAGE)
 			main.add_child(bullet3)
 			bullet3.set_owner(main)
-		timer.start(COOLDOWN)
 
 func get_spread(player_pos: Vector2, enemy_pos: Vector2) -> Array:
 	var delta = player_pos - enemy_pos
