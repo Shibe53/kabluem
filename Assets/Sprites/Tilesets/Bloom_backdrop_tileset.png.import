@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b01e6xj3g6m8e"
-path="res://.godot/imported/Player_WIP.png-aaa184feccefbddfd5b854bb5ad8e29f.ctex"
+uid="uid://bkjnrorigpdvt"
+path="res://.godot/imported/Bloom_backdrop_tileset.png-bdbc6f885770718c5391a5589883763c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Player_WIP.png"
-dest_files=["res://.godot/imported/Player_WIP.png-aaa184feccefbddfd5b854bb5ad8e29f.ctex"]
+source_file="res://Assets/Sprites/Tilesets/Bloom_backdrop_tileset.png"
+dest_files=["res://.godot/imported/Bloom_backdrop_tileset.png-bdbc6f885770718c5391a5589883763c.ctex"]
 
 [params]
 
