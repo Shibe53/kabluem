@@ -45,9 +45,8 @@ animations = [{
 "speed": 60.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nlrie"]
-radius = 40.0
-height = 90.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_3kepi"]
+radius = 45.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fb86f"]
 radius = 400.0
@@ -226,7 +225,7 @@ frame_progress = 0.373266
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15)
-shape = SubResource("CapsuleShape2D_nlrie")
+shape = SubResource("CircleShape2D_3kepi")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5qpki")]
 collision_layer = 8
