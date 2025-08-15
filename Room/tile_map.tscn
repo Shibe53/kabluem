@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://cvcndvy84qr8e"]
 
-[ext_resource type="Texture2D" uid="uid://dpa474hde81m" path="res://Assets/Sprites/Tileset_WIP.png" id="1_3u5pj"]
 [ext_resource type="Texture2D" uid="uid://c7mltqi861i5f" path="res://Assets/Sprites/Tilesets/Walls_tileset.png" id="1_a1iue"]
 [ext_resource type="Texture2D" uid="uid://e8lxicnhxr8p" path="res://Assets/Sprites/Backdrop_flowers.png" id="1_p6qag"]
+[ext_resource type="Texture2D" uid="uid://cy2jqe2p83rwq" path="res://Assets/Sprites/Tilesets/Bloom_tileset.png" id="2_p6qag"]
 [ext_resource type="Script" uid="uid://cjba31h7sbhab" path="res://Room/Floor.gd" id="2_s4j8i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_k5a17"]
@@ -29,7 +29,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-80, 80, 80, 80, 80, -8
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4j8i"]
-texture = ExtResource("1_3u5pj")
+texture = ExtResource("2_p6qag")
 texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -359,6 +359,7 @@ texture_region_size = Vector2i(160, 160)
 1:1/0/terrains_peering_bit/top_side = 0
 1:1/0/terrains_peering_bit/top_right_corner = 0
 1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_las5o")
+3:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_a1iue"]
 tile_size = Vector2i(160, 160)
