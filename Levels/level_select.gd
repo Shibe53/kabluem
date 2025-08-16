@@ -62,6 +62,8 @@ var current_level = 1
 				pass
 			15:
 				pass
+			_:
+				call_deferred("change_scene", level1)
 
 @onready var bloom_needed = 80:
 	set(value):

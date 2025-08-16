@@ -35,6 +35,8 @@ func _process(_delta: float) -> void:
 					enemy = LesserVegan.instantiate()
 				"Greater":
 					enemy = GreaterVegan.instantiate()
+				_:
+					enemy = LesserVegan.instantiate()
 			var main = get_tree().current_scene
 			enemy.global_position = global_position
 			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, ENEMY)

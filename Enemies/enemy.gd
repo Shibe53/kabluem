@@ -137,6 +137,8 @@ func _on_stats_no_health():
 			effect = LesserVeganEffect.instantiate()
 		"Greater":
 			effect = GreaterVeganEffect.instantiate()
+		_:
+			effect = LesserVeganEffect.instantiate()
 	get_parent().add_child(effect)
 	effect.set_owner(get_parent())
 	effect.position = position
