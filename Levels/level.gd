@@ -15,6 +15,7 @@ func _ready():
 	level_select.no_enemies_left.connect(go_to_endpoint)
 	level_select.bloom_needed = bloom_needed
 	stats.max_health = player_max_health
+	stats.health = player_max_health
 	gui.visible = true
 
 func kill_enemies():

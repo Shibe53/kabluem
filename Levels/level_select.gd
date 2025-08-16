@@ -27,9 +27,11 @@ var current_level = 1
 		bloomed = false
 		end = false
 		bloom = 0
+		enemies = 0
 		
 		match level:
 			1:
+				var level1 = load("res://Levels/level1.tscn")
 				call_deferred("change_scene", "res://Levels/level1.tscn")
 			2:
 				call_deferred("change_scene", "res://Levels/level2.tscn")
