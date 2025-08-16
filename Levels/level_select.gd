@@ -26,6 +26,7 @@ var current_level = 1
 		current_level = level
 		bloomed = false
 		end = false
+		bloom = 0
 		
 		match level:
 			1:

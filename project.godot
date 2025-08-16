@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Kabluem"
-run/main_scene="uid://bcb1jvpsfabrb"
+run/main_scene="uid://b631rdljxi1ul"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.054902, 0.117647, 0.368627, 1)
 boot_splash/show_image=false
@@ -111,3 +111,8 @@ unlock={
 2d_physics/layer_8="Soft Collisions"
 2d_physics/layer_9="Floor Tiles"
 2d_physics/layer_10="Grenade"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
