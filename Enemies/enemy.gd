@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 const LesserVeganEffect = preload("res://Effects/lesser_vegan_death.tscn")
+const GreaterVeganEffect = preload("res://Effects/greater_vegan_death.tscn")
 
 signal enemy_dead
 
@@ -9,6 +10,7 @@ const ACCELERATION = 260
 const MAX_SPEED = 30
 const FRICTION = 100
 
+@export var ENEMY_TYPE : String = "Lesser"
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
 
@@ -21,6 +23,7 @@ enum {
 var state = SHOOT
 var move_speed = MAX_SPEED
 var last_hit_direction: Vector2 = Vector2.ZERO
+var effect = null
 
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetection
@@ -110,9 +113,10 @@ func shoot_state():
 func has_los():
 	return (not mainRC.is_colliding()) or (mainRC.is_colliding() and is_instance_of(mainRC.get_collider(), Grenade))
 
-func set_values(shootRange, detectionRange):
+func set_values(shootRange, detectionRange, enemyType):
 	SHOOT_RANGE = shootRange
 	DETECTION_RANGE = detectionRange
+	ENEMY_TYPE = enemyType
 
 func set_bullet_values(speed, cooldown, damage, dimension, spread, spreadAngle):
 	bulletSpawner.set_values(speed, cooldown, damage, dimension, spread, spreadAngle)
@@ -128,13 +132,17 @@ func _on_hurtbox_area_entered(area):
 func _on_stats_no_health():
 	emit_signal("enemy_dead")
 	queue_free()
-	var lesserVeganEffect = LesserVeganEffect.instantiate()
-	get_parent().add_child(lesserVeganEffect)
-	lesserVeganEffect.set_owner(get_parent())
-	lesserVeganEffect.position = position
-	lesserVeganEffect.flip_h = last_hit_direction.x > 0
+	match ENEMY_TYPE:
+		"Lesser":
+			effect = LesserVeganEffect.instantiate()
+		"Greater":
+			effect = GreaterVeganEffect.instantiate()
+	get_parent().add_child(effect)
+	effect.set_owner(get_parent())
+	effect.position = position
+	effect.flip_h = last_hit_direction.x > 0
 	if last_hit_direction != Vector2.ZERO:
-		lesserVeganEffect.velocity = last_hit_direction * 80
+		effect.velocity = last_hit_direction * 80
 
 func start_blinking():
 	animationPlayer.play("Start")

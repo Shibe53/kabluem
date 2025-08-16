@@ -28,6 +28,7 @@ position = Vector2(138, 548)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_302sc")]
 position = Vector2(612, 96)
+ENEMY = "Greater"
 MAX_ENEMIES = 2
 COOLDOWN = 5.0
 

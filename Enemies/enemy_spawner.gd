@@ -1,10 +1,11 @@
 extends Node2D
 
 const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
+const GreaterVegan = preload("res://Enemies/greater_vegan.tscn")
 @onready var timerCD = $Timer
 @onready var area = $Area2D
 
-@export var ENEMY = LesserVegan
+@export var ENEMY : String = "Lesser"
 @export var MAX_ENEMIES = 5
 @export var COOLDOWN = 20.0
 @export var SHOOT_RANGE = 300
@@ -16,6 +17,7 @@ const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
 @export var SPREAD = false
 @export var SPREAD_ANGLE = 20
 
+var enemy = null
 var onCooldown = false
 var level_select = LevelSelect
 var current_enemies = 0
@@ -28,10 +30,14 @@ func _process(_delta: float) -> void:
 		onCooldown = true
 		timerCD.start(COOLDOWN)
 		if not has_body_inside() and current_enemies < MAX_ENEMIES:
-			var enemy = ENEMY.instantiate()
+			match ENEMY:
+				"Lesser":
+					enemy = LesserVegan.instantiate()
+				"Greater":
+					enemy = GreaterVegan.instantiate()
 			var main = get_tree().current_scene
 			enemy.global_position = global_position
-			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE)
+			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, ENEMY)
 			level_select.enemies += 1
 			current_enemies += 1
 			enemy.enemy_dead.connect(enemy_dead)

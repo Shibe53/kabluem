@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bj6kluya5cly6"]
+[gd_scene load_steps=8 format=3 uid="uid://c4xx4lonffxqn"]
 
 [ext_resource type="Texture2D" uid="uid://bkq07hjd4ppyd" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Damage_Death-Sheet.png" id="1_nakw1"]
 [ext_resource type="Script" uid="uid://6w453og0rxrd" path="res://Effects/effect.gd" id="2_d7mso"]

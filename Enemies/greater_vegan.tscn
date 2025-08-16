@@ -1,0 +1,256 @@
+[gd_scene load_steps=30 format=3 uid="uid://bqad0eghlxx86"]
+
+[ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_1mglj"]
+[ext_resource type="Texture2D" uid="uid://b3qqj1bet4a22" path="res://Assets/Sprites/Vegan Greater/Greater_Vegan_Idle-Sheet.png" id="2_1mglj"]
+[ext_resource type="Texture2D" uid="uid://rn71j2f7xedd" path="res://Assets/Sprites/Vegan Greater/Greater_Vegan_Move-Sheet.png" id="3_1mglj"]
+[ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="4_nc1qy"]
+[ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="5_egd1g"]
+[ext_resource type="PackedScene" uid="uid://dyd2eul54mrkl" path="res://Hitboxes/hitbox.tscn" id="6_vjcwa"]
+[ext_resource type="PackedScene" uid="uid://bhxmbarg6pbr6" path="res://Hitboxes/soft_collision.tscn" id="7_huo5d"]
+[ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="8_d08f6"]
+[ext_resource type="PackedScene" uid="uid://dtomwktlsxn84" path="res://stats.tscn" id="9_6sm8j"]
+
+[sub_resource type="Shader" id="Shader_u1qhu"]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 cyan_color = vec4(0.67843137, 0.76470588, 0.90980392, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true) {
+		new_color = cyan_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nqx5"]
+shader = SubResource("Shader_u1qhu")
+shader_parameter/active = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu5th"]
+atlas = ExtResource("2_1mglj")
+region = Rect2(0, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tppqw"]
+atlas = ExtResource("2_1mglj")
+region = Rect2(127, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc1qy"]
+atlas = ExtResource("2_1mglj")
+region = Rect2(254, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egd1g"]
+atlas = ExtResource("2_1mglj")
+region = Rect2(381, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjcwa"]
+atlas = ExtResource("3_1mglj")
+region = Rect2(0, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huo5d"]
+atlas = ExtResource("3_1mglj")
+region = Rect2(127, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d08f6"]
+atlas = ExtResource("3_1mglj")
+region = Rect2(254, 0, 127, 220)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sm8j"]
+atlas = ExtResource("3_1mglj")
+region = Rect2(381, 0, 127, 220)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1xcb7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu5th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tppqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc1qy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_egd1g")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjcwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huo5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d08f6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6sm8j")
+}],
+"loop": true,
+"name": &"Move",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gk8ng"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4o6mh"]
+radius = 7.0
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_koi6q"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jlnat"]
+radius = 6.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gk8ng"]
+radius = 300.0
+
+[sub_resource type="Animation" id="Animation_t8uwx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_koi6q"]
+resource_name = "Start"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_jlnat"]
+resource_name = "Stop"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t8uwx"]
+_data = {
+&"RESET": SubResource("Animation_t8uwx"),
+&"Start": SubResource("Animation_koi6q"),
+&"Stop": SubResource("Animation_jlnat")
+}
+
+[node name="GreaterVegan" type="CharacterBody2D"]
+collision_layer = 16
+script = ExtResource("1_1mglj")
+SHOOT_RANGE = 400
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_8nqx5")
+position = Vector2(0, -21)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_1xcb7")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_gk8ng")
+
+[node name="Pivot" type="Node2D" parent="."]
+position = Vector2(0, -16)
+
+[node name="BulletSpawner" parent="Pivot" instance=ExtResource("4_nc1qy")]
+
+[node name="MainRC" type="RayCast2D" parent="Pivot"]
+target_position = Vector2(250, 0)
+collision_mask = 513
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_egd1g")]
+position = Vector2(0, -16)
+collision_layer = 32
+collision_mask = 8
+
+[node name="CollisionShape" parent="Hurtbox" index="0"]
+visible = false
+shape = SubResource("CapsuleShape2D_4o6mh")
+
+[node name="Hitbox" parent="." instance=ExtResource("6_vjcwa")]
+visible = false
+collision_layer = 16
+collision_mask = 4
+
+[node name="CollisionShape" parent="Hitbox" index="0"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_koi6q")
+
+[node name="SoftCollision" parent="." instance=ExtResource("7_huo5d")]
+visible = false
+
+[node name="CollisionShape" parent="SoftCollision" index="0"]
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_jlnat")
+
+[node name="PlayerDetection" parent="." instance=ExtResource("8_d08f6")]
+light_mask = 0
+visibility_layer = 0
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="PlayerDetection" index="0"]
+shape = SubResource("CircleShape2D_gk8ng")
+
+[node name="Stats" parent="." instance=ExtResource("9_6sm8j")]
+max_health = 2
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_t8uwx")
+}
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+
+[editable path="Hurtbox"]
+[editable path="Hitbox"]
+[editable path="SoftCollision"]
+[editable path="PlayerDetection"]
