@@ -4,12 +4,21 @@ const Bullet = preload("res://Enemies/bullet.tscn")
 @onready var timerCD = $Timer
 
 @export var SPEED = 400
-@export var COOLDOWN = 5.0
+@export var COOLDOWN = 3.0
 @export var DAMAGE = 1
+@export var SCALE = 0.15
 @export var SPREAD = false
 @export var SPREAD_ANGLE = 20
 
 var onCooldown = false
+
+func set_values(speed, cooldown, damage, dimension, spread, spreadAngle):
+	SPEED = speed
+	COOLDOWN = cooldown
+	DAMAGE = damage
+	SCALE = dimension
+	SPREAD = spread
+	SPREAD_ANGLE = spreadAngle
 
 func shoot_at_pos(pos):
 	if not onCooldown:
@@ -21,7 +30,7 @@ func shoot_at_pos(pos):
 		var main = get_tree().current_scene
 		
 		bullet.global_position = global_position
-		bullet.set_values(pos, SPEED, DAMAGE)
+		bullet.set_values(pos, SPEED, DAMAGE, SCALE)
 		main.add_child(bullet)
 		bullet.set_owner(main)
 		
@@ -30,13 +39,13 @@ func shoot_at_pos(pos):
 			
 			var bullet2 = Bullet.instantiate()
 			bullet2.global_position = global_position
-			bullet2.set_values(bullets_pos[0], SPEED, DAMAGE)
+			bullet2.set_values(bullets_pos[0], SPEED, DAMAGE, SCALE)
 			main.add_child(bullet2)
 			bullet2.set_owner(main)
 			
 			var bullet3 = Bullet.instantiate()
 			bullet3.global_position = global_position
-			bullet3.set_values(bullets_pos[1], SPEED, DAMAGE)
+			bullet3.set_values(bullets_pos[1], SPEED, DAMAGE, SCALE)
 			main.add_child(bullet3)
 			bullet3.set_owner(main)
 

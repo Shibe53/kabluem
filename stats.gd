@@ -1,16 +1,12 @@
 extends Node
 
 signal no_health
-signal room_completed
+signal room_bloomed
 signal health_changed(value)
 signal max_health_changed(value)
 signal bloom_changed(value)
 
-@export var level = 1:
-	set(value):
-		level = value
-
-@export var max_health = 1:
+@export var max_health = 3:
 	set(value):
 		max_health = value
 		if health:
@@ -24,7 +20,7 @@ signal bloom_changed(value)
 		if health <= 0:
 			emit_signal("no_health")
 
-@export var bloom_needed = 50:
+@onready var bloom_needed = 80:
 	set(value):
 		bloom_needed = value
 
@@ -33,4 +29,4 @@ signal bloom_changed(value)
 		bloom = value
 		emit_signal("bloom_changed", bloom)
 		if bloom >= bloom_needed:
-			emit_signal("room_completed")
+			emit_signal("room_bloomed")

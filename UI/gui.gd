@@ -2,6 +2,7 @@ extends Control
 
 @onready var healthLabel = $HealthLabel
 @onready var bloomLabel = $BloomLabel
+@onready var objLabel = $ObjectiveLabel
 
 var stats = PlayerStats
 
@@ -13,6 +14,9 @@ func set_max_health(value):
 
 func set_bloom(value):
 	bloomLabel.text = str(clamp(floor(value * 100 / stats.bloom_needed), 0, 100)) + "%"
+
+func change_obj_label(msg : String):
+	objLabel.text = msg
 
 func _ready():
 	stats.health_changed.connect(set_health)

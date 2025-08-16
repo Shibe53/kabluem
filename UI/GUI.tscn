@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv43bkyxn4rr5"]
+[gd_scene load_steps=6 format=3 uid="uid://cv43bkyxn4rr5"]
 
 [ext_resource type="Texture2D" uid="uid://fhvfcxttfv8y" path="res://Assets/Sprites/GUI_WIP.png" id="1_644iy"]
 [ext_resource type="Script" uid="uid://v18a4rlmw0m8" path="res://UI/gui.gd" id="1_yki11"]
 [ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="3_dl5f7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dl5f7"]
+font = ExtResource("3_dl5f7")
+font_size = 40
+font_color = Color(0.678431, 0.764706, 0.909804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n3xue"]
 font = ExtResource("3_dl5f7")
@@ -17,6 +22,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yki11")
+
+[node name="ObjectiveLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 19.0
+offset_right = 328.0
+offset_bottom = 55.0
+text = "Bloom your environment"
+label_settings = SubResource("LabelSettings_dl5f7")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
