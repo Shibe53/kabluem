@@ -1,5 +1,6 @@
 extends Control
 
+@onready var audioPlayer = Music.get_node("Player")
 @onready var animationPlayer = $AnimationPlayer
 @onready var resumeButton = $Resume
 @onready var restartButton = $Restart
@@ -52,7 +53,8 @@ func _on_restart_pressed() -> void:
 	restart()
 
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	audioPlayer.stop()
+	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 
 func _on_open_anim_finished():
 	turn_on_buttons()

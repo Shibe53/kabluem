@@ -1,10 +1,15 @@
 extends Node
 
+const game_music = preload("res://SFX/MenuMusic.wav")
+
 signal bloom_changed(value)
 signal room_bloomed
 signal no_enemies_left
 
+@onready var audioPlayer = Music.get_node("Player")
+
 var bloomed = false
+var music_playing = false
 
 @export var end = false:
 	set(value):
@@ -17,6 +22,7 @@ var bloomed = false
 		level = value
 		bloomed = false
 		end = false
+		
 		match level:
 			1:
 				call_deferred("change_scene", "res://Levels/level1.tscn")
@@ -45,3 +51,7 @@ var bloomed = false
 
 func change_scene(path : String):
 	get_tree().change_scene_to_file(path)
+
+func play_game_music():
+	audioPlayer.stream = game_music
+	audioPlayer.play()

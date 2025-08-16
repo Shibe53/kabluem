@@ -1,6 +1,5 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbc1fmns707ji"]
+[gd_scene load_steps=5 format=3 uid="uid://cbc1fmns707ji"]
 
-[ext_resource type="Texture2D" uid="uid://uvqwfv56qsth" path="res://icon.svg" id="1_ja1nb"]
 [ext_resource type="Script" uid="uid://baddpi8afmlkj" path="res://Room/obstacle.gd" id="1_jt82h"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="3_6cemx"]
 
@@ -15,7 +14,6 @@ script = ExtResource("1_jt82h")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.601563, 0.601563)
-texture = ExtResource("1_ja1nb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jt82h")

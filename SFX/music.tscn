@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://3cwbbhmi2k18"]
+
+[node name="Music" type="Node"]
+
+[node name="Player" type="AudioStreamPlayer" parent="."]
+process_mode = 3
