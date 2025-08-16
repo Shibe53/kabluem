@@ -15,9 +15,11 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-50, -36, -56, 657, 806
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="World" type="Node2D"]
+[node name="Level2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dj5hn")
+level_number = 2
+bloom_needed = 80
 
 [node name="Player" parent="." instance=ExtResource("2_ojro4")]
 y_sort_enabled = true
@@ -54,6 +56,7 @@ tile_map_data = PackedByteArray("AAD/////AAAFAAEAAAAAAP//AAABAAIAAAABAP//AAABAAI
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_tdxkx")]
 
 [node name="Endpoint" parent="." instance=ExtResource("7_ojro4")]
+position = Vector2(96, 96)
 
 [editable path="Enemy"]
 [editable path="Enemy/Hurtbox"]

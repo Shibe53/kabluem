@@ -9,5 +9,12 @@ func _ready():
 		audioPlayer.stream = menu_music
 		audioPlayer.play()
 
+func _process(_delta):
+	if Input.is_action_just_pressed("unlock"):
+		LevelSelect.latest_level = 15
+
 func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/level1.tscn")
+
+func _on_texture_button_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://UI/level_select_screen.tscn")

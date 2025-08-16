@@ -2,9 +2,9 @@ extends Control
 
 @onready var audioPlayer = Music.get_node("Player")
 @onready var animationPlayer = $AnimationPlayer
-@onready var resumeButton = $Resume
-@onready var restartButton = $Restart
-@onready var quitButton = $Quit
+@onready var resumeButton = $CenterContainer/HBoxContainer/Resume
+@onready var restartButton = $CenterContainer/HBoxContainer/Restart
+@onready var quitButton = $CenterContainer/HBoxContainer/Quit
 @onready var label = $Label
 
 func resume():
@@ -16,7 +16,8 @@ func pause():
 	animationPlayer.play("Open")
 
 func restart():
-	pass
+	get_tree().paused = false
+	LevelSelect.level = LevelSelect.current_level
 
 func turn_on_buttons():
 	restartButton.disabled = false
@@ -41,9 +42,9 @@ func _ready() -> void:
 	animationPlayer.play("RESET")
 
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel") and not get_tree().paused:
+	if Input.is_action_just_pressed("pause") and not get_tree().paused:
 		pause()
-	elif Input.is_action_just_pressed("ui_cancel") and get_tree().paused:
+	elif Input.is_action_just_pressed("pause") and get_tree().paused:
 		resume()
 
 func _on_resume_pressed() -> void:
@@ -54,6 +55,7 @@ func _on_restart_pressed() -> void:
 
 func _on_quit_pressed() -> void:
 	audioPlayer.stop()
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 
 func _on_open_anim_finished():

@@ -10,16 +10,20 @@ signal no_enemies_left
 
 var bloomed = false
 var music_playing = false
+var latest_level = 1
+var current_level = 1
 
 @export var end = false:
 	set(value):
 		end = value
 		if end:
 			level += 1
+			latest_level += 1
 
 @onready var level = 1:
 	set(value):
 		level = value
+		current_level = level
 		bloomed = false
 		end = false
 		
@@ -29,6 +33,30 @@ var music_playing = false
 			2:
 				call_deferred("change_scene", "res://Levels/level2.tscn")
 			3:
+				pass
+			4:
+				pass
+			5:
+				pass
+			6:
+				pass
+			7:
+				pass
+			8:
+				pass
+			9:
+				pass
+			10:
+				pass
+			11:
+				pass
+			12:
+				pass
+			13:
+				pass
+			14:
+				pass
+			15:
 				pass
 
 @onready var bloom_needed = 80:

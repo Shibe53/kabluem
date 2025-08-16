@@ -21,8 +21,8 @@ func kill_enemies():
 	if not endpoint.canEnd:
 		gui.change_obj_label("Free the rest of them")
 	else:
-		gui.change_obj_label("Burrow back from where you came from")
+		gui.change_obj_label("Find a spot to burrow")
 
 func go_to_endpoint():
-	gui.change_obj_label("Burrow back from where you came from")
+	gui.change_obj_label("Find a spot to burrow")
 	endpoint.canEnd = true

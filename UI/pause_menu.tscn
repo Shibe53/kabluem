@@ -16,9 +16,6 @@ shadow_size = 13
 shadow_color = Color(0.678431, 0.764706, 0.909804, 1)
 shadow_offset = Vector2(1, 1.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv4gp"]
-bg_color = Color(0.054902, 0.117647, 0.368627, 1)
-
 [sub_resource type="Animation" id="Animation_pqlge"]
 resource_name = "Close"
 length = 0.8
@@ -149,6 +146,9 @@ _data = {
 &"RESET": SubResource("Animation_0b5ob")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv4gp"]
+bg_color = Color(0.054902, 0.117647, 0.368627, 1)
+
 [node name="PauseMenu" type="Control"]
 process_mode = 3
 visible = false
@@ -177,52 +177,48 @@ offset_bottom = 274.0
 text = "Game paused"
 label_settings = SubResource("LabelSettings_xv4gp")
 
-[node name="Resume" type="Button" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pqlge")
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 288.0
+offset_right = 704.0
+offset_bottom = 616.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-offset_left = 128.0
-offset_top = 384.0
-offset_right = 249.0
-offset_bottom = 516.0
+theme_override_constants/separation = 75
+
+[node name="Resume" type="Button" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
 theme_override_colors/font_disabled_color = Color(0.678431, 0.764706, 0.909804, 1)
 theme_override_styles/disabled = SubResource("StyleBoxFlat_xv4gp")
 disabled = true
 icon = ExtResource("3_0b5ob")
 flat = true
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("5_xv4gp")
 
-[node name="Restart" type="Button" parent="."]
+[node name="Restart" type="Button" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
-offset_left = 336.0
-offset_top = 384.0
-offset_right = 471.0
-offset_bottom = 519.0
 disabled = true
 icon = ExtResource("4_pqlge")
 flat = true
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("5_xv4gp")
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
-offset_left = 536.0
-offset_top = 376.0
-offset_right = 688.0
-offset_bottom = 528.0
 disabled = true
 icon = ExtResource("5_nben2")
 flat = true
 icon_alignment = 1
-expand_icon = true
 script = ExtResource("5_xv4gp")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pqlge")
-}
-
-[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
-[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

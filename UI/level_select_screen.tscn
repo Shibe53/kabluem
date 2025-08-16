@@ -1,0 +1,458 @@
+[gd_scene load_steps=23 format=3 uid="uid://bljtw4lordkh"]
+
+[ext_resource type="Script" uid="uid://c3em1mwhp2o30" path="res://UI/level_select_screen.gd" id="1_dxy0u"]
+[ext_resource type="Texture2D" uid="uid://bflwvpt3igmrv" path="res://Assets/Sprites/exit_button.png" id="1_lwcmx"]
+[ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="2_1xg1w"]
+[ext_resource type="Texture2D" uid="uid://bj6li131xb5pf" path="res://Assets/Sprites/level_button.png" id="3_3hjc7"]
+[ext_resource type="Texture2D" uid="uid://cdy4titghhnlo" path="res://Assets/Sprites/exit_button_pressed.png" id="3_yhdd5"]
+[ext_resource type="Texture2D" uid="uid://md0im670rgdo" path="res://Assets/Sprites/level_button_pressed.png" id="4_3hjc7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dxy0u"]
+font = ExtResource("2_1xg1w")
+font_size = 80
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+shadow_size = 13
+shadow_color = Color(0.678431, 0.764706, 0.909804, 1)
+shadow_offset = Vector2(1, 1.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3hjc7"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yhdd5"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j7emt"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ydgpb"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wcq0p"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_30vru"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1i54a"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cub3m"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ch0gh"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_l87g5"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_fc7j7"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ivqn1"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wxcx"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ljfro"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ytulf"]
+line_spacing = 0.0
+font = ExtResource("2_1xg1w")
+font_size = 50
+font_color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[node name="LevelSelectScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxy0u")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.054902, 0.117647, 0.368627, 1)
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 234.0
+offset_bottom = 219.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("1_lwcmx")
+texture_pressed = ExtResource("3_yhdd5")
+texture_hover = ExtResource("3_yhdd5")
+stretch_mode = 0
+flip_h = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 80.0
+offset_right = 648.0
+offset_bottom = 150.0
+text = "Select a level"
+label_settings = SubResource("LabelSettings_dxy0u")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton/CenterContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_3hjc7")
+
+[node name="TextureButton2" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton2/CenterContainer"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_yhdd5")
+
+[node name="TextureButton3" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton3/CenterContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_j7emt")
+
+[node name="TextureButton4" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton4/CenterContainer"]
+layout_mode = 2
+text = "4"
+label_settings = SubResource("LabelSettings_ydgpb")
+
+[node name="TextureButton5" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer/TextureButton5/CenterContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_wcq0p")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer2" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton/CenterContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_30vru")
+
+[node name="TextureButton2" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer2" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton2/CenterContainer"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_1i54a")
+
+[node name="TextureButton3" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer2" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton3/CenterContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_cub3m")
+
+[node name="TextureButton4" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer2" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton4/CenterContainer"]
+layout_mode = 2
+text = "4"
+label_settings = SubResource("LabelSettings_ch0gh")
+
+[node name="TextureButton5" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer2" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer2/TextureButton5/CenterContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_l87g5")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer3" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton/CenterContainer"]
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_fc7j7")
+
+[node name="TextureButton2" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer3" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton2/CenterContainer"]
+layout_mode = 2
+text = "2"
+label_settings = SubResource("LabelSettings_ivqn1")
+
+[node name="TextureButton3" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer3" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton3/CenterContainer"]
+layout_mode = 2
+text = "3"
+label_settings = SubResource("LabelSettings_5wxcx")
+
+[node name="TextureButton4" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer3" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton4/CenterContainer"]
+layout_mode = 2
+text = "4"
+label_settings = SubResource("LabelSettings_ljfro")
+
+[node name="TextureButton5" type="TextureButton" parent="CenterContainer/VBoxContainer/HBoxContainer3" groups=["level_buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("3_3hjc7")
+texture_pressed = ExtResource("4_3hjc7")
+texture_hover = ExtResource("4_3hjc7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/HBoxContainer3/TextureButton5/CenterContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_ytulf")
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

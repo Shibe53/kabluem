@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcb1jvpsfabrb"]
+[gd_scene load_steps=8 format=3 uid="uid://bcb1jvpsfabrb"]
 
 [ext_resource type="Script" uid="uid://c256cy736peh7" path="res://UI/menu.gd" id="1_d8nwk"]
 [ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="2_d8nwk"]
 [ext_resource type="Texture2D" uid="uid://cjeh7norysrcu" path="res://Assets/Sprites/play_button.png" id="3_4cwpn"]
 [ext_resource type="Texture2D" uid="uid://dl6y2oe4w3sj" path="res://Assets/Sprites/play_button_pressed.png" id="4_4cwpn"]
+[ext_resource type="Texture2D" uid="uid://bs3awcs3kh5am" path="res://Assets/Sprites/level_select_button.png" id="5_8ctay"]
+[ext_resource type="Texture2D" uid="uid://bggptigli4ym1" path="res://Assets/Sprites/level_select_button_pressed.png" id="6_ev3b6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_f40uw"]
 font = ExtResource("2_d8nwk")
@@ -37,14 +39,28 @@ offset_bottom = 294.0
 text = "LOGO HERE"
 label_settings = SubResource("LabelSettings_f40uw")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 162.0
-offset_top = 414.0
-offset_right = 362.0
-offset_bottom = 614.0
+offset_left = 7.0
+offset_top = 372.0
+offset_right = 798.0
+offset_bottom = 651.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 120
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
 texture_normal = ExtResource("3_4cwpn")
 texture_pressed = ExtResource("4_4cwpn")
 texture_hover = ExtResource("4_4cwpn")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[node name="TextureButton2" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_8ctay")
+texture_pressed = ExtResource("6_ev3b6")
+texture_hover = ExtResource("6_ev3b6")
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
