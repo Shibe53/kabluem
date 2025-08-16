@@ -38,6 +38,8 @@ func _ready():
 	state = IDLE
 	animations.frame = randi_range(0, 4)
 	mainRC.target_position.x = SHOOT_RANGE
+	if animatedSprite.material != null:
+		animatedSprite.material = animatedSprite.material.duplicate()
 
 func _process(_delta: float) -> void:
 	playerDetectionZone.change_range(DETECTION_RANGE)
@@ -136,11 +138,9 @@ func _on_stats_no_health():
 
 func start_blinking():
 	animationPlayer.play("Start")
-	pass
 
 func _on_hurtbox_invincibility_ended():
 	animationPlayer.play("Stop")
-	pass
 
 func _on_hurtbox_invincibility_started():
 	pass

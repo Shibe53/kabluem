@@ -1,7 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://cvpll4vdnq1xu"]
 
 [ext_resource type="Script" uid="uid://dwouk3yt33p7k" path="res://Enemies/enemy.gd" id="1_3ih25"]
-[ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/CyanColor.gdshader" id="2_jlnat"]
 [ext_resource type="Texture2D" uid="uid://ddb24c1ul66b8" path="res://Assets/Sprites/Vegan Lesser/Lesser_Vegan_Idle-Sheet.png" id="2_koi6q"]
 [ext_resource type="PackedScene" uid="uid://dby72e1krudx5" path="res://Hitboxes/hurtbox.tscn" id="2_rt1x0"]
 [ext_resource type="PackedScene" uid="uid://dch6g30mnhvlv" path="res://Enemies/bullet_spawner.tscn" id="3_4o6mh"]
@@ -11,8 +10,23 @@
 [ext_resource type="PackedScene" uid="uid://dtomwktlsxn84" path="res://stats.tscn" id="5_4o6mh"]
 [ext_resource type="PackedScene" uid="uid://cr7wakcvtrsdo" path="res://Enemies/player_detection.tscn" id="5_8wvsg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8uwx"]
-shader = ExtResource("2_jlnat")
+[sub_resource type="Shader" id="Shader_u1qhu"]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 cyan_color = vec4(0.67843137, 0.76470588, 0.90980392, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true) {
+		new_color = cyan_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8nqx5"]
+shader = SubResource("Shader_u1qhu")
 shader_parameter/active = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jlnat"]
@@ -167,11 +181,11 @@ SHOOT_RANGE = 400
 avoidance_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_t8uwx")
+material = SubResource("ShaderMaterial_8nqx5")
 position = Vector2(0, -21)
 scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_1xcb7")
-animation = &"Idle"
+animation = &"Move"
 autoplay = "Idle"
 
 [node name="CollisionShape" type="CollisionShape2D" parent="."]

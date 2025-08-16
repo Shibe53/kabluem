@@ -1,6 +1,8 @@
 extends Node
 
 const game_music = preload("res://SFX/MenuMusic.wav")
+const level1 = preload("res://Levels/level1.tscn")
+const level2 = preload("res://Levels/level2.tscn")
 
 signal bloom_changed(value)
 signal room_bloomed
@@ -31,10 +33,9 @@ var current_level = 1
 		
 		match level:
 			1:
-				var level1 = load("res://Levels/level1.tscn")
-				call_deferred("change_scene", "res://Levels/level1.tscn")
+				call_deferred("change_scene", level1)
 			2:
-				call_deferred("change_scene", "res://Levels/level2.tscn")
+				call_deferred("change_scene", level2)
 			3:
 				pass
 			4:
@@ -80,8 +81,8 @@ var current_level = 1
 		if enemies == 0 and bloomed:
 			emit_signal("no_enemies_left")
 
-func change_scene(path : String):
-	get_tree().change_scene_to_file(path)
+func change_scene(scene : PackedScene):
+	get_tree().change_scene_to_packed(scene)
 
 func play_game_music():
 	audioPlayer.stream = game_music
