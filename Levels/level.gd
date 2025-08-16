@@ -16,7 +16,13 @@ func _ready():
 	level_select.bloom_needed = bloom_needed
 	stats.max_health = player_max_health
 	stats.health = player_max_health
+	stats.no_health.connect(restart_level)
 	gui.visible = true
+
+func restart_level():
+	var timer = get_tree().create_timer(2.5)
+	await timer.timeout  
+	level_select.level = level_select.current_level
 
 func kill_enemies():
 	if not endpoint.canEnd:
