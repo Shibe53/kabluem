@@ -3,9 +3,10 @@ class_name Enemy
 
 const LesserVeganEffect = preload("res://Effects/lesser_vegan_death.tscn")
 
-@export var ACCELERATION = 260
-@export var MAX_SPEED = 30
-@export var FRICTION = 100
+const ACCELERATION = 260
+const MAX_SPEED = 30
+const FRICTION = 100
+
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
 
@@ -104,6 +105,13 @@ func shoot_state():
 
 func has_los():
 	return (not mainRC.is_colliding()) or (mainRC.is_colliding() and is_instance_of(mainRC.get_collider(), Grenade))
+
+func set_values(shootRange, detectionRange):
+	SHOOT_RANGE = shootRange
+	DETECTION_RANGE = detectionRange
+
+func set_bullet_values(speed, cooldown, damage, dimension, spread, spreadAngle):
+	bulletSpawner.set_values(speed, cooldown, damage, dimension, spread, spreadAngle)
 
 func _on_hurtbox_area_entered(area):
 	last_hit_direction = area.owner.position.direction_to(position)

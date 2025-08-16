@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cwxgusqqwr28s"]
+[gd_scene load_steps=41 format=3 uid="uid://cwxgusqqwr28s"]
 
 [ext_resource type="Script" uid="uid://pbbpkc0mevn4" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="Shader" uid="uid://c7nynhse5fg1m" path="res://Effects/CyanColor.gdshader" id="2_vtle1"]
@@ -15,6 +15,9 @@ shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
 height = 40.0
+
+[sub_resource type="Animation" id="Animation_lfmf2"]
+resource_name = "Burrow"
 
 [sub_resource type="Animation" id="Animation_p5o4e"]
 resource_name = "DodgeLeft"
@@ -365,6 +368,9 @@ tracks/4/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_dkpta"]
+resource_name = "Spawn"
+
 [sub_resource type="Animation" id="Animation_vtle1"]
 resource_name = "WalkLeft"
 length = 0.4
@@ -497,11 +503,13 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00tjw"]
 _data = {
+&"Burrow": SubResource("Animation_lfmf2"),
 &"DodgeLeft": SubResource("Animation_p5o4e"),
 &"DodgeRight": SubResource("Animation_gu6f8"),
 &"IdleLeft": SubResource("Animation_k53q1"),
 &"IdleRight": SubResource("Animation_fhl08"),
 &"RESET": SubResource("Animation_5htga"),
+&"Spawn": SubResource("Animation_dkpta"),
 &"WalkLeft": SubResource("Animation_vtle1"),
 &"WalkRight": SubResource("Animation_od3ui")
 }
