@@ -5,6 +5,7 @@ const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
 @onready var area = $Area2D
 
 @export var ENEMY = LesserVegan
+@export var MAX_ENEMIES = 5
 @export var COOLDOWN = 20.0
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
@@ -16,20 +17,24 @@ const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
 @export var SPREAD_ANGLE = 20
 
 var onCooldown = false
-var stats = PlayerStats
+var level_select = LevelSelect
+var current_enemies = 0
 
 func _ready():
-	stats.room_bloomed.connect(destroy_spawner)
+	level_select.room_bloomed.connect(stop_spawner)
 
 func _process(_delta: float) -> void:
 	if not onCooldown:
 		onCooldown = true
 		timerCD.start(COOLDOWN)
-		if not has_body_inside():
+		if not has_body_inside() and current_enemies < MAX_ENEMIES:
 			var enemy = ENEMY.instantiate()
 			var main = get_tree().current_scene
 			enemy.global_position = global_position
 			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE)
+			level_select.enemies += 1
+			current_enemies += 1
+			enemy.enemy_dead.connect(enemy_dead)
 			main.add_child(enemy)
 			enemy.set_owner(main)
 			enemy.set_bullet_values(SPEED, BULLET_COOLDOWN, DAMAGE, SCALE, SPREAD, SPREAD_ANGLE)
@@ -37,8 +42,12 @@ func _process(_delta: float) -> void:
 func has_body_inside() -> bool:
 	return area.get_overlapping_bodies().size() > 0
 
-func destroy_spawner():
-	queue_free()
+func enemy_dead():
+	LevelSelect.enemies -= 1
+	current_enemies -= 1
+
+func stop_spawner():
+	MAX_ENEMIES = 0
 
 func _on_timer_timeout() -> void:
 	onCooldown = false

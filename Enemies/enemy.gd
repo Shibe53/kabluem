@@ -3,6 +3,8 @@ class_name Enemy
 
 const LesserVeganEffect = preload("res://Effects/lesser_vegan_death.tscn")
 
+signal enemy_dead
+
 const ACCELERATION = 260
 const MAX_SPEED = 30
 const FRICTION = 100
@@ -122,6 +124,7 @@ func _on_hurtbox_area_entered(area):
 	start_blinking()
 
 func _on_stats_no_health():
+	emit_signal("enemy_dead")
 	queue_free()
 	var lesserVeganEffect = LesserVeganEffect.instantiate()
 	get_parent().add_child(lesserVeganEffect)

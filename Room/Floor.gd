@@ -15,7 +15,7 @@ func bloom(col_shape: CollisionShape2D):
 					affected_tiles.append(cell)
 					bloom_tiles += 1
 		
-		PlayerStats.bloom += bloom_tiles
+		LevelSelect.bloom += bloom_tiles
 		bloom_tiles = 0
 		set_cells_terrain_connect(affected_tiles, 0, 0, true)
 

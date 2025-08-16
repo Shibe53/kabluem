@@ -1,5 +1,11 @@
 extends Node
 
+signal bloom_changed(value)
+signal room_bloomed
+signal no_enemies_left
+
+var bloomed = false
+
 @export var end = false:
 	set(value):
 		end = value
@@ -9,6 +15,7 @@ extends Node
 @onready var level = 1:
 	set(value):
 		level = value
+		bloomed = false
 		end = false
 		match level:
 			1:
@@ -17,6 +24,24 @@ extends Node
 				call_deferred("change_scene", "res://Levels/level2.tscn")
 			3:
 				pass
+
+@onready var bloom_needed = 80:
+	set(value):
+		bloom_needed = value
+
+@onready var bloom = 0:
+	set(value):
+		bloom = value
+		emit_signal("bloom_changed", bloom)
+		if bloom >= bloom_needed:
+			emit_signal("room_bloomed")
+			bloomed = true
+
+@onready var enemies = 0:
+	set(value):
+		enemies = value
+		if enemies == 0 and bloomed:
+			emit_signal("no_enemies_left")
 
 func change_scene(path : String):
 	get_tree().change_scene_to_file(path)

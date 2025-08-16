@@ -4,21 +4,19 @@ extends Control
 @onready var bloomLabel = $BloomLabel
 @onready var objLabel = $ObjectiveLabel
 
-var stats = PlayerStats
-
 func set_health(value):
-	healthLabel.text = str(value) + "/" + str(stats.max_health)
+	healthLabel.text = str(value) + "/" + str(PlayerStats.max_health)
 
 func set_max_health(value):
-	healthLabel.text = str(stats.health) + "/" + str(value)
+	healthLabel.text = str(PlayerStats.health) + "/" + str(value)
 
 func set_bloom(value):
-	bloomLabel.text = str(clamp(floor(value * 100 / stats.bloom_needed), 0, 100)) + "%"
+	bloomLabel.text = str(clamp(floor(value * 100 / LevelSelect.bloom_needed), 0, 100)) + "%"
 
 func change_obj_label(msg : String):
 	objLabel.text = msg
 
 func _ready():
-	stats.health_changed.connect(set_health)
-	stats.max_health_changed.connect(set_max_health)
-	stats.bloom_changed.connect(set_bloom)
+	PlayerStats.health_changed.connect(set_health)
+	PlayerStats.max_health_changed.connect(set_max_health)
+	LevelSelect.bloom_changed.connect(set_bloom)
