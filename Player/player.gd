@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 #const PlayerHurtSound = preload("res://Music and Sounds/player_hurt_sound.tscn")
 const grnd = preload("res://Grenade/grenade.tscn")
@@ -12,12 +13,13 @@ const grnd = preload("res://Grenade/grenade.tscn")
 @export var THROW_COOLDOWN = 1.0
 
 enum {
+	BURROW,
 	MOVE,
 	DODGE,
 	THROW
 }
 
-var state = MOVE
+var state = BURROW
 var dodge_vector = Vector2.DOWN
 var dodge_timer = 0.0
 var last_facing = 1
@@ -36,12 +38,23 @@ var grenadeCursor = load("res://Assets/Sprites/cursor_throw.png")
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 func _ready():
+	animationTree.active = false
+	self.visible = false
+	var timer = get_tree().create_timer(1.5)
+	await timer.timeout 
+	animationPlayer.play("Spawn")
+
+func _on_spawn_finished():
+	self.visible = true
 	randomize()
 	stats.no_health.connect(player_death)
 	animationTree.active = true
+	state = MOVE
 
 func _physics_process(delta):
 	match state:
+		BURROW:
+			pass
 		MOVE:
 			move_state(delta, MAX_SPEED)
 			if Input.is_action_just_pressed("dodge"):
@@ -139,6 +152,14 @@ func player_death():
 	world.add_child(newCamera)
 	newCamera.set_owner(world)
 	queue_free()
+
+func burrow():
+	state = BURROW
+	animationTree.active = false
+	animationPlayer.play("Burrow")
+
+func _on_burrow_finished():
+	LevelSelect.end = true
 
 func start_blinking():
 	blinkAnimationPlayer.play("Start")
