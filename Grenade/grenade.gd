@@ -1,11 +1,11 @@
 extends RigidBody2D
 class_name Grenade
-# Experimenting with RigidBody2D
 
 # Linear damp applies air resistance TDOD: this just makes it slippery, needs to be quadratic not linear
 @export var scale_workaround := 1.0
 @export var max_velocity := 1000 # TODO doesn't actually cap the velocity yet. Its kinda awkwardly implemented within Player
 
+@onready var navObstacle = $NavigationObstacle2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var animation_player = $AnimationPlayer
 @onready var cpu_particles_2d_2 = $CPUParticles2D2
@@ -14,6 +14,7 @@ class_name Grenade
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	resize(scale_workaround)
+	animation_player.play("RESET")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
