@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	if not Music.music_playing == "Menu" and Music.music_on:
+	if not Music.music_playing == "Menu":
 		Music.music_playing = "Menu"
 
 func _process(_delta):

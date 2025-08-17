@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://si3oieu0yhj7"]
+[gd_scene load_steps=21 format=3 uid="uid://si3oieu0yhj7"]
 
 [ext_resource type="Script" uid="uid://bwydn1emyiw7o" path="res://UI/settings_menu.gd" id="1_80a2v"]
 [ext_resource type="Texture2D" uid="uid://bflwvpt3igmrv" path="res://Assets/Sprites/exit_button.png" id="2_jqcb0"]
 [ext_resource type="Texture2D" uid="uid://cdy4titghhnlo" path="res://Assets/Sprites/exit_button_pressed.png" id="3_8ngv6"]
 [ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="4_exjv2"]
 [ext_resource type="Texture2D" uid="uid://b5x4pd6o6q4pj" path="res://Assets/Sprites/check_button_flipped.png" id="5_8ngv6"]
+[ext_resource type="Texture2D" uid="uid://c41evb7fj8bqb" path="res://Assets/Sprites/slider_grabbers.png" id="5_exjv2"]
 [ext_resource type="Texture2D" uid="uid://jy4jbralj7pi" path="res://Assets/Sprites/check_button.png" id="5_jqcb0"]
 [ext_resource type="Texture2D" uid="uid://chrxl6mccnluu" path="res://Assets/Sprites/sound_icon.png" id="5_mn6w0"]
 [ext_resource type="Texture2D" uid="uid://cr6lne8fyw7p7" path="res://Assets/Sprites/sound_icon_pressed.png" id="6_jqcb0"]
@@ -16,6 +17,53 @@ font_color = Color(0.054902, 0.117647, 0.368627, 1)
 shadow_size = 13
 shadow_color = Color(0.678431, 0.764706, 0.909804, 1)
 shadow_offset = Vector2(1, 1.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdtw7"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pt1a"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exjv2"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0cf0"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78ss6"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nnlw7"]
+texture = SubResource("AtlasTexture_78ss6")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnlw7"]
+atlas = ExtResource("5_exjv2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ilxf4"]
+texture = SubResource("AtlasTexture_nnlw7")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="Theme" id="Theme_a0cf0"]
+HSlider/icons/grabber = SubResource("AtlasTexture_wdtw7")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_3pt1a")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_exjv2")
+HSlider/icons/tick = SubResource("AtlasTexture_a0cf0")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_nnlw7")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_nnlw7")
+HSlider/styles/slider = SubResource("StyleBoxTexture_ilxf4")
 
 [sub_resource type="LabelSettings" id="LabelSettings_mn6w0"]
 font = ExtResource("4_exjv2")
@@ -56,8 +104,9 @@ label_settings = SubResource("LabelSettings_dxy0u")
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 layout_mode = 0
+offset_left = 32.0
 offset_top = 192.0
-offset_right = 756.0
+offset_right = 768.0
 offset_bottom = 640.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
@@ -66,7 +115,7 @@ theme_override_constants/separation = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="TextureButton" type="TextureButton" parent="CenterContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -78,11 +127,17 @@ texture_hover = ExtResource("6_jqcb0")
 layout_mode = 2
 
 [node name="HSlider" type="HSlider" parent="CenterContainer2/VBoxContainer/HBoxContainer/CenterContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+theme = SubResource("Theme_a0cf0")
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 10
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="CenterContainer2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -109,5 +164,6 @@ stretch_mode = 0
 flip_h = true
 
 [connection signal="pressed" from="CenterContainer2/VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="value_changed" from="CenterContainer2/VBoxContainer/HBoxContainer/CenterContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="toggled" from="CenterContainer2/VBoxContainer/HBoxContainer2/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

@@ -99,7 +99,7 @@ var current_level = 1
 
 func change_scene(scene : PackedScene):
 	get_tree().change_scene_to_packed(scene)
-	if not Music.music_playing == "Game" and Music.music_on:
+	if not Music.music_playing == "Game":
 		Music.music_playing = "Game"
 		
 func _process(_delta):
