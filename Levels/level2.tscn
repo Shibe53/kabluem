@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_ijnin"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="5_lr0ko"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="6_tdxkx"]
-[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="7_ojro4"]
+[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="7_ojro4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aqk2v"]
 vertices = PackedVector2Array(1186, 418, 1182, 418, 1182, 414, 1186, 414, 1310, 542, 1310, 290, 1378, 482, 1378, 610, 990, 610, 1058, 542, 990, 418, 1058, 290, 1378, 350, 1570, 350, 1570, 482, 1378, 222, 990, 222, 990, 414, -222, 418, -290, 414, -290, 546, -222, 546)

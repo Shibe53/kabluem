@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="2_ebg0i"]
 [ext_resource type="PackedScene" uid="uid://cwpqt3le6raqc" path="res://Enemies/enemy_spawner.tscn" id="3_5ovaj"]
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_15dr6"]
-[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="5_dvuif"]
+[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="5_dvuif"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="6_7ph8i"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="7_by1fu"]
 
@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-165, -76, -164, 861, 7
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Mid_level2" type="Node2D"]
+[node name="Mid_level3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_p0t4e")
 level_number = 9
