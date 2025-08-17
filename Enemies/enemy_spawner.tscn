@@ -1,9 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwpqt3le6raqc"]
+[gd_scene load_steps=11 format=3 uid="uid://cwpqt3le6raqc"]
 
 [ext_resource type="Script" uid="uid://cunqyfgwww744" path="res://Enemies/enemy_spawner.gd" id="1_hhxbs"]
+[ext_resource type="Texture2D" uid="uid://brcjjsa4jy8hv" path="res://Assets/Sprites/Vegan_tent-Sheet.png" id="2_mu1kv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hhxbs"]
 radius = 37.054
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cydl1"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrau0"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fq3q"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oibxw"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_585pq"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mymmk"]
+atlas = ExtResource("2_mu1kv")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_30cj0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cydl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrau0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fq3q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oibxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_585pq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mymmk")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_hhxbs")
@@ -16,5 +67,9 @@ collision_mask = 18
 shape = SubResource("CircleShape2D_hhxbs")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_30cj0")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

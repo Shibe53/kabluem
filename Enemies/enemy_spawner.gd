@@ -4,6 +4,7 @@ const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
 const GreaterVegan = preload("res://Enemies/greater_vegan.tscn")
 @onready var timerCD = $Timer
 @onready var area = $Area2D
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 @export var ENEMY : String = "Lesser"
 @export var MAX_ENEMIES = 5
@@ -58,6 +59,9 @@ func enemy_dead():
 
 func stop_spawner():
 	MAX_ENEMIES = 0
+	if animated_sprite_2d.frame == 0:
+		animated_sprite_2d.play("default")
+	
 
 func _on_timer_timeout() -> void:
 	onCooldown = false
