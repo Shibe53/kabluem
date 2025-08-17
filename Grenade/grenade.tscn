@@ -46,7 +46,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kepi"]
-radius = 45.0
+radius = 55.0091
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fb86f"]
 radius = 400.0
@@ -224,7 +224,6 @@ frame = 1
 frame_progress = 0.373266
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15)
 shape = SubResource("CircleShape2D_3kepi")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_5qpki")]
