@@ -8,6 +8,7 @@ extends Node2D
 @onready var gui = $CanvasLayer/Gui
 @onready var endpoint = $Endpoint
 @onready var concrete_layer = $NavigationRegion2D/TileMap/TileMapLayer
+@onready var canvas_layer = $CanvasLayer
 
 var stats = PlayerStats
 var level_select = LevelSelect
@@ -22,6 +23,7 @@ func _ready():
 	stats.health = player_max_health
 	stats.no_health.connect(restart_level)
 	gui.visible = true
+	canvas_layer.visible = true
 
 func restart_level():
 	if get_tree() != null:
