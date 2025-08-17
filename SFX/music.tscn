@@ -1,6 +1,9 @@
-[gd_scene format=3 uid="uid://3cwbbhmi2k18"]
+[gd_scene load_steps=2 format=3 uid="uid://3cwbbhmi2k18"]
+
+[ext_resource type="Script" uid="uid://cuqnqso64ldo" path="res://SFX/music.gd" id="1_ukw4f"]
 
 [node name="Music" type="Node"]
+script = ExtResource("1_ukw4f")
 
 [node name="Player" type="AudioStreamPlayer" parent="."]
 process_mode = 3

@@ -1,6 +1,5 @@
 extends Node
 
-const game_music = preload("res://SFX/MenuMusic.wav")
 const level1 = preload("res://Levels/level1.tscn")
 const level2 = preload("res://Levels/level2.tscn")
 const level3 = preload("res://Levels/level3.tscn")
@@ -98,7 +97,5 @@ var current_level = 1
 
 func change_scene(scene : PackedScene):
 	get_tree().change_scene_to_packed(scene)
-
-func play_game_music():
-	audioPlayer.stream = game_music
-	audioPlayer.play()
+	if not Music.music_playing == "Game":
+		Music.music_playing = "Game"
