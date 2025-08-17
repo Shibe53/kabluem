@@ -1,14 +1,14 @@
 extends CharacterBody2D
 class_name Player
 
-#const PlayerHurtSound = preload("res://Music and Sounds/player_hurt_sound.tscn")
+const hurtSound = preload("res://SFX/PlayerHurt.wav")
 const grnd = preload("res://Grenade/grenade.tscn")
 
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
 @export var MAX_THROW_SPEED = 100
 @export var DODGE_SPEED = 300
-@export var DODGE_INV = 0.35
+@export var DODGE_INV = 0.5
 @export var FRICTION = 500
 @export var THROW_COOLDOWN = 1.0
 
@@ -45,6 +45,7 @@ func _ready():
 	self.set_collision_layer_value(2, false)
 	var timer = get_tree().create_timer(1.5)
 	await timer.timeout 
+	blinkAnimationPlayer.play("Stop")
 	animationPlayer.play("Spawn")
 
 func _on_spawn_finished():
@@ -62,6 +63,7 @@ func _physics_process(delta):
 		MOVE:
 			move_state(delta, MAX_SPEED)
 			if Input.is_action_just_pressed("dodge"):
+				hurtbox.start_invincibility(DODGE_INV)
 				state = DODGE
 	
 			if Input.is_action_pressed("throw") and not onThrowCooldown:
@@ -120,6 +122,7 @@ func throw_state():
 		chargeMeter.value = charge
 		chargeMeter.visible = false
 		Input.set_custom_mouse_cursor(normalCursor)
+		hurtbox.start_invincibility(DODGE_INV)
 		state = DODGE
 	
 func _on_throw_cooldown_timer_timeout() -> void:
@@ -131,7 +134,6 @@ func dodge_state(delta):
 	velocity = dodge_vector * DODGE_SPEED * speed_factor
 	animationState.travel("Dodge")
 	move_and_slide()
-	hurtbox.start_invincibility(DODGE_INV)
 
 func dodge_animation_finished():
 	state = MOVE
@@ -139,25 +141,26 @@ func dodge_animation_finished():
 	velocity /= 1.5
 
 func _on_hurtbox_area_entered(area):
-	stats.health -= area.damage
-	var knockback_direction = area.owner.position.direction_to(position)
-	velocity = knockback_direction * 200
-	hurtbox.start_invincibility(0.6)
-	start_blinking()
-#	hurtbox.create_hit_effect()
-#	var playerHurtSound = PlayerHurtSound.instantiate()
-#	get_tree().current_scene.add_child(playerHurtSound)
+	if not player_dead:
+		stats.health -= area.damage
+		var knockback_direction = area.owner.position.direction_to(position)
+		velocity = knockback_direction * 200
+		hurtbox.start_invincibility(0.6)
+		start_blinking()
+		Music.play_sfx(hurtSound, global_position)
 
 func player_death():
-	var newCamera = Camera2D.new()
-	newCamera.enabled = true
-	newCamera.global_position = self.global_position
-	var world = get_tree().current_scene
-	world.add_child(newCamera)
-	newCamera.set_owner(world)
-	blinkAnimationPlayer.play("Stop")
-	player_dead = true
-	burrow()
+	if not player_dead:
+		player_dead = true
+		self.set_collision_layer_value(2, false)
+		var newCamera = Camera2D.new()
+		newCamera.enabled = true
+		newCamera.global_position = self.global_position
+		var world = get_tree().current_scene
+		world.add_child(newCamera)
+		newCamera.set_owner(world)
+		blinkAnimationPlayer.play("Stop")
+		burrow()
 
 func burrow():
 	state = BURROW
@@ -169,6 +172,7 @@ func burrow():
 	animationPlayer.play("Burrow")
 
 func _on_burrow_finished():
+	self.set_collision_layer_value(2, true)
 	if player_dead:
 		queue_free()
 	else:

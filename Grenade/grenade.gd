@@ -1,6 +1,8 @@
 extends RigidBody2D
 class_name Grenade
 
+const explosionSound = preload("res://SFX/GrenadeExplosion.mp3")
+
 # Linear damp applies air resistance TDOD: this just makes it slippery, needs to be quadratic not linear
 @export var scale_workaround := 1.0
 @export var max_velocity := 1000 # TODO doesn't actually cap the velocity yet. Its kinda awkwardly implemented within Player
@@ -24,10 +26,13 @@ func _physics_process(_delta):
 func _on_body_entered(body):
 	if is_instance_of(body, Enemy):
 		exuplode()
-		
+
 # Both timer and enemy collision triggers this
 func exuplode():
 	animation_player.play("Exuplode")
+
+func trigger_sound():
+	Music.play_sfx(explosionSound, global_position)
 
 # so turns out you can't change the scale of RigidBody2D so you just have to change its children
 # This has been a learning opportinity to not use that node just for

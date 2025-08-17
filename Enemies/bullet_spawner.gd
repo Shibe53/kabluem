@@ -1,6 +1,7 @@
 extends Node2D
 
 const Bullet = preload("res://Enemies/bullet.tscn")
+const bulletSound = preload("res://SFX/Bullet.mp3")
 @onready var timerCD = $Timer
 
 @export var SPEED = 400
@@ -33,6 +34,7 @@ func shoot_at_pos(pos):
 		bullet.set_values(pos, SPEED, DAMAGE, SCALE)
 		main.add_child(bullet)
 		bullet.set_owner(main)
+		Music.play_sfx(bulletSound, global_position)
 		
 		if SPREAD:
 			var bullets_pos = get_spread(pos, global_position)

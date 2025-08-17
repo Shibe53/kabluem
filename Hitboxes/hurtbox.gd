@@ -1,12 +1,12 @@
 extends Area2D
 
-#const HitEffect = preload("res://Effects/hit_effect.tscn")
-
 signal invincibility_started
 signal invincibility_ended
 
 @onready var timer = $Timer
 @onready var collisionShape = $CollisionShape
+
+var guard = false
 
 var invincible = false:
 	set(value):
@@ -30,7 +30,11 @@ func _on_timer_timeout():
 	self.invincible = false
 
 func _on_invincibility_started():
+	if guard:
+		return
+	guard = true
 	collisionShape.set_deferred("disabled", true)
 
 func _on_invincibility_ended():
 	collisionShape.set_deferred("disabled", false)
+	guard = false

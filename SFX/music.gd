@@ -18,18 +18,18 @@ func _ready():
 			"None":
 				jinglePlayer.stop()
 			"Win":
-				musicPlayer.stream_paused = true
+				musicPlayer.volume_db -= 5.0
 				jinglePlayer.stream = win_jingle
 				jinglePlayer.play()
 			"Lose":
-				musicPlayer.stream_paused = true
+				musicPlayer.volume_db -= 5.0
 				jinglePlayer.stream = lose_jingle
 				jinglePlayer.play()
 			_:
 				jinglePlayer.stop()
 
 func _on_jingle_finished():
-	musicPlayer.stream_paused = false
+	musicPlayer.volume_db += 5.0
 
 @export var music_on = true:
 	set(value):
@@ -46,10 +46,23 @@ func _on_jingle_finished():
 			"None":
 				musicPlayer.stop()
 			"Menu":
+				musicPlayer.volume_db = -5.0
 				musicPlayer.stream = menu_music
 				musicPlayer.play()
 			"Game":
+				musicPlayer.volume_db = -10.0
 				musicPlayer.stream = game_music
 				musicPlayer.play()
 			_:
 				musicPlayer.stop()
+
+func play_sfx(stream: AudioStream, position: Vector2 = Vector2.ZERO):
+	if music_on:
+		var player = AudioStreamPlayer2D.new()
+		add_child(player)
+		player.volume_db = -2.0
+		player.stream = stream
+		player.position = position
+		player.play()
+		player.finished.connect(func():
+			player.queue_free())
