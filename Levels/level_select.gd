@@ -97,9 +97,9 @@ var current_level = 1
 
 func change_scene(scene : PackedScene):
 	get_tree().change_scene_to_packed(scene)
-	if not Music.music_playing == "Game":
+	if not Music.music_playing == "Game" and Music.music_on:
 		Music.music_playing = "Game"
 		
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("skip_level"):
 		end = true

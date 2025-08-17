@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://si3oieu0yhj7"]
+[gd_scene load_steps=8 format=3 uid="uid://si3oieu0yhj7"]
 
 [ext_resource type="Script" uid="uid://bwydn1emyiw7o" path="res://UI/settings_menu.gd" id="1_80a2v"]
 [ext_resource type="Texture2D" uid="uid://bflwvpt3igmrv" path="res://Assets/Sprites/exit_button.png" id="2_jqcb0"]
 [ext_resource type="Texture2D" uid="uid://cdy4titghhnlo" path="res://Assets/Sprites/exit_button_pressed.png" id="3_8ngv6"]
 [ext_resource type="FontFile" uid="uid://dqupvv52igwt5" path="res://Assets/Fonts/BoldPixels1.4.ttf" id="4_exjv2"]
+[ext_resource type="Texture2D" uid="uid://chrxl6mccnluu" path="res://Assets/Sprites/sound_icon.png" id="5_mn6w0"]
+[ext_resource type="Texture2D" uid="uid://cr6lne8fyw7p7" path="res://Assets/Sprites/sound_icon_pressed.png" id="6_jqcb0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dxy0u"]
 font = ExtResource("4_exjv2")
@@ -54,4 +56,18 @@ layout_mode = 2
 text = "Settings"
 label_settings = SubResource("LabelSettings_dxy0u")
 
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 320.0
+offset_right = 474.0
+offset_bottom = 474.0
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("5_mn6w0")
+texture_pressed = ExtResource("6_jqcb0")
+texture_hover = ExtResource("6_jqcb0")
+
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer2/TextureButton" to="." method="_on_texture_button_pressed"]

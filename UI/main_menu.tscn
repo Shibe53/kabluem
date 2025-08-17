@@ -75,3 +75,4 @@ texture_hover = ExtResource("8_2mudq")
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
