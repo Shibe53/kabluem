@@ -21,7 +21,7 @@ script = ExtResource("1_aunfx")
 bloom_percentage_needed = 60
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_302sc")]
-position = Vector2(476, 188)
+position = Vector2(499, 192)
 MAX_ENEMIES = 1
 COOLDOWN = 10.0
 DETECTION_RANGE = 400
