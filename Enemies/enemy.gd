@@ -24,6 +24,7 @@ var state = SHOOT
 var move_speed = MAX_SPEED
 var last_hit_direction: Vector2 = Vector2.ZERO
 var effect = null
+var detection = DETECTION_RANGE
 
 @onready var stats = $Stats
 @onready var playerDetectionZone = $PlayerDetection
@@ -45,7 +46,7 @@ func _ready():
 		animatedSprite.material = animatedSprite.material.duplicate()
 
 func _process(_delta: float) -> void:
-	playerDetectionZone.change_range(DETECTION_RANGE)
+	playerDetectionZone.change_range(detection)
 	if velocity.length() > 0.1:
 		animations.play("Move")
 		animatedSprite.flip_h = velocity.x < 0
@@ -85,12 +86,12 @@ func check_detection():
 		state = IDLE
 
 func idle_state(delta):
-	DETECTION_RANGE = 300
+	detection = DETECTION_RANGE
 	move_speed = move_toward_int(move_speed, 0, FRICTION * delta)
 	seek_player()
 	
 func reach_state():
-	DETECTION_RANGE = 400
+	detection = DETECTION_RANGE + 100
 	move_speed = MAX_SPEED
 	if player != null:
 		update_target_position(player.global_transform.origin)
@@ -116,6 +117,7 @@ func has_los():
 func set_values(shootRange, detectionRange, enemyType):
 	SHOOT_RANGE = shootRange
 	DETECTION_RANGE = detectionRange
+	detection = DETECTION_RANGE
 	ENEMY_TYPE = enemyType
 
 func set_bullet_values(speed, cooldown, damage, dimension, spread, spreadAngle):
