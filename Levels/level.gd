@@ -24,9 +24,10 @@ func _ready():
 	gui.visible = true
 
 func restart_level():
-	var timer = get_tree().create_timer(2.5)
-	await timer.timeout  
-	level_select.level = level_select.current_level
+	if get_tree() != null:
+		var timer = get_tree().create_timer(2.5)
+		await timer.timeout  
+		level_select.level = level_select.current_level
 
 func kill_enemies():
 	if not endpoint.canEnd:

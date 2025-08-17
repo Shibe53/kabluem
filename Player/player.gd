@@ -40,6 +40,7 @@ var grenadeCursor = load("res://Assets/Sprites/cursor_throw.png")
 func _ready():
 	animationTree.active = false
 	self.visible = false
+	self.set_collision_layer_value(2, false)
 	var timer = get_tree().create_timer(1.5)
 	await timer.timeout 
 	animationPlayer.play("Spawn")
@@ -48,6 +49,7 @@ func _on_spawn_finished():
 	self.visible = true
 	randomize()
 	stats.no_health.connect(player_death)
+	self.set_collision_layer_value(2, true)
 	animationTree.active = true
 	state = MOVE
 
