@@ -32,6 +32,7 @@ position = Vector2(163, -12)
 ENEMY = "Greater"
 MAX_ENEMIES = 1
 COOLDOWN = 1.0
+BULLET_COOLDOWN = 2.0
 SCALE = 0.2
 SPREAD = true
 
