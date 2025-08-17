@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name BulletEntity
 
 @onready var timer = $Timer
 @onready var hitbox = $Hitbox
@@ -25,7 +26,9 @@ func set_values(point, speed, damage, dimension):
 	DAMAGE = damage
 	SCALE = dimension
 
-func _on_hitbox_area_entered(_area: Area2D) -> void:
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if is_instance_of(area, Hurtbox):
+		return
 	queue_free()
 
 func _on_timer_timeout() -> void:

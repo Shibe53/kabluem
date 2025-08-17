@@ -11,6 +11,12 @@ const lose_jingle = preload("res://SFX/LoseJingle.wav")
 func _ready():
 	jinglePlayer.finished.connect(_on_jingle_finished)
 
+@export var volume = 0.8:
+	set(value):
+		volume = value
+		for player in get_children():
+			player.volume_db = linear_to_db(volume)
+
 @export var jingle = "None":
 	set(value):
 		jingle = value
@@ -31,14 +37,6 @@ func _ready():
 func _on_jingle_finished():
 	musicPlayer.volume_db += 5.0
 
-@export var music_on = true:
-	set(value):
-		music_on = value
-		if not music_on:
-			musicPlayer.stop()
-		else:
-			musicPlayer.play()
-
 @export var music_playing = "None":
 	set(value):
 		music_playing = value
@@ -57,12 +55,11 @@ func _on_jingle_finished():
 				musicPlayer.stop()
 
 func play_sfx(stream: AudioStream, position: Vector2 = Vector2.ZERO):
-	if music_on:
-		var player = AudioStreamPlayer2D.new()
-		add_child(player)
-		player.volume_db = -2.0
-		player.stream = stream
-		player.position = position
-		player.play()
-		player.finished.connect(func():
-			player.queue_free())
+	var player = AudioStreamPlayer2D.new()
+	add_child(player)
+	player.volume_db = linear_to_db(volume) - 2.0
+	player.stream = stream
+	player.position = position
+	player.play()
+	player.finished.connect(func():
+		player.queue_free())

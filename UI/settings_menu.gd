@@ -7,9 +7,11 @@ const muted_icon_pressed = preload("res://Assets/Sprites/sound_icon_muted_presse
 
 @onready var audioButton = $CenterContainer2/VBoxContainer/HBoxContainer/TextureButton
 @onready var checkButton = $CenterContainer2/VBoxContainer/HBoxContainer2/CheckButton
+@onready var volumeSlider = $CenterContainer2/VBoxContainer/HBoxContainer/CenterContainer/HSlider
 
 var save_latest_level = 1
 var pressed = false
+var old_value = 0.0
 
 func _ready():
 	update_textures()
@@ -26,15 +28,15 @@ func go_back():
 	get_tree().change_scene_to_file("res://UI/main_menu.tscn")
 
 func _on_texture_button_pressed() -> void:
-	if Music.music_on:
-		Music.music_on = false
-		update_textures()
+	if old_value == 0.0:
+		old_value = volumeSlider.value
+		volumeSlider.value = 0.0
 	else:
-		Music.music_on = true
-		update_textures()
+		volumeSlider.value = old_value
+		old_value = 0.0
 
 func update_textures():
-	if not Music.music_on:
+	if Music.volume == 0.0:
 		audioButton.texture_normal = muted_icon
 		audioButton.texture_pressed = muted_icon_pressed
 		audioButton.texture_hover = muted_icon_pressed
@@ -49,3 +51,7 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 		LevelSelect.latest_level = 15
 	else:
 		LevelSelect.latest_level = save_latest_level
+
+func _on_h_slider_value_changed(value: float) -> void:
+	Music.volume = value
+	update_textures()

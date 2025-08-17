@@ -7,8 +7,8 @@ const grnd = preload("res://Grenade/grenade.tscn")
 @export var ACCELERATION = 800
 @export var MAX_SPEED = 200
 @export var MAX_THROW_SPEED = 100
-@export var DODGE_SPEED = 300
-@export var DODGE_INV = 0.5
+@export var DODGE_SPEED = 350
+#@export var DODGE_INV = 0.3
 @export var FRICTION = 500
 @export var THROW_COOLDOWN = 1.0
 
@@ -63,7 +63,7 @@ func _physics_process(delta):
 		MOVE:
 			move_state(delta, MAX_SPEED)
 			if Input.is_action_just_pressed("dodge"):
-				hurtbox.start_invincibility(DODGE_INV)
+				#hurtbox.start_invincibility(DODGE_INV)
 				state = DODGE
 	
 			if Input.is_action_pressed("throw") and not onThrowCooldown:
@@ -122,7 +122,7 @@ func throw_state():
 		chargeMeter.value = charge
 		chargeMeter.visible = false
 		Input.set_custom_mouse_cursor(normalCursor)
-		hurtbox.start_invincibility(DODGE_INV)
+		#hurtbox.start_invincibility(DODGE_INV)
 		state = DODGE
 	
 func _on_throw_cooldown_timer_timeout() -> void:
@@ -141,13 +141,15 @@ func dodge_animation_finished():
 	velocity /= 1.5
 
 func _on_hurtbox_area_entered(area):
-	if not player_dead:
+	if not player_dead and not hurtbox.invincible:
 		stats.health -= area.damage
 		var knockback_direction = area.owner.position.direction_to(position)
 		velocity = knockback_direction * 200
 		hurtbox.start_invincibility(0.6)
 		start_blinking()
 		Music.play_sfx(hurtSound, global_position)
+		if is_instance_of(area.get_parent(), BulletEntity):
+			area.get_parent().queue_free()
 
 func player_death():
 	if not player_dead:
