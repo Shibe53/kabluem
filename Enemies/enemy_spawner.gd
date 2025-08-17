@@ -10,6 +10,7 @@ const GreaterVegan = preload("res://Enemies/greater_vegan.tscn")
 @export var COOLDOWN = 20.0
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
+@export var DETECTION_CHANGE = 100
 @export var SPEED = 400
 @export var BULLET_COOLDOWN = 3.0
 @export var DAMAGE = 1
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 					enemy = LesserVegan.instantiate()
 			var main = get_tree().current_scene
 			enemy.global_position = global_position
-			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, ENEMY, HEALTH)
+			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, DETECTION_CHANGE, ENEMY, HEALTH)
 			level_select.enemies += 1
 			current_enemies += 1
 			enemy.enemy_dead.connect(enemy_dead)

@@ -13,6 +13,7 @@ const FRICTION = 100
 @export var ENEMY_TYPE : String = "Lesser"
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
+@export var DETECTION_CHANGE = 100
 
 enum {
 	IDLE,
@@ -91,7 +92,7 @@ func idle_state(delta):
 	seek_player()
 	
 func reach_state():
-	detection = DETECTION_RANGE + 100
+	detection = DETECTION_RANGE + DETECTION_CHANGE
 	move_speed = MAX_SPEED
 	if player != null:
 		update_target_position(player.global_transform.origin)
@@ -114,10 +115,11 @@ func shoot_state():
 func has_los():
 	return (not mainRC.is_colliding()) or (mainRC.is_colliding() and is_instance_of(mainRC.get_collider(), Grenade))
 
-func set_values(shootRange, detectionRange, enemyType, max_health):
+func set_values(shootRange, detectionRange, detectionChange, enemyType, max_health):
 	SHOOT_RANGE = shootRange
 	DETECTION_RANGE = detectionRange
 	detection = DETECTION_RANGE
+	DETECTION_CHANGE = detectionChange
 	ENEMY_TYPE = enemyType
 	if max_health > 0:
 		get_node_or_null("Stats").max_health = max_health
