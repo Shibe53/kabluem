@@ -5,7 +5,7 @@ extends Control
 @onready var objLabel = $ObjectiveLabel
 
 func set_health(value):
-	healthLabel.text = str(value) + "/" + str(PlayerStats.max_health)
+	healthLabel.text = str(clamp(value, 0, PlayerStats.max_health)) + "/" + str(PlayerStats.max_health)
 
 func set_max_health(value):
 	healthLabel.text = str(PlayerStats.health) + "/" + str(value)

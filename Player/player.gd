@@ -25,6 +25,7 @@ var dodge_timer = 0.0
 var last_facing = 1
 var stats = PlayerStats
 var charge = 0
+var player_dead = false
 var onThrowCooldown = false
 var normalCursor = load("res://Assets/Sprites/cursor.png")
 var grenadeCursor = load("res://Assets/Sprites/cursor_throw.png")
@@ -40,6 +41,7 @@ var grenadeCursor = load("res://Assets/Sprites/cursor_throw.png")
 func _ready():
 	animationTree.active = false
 	self.visible = false
+	player_dead = false
 	self.set_collision_layer_value(2, false)
 	var timer = get_tree().create_timer(1.5)
 	await timer.timeout 
@@ -153,15 +155,23 @@ func player_death():
 	var world = get_tree().current_scene
 	world.add_child(newCamera)
 	newCamera.set_owner(world)
-	queue_free()
+	player_dead = true
+	burrow()
 
 func burrow():
 	state = BURROW
 	animationTree.active = false
+	if player_dead:
+		Music.jingle = "Lose"
+	else:
+		Music.jingle = "Win"
 	animationPlayer.play("Burrow")
 
 func _on_burrow_finished():
-	LevelSelect.end = true
+	if player_dead:
+		queue_free()
+	else:
+		LevelSelect.end = true
 
 func start_blinking():
 	blinkAnimationPlayer.play("Start")
