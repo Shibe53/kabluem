@@ -1,7 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bcb1jvpsfabrb"]
 
 [ext_resource type="Script" uid="uid://c256cy736peh7" path="res://UI/menu.gd" id="1_d8nwk"]
-[ext_resource type="Texture2D" uid="uid://d0p4u4n5iy6io" path="res://Assets/Sprites/Title.png" id="2_8ctay"]
 [ext_resource type="Texture2D" uid="uid://cjeh7norysrcu" path="res://Assets/Sprites/play_button.png" id="3_4cwpn"]
 [ext_resource type="Texture2D" uid="uid://b8353sqmj3waa" path="res://Assets/Sprites/Title_trimmed.png" id="3_ev3b6"]
 [ext_resource type="Texture2D" uid="uid://dl6y2oe4w3sj" path="res://Assets/Sprites/play_button_pressed.png" id="4_4cwpn"]
@@ -40,16 +39,7 @@ offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer2"]
-layout_mode = 2
-texture = ExtResource("2_8ctay")
-
-[node name="CenterContainer2" type="CenterContainer" parent="."]
-layout_mode = 0
-offset_right = 800.0
-offset_bottom = 428.0
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="CenterContainer2"]
 layout_mode = 2
 texture = ExtResource("3_ev3b6")
 stretch_mode = 5
