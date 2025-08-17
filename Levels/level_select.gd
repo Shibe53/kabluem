@@ -88,6 +88,8 @@ var current_level = 1
 		if bloom >= bloom_needed:
 			emit_signal("room_bloomed")
 			bloomed = true
+			if enemies == 0:
+				emit_signal("no_enemies_left")
 
 @onready var enemies = 0:
 	set(value):
