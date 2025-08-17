@@ -3,6 +3,19 @@ extends Node
 const game_music = preload("res://SFX/MenuMusic.wav")
 const level1 = preload("res://Levels/level1.tscn")
 const level2 = preload("res://Levels/level2.tscn")
+const level3 = preload("res://Levels/level3.tscn")
+const level4 = preload("res://Levels/level4.tscn")
+const level5 = preload("res://Levels/level5.tscn")
+const level6 = preload("res://Levels/level6.tscn")
+const level7 = preload("res://Levels/level7.tscn")
+const level8 = preload("res://Levels/level8.tscn")
+const level9 = preload("res://Levels/level9.tscn")
+const level10 = preload("res://Levels/level10.tscn")
+const level11 = preload("res://Levels/level11.tscn")
+const level12 = preload("res://Levels/level12.tscn")
+const level13 = preload("res://Levels/level13.tscn")
+const level14 = preload("res://Levels/level14.tscn")
+const level15 = preload("res://Levels/level15.tscn")
 
 signal bloom_changed(value)
 signal room_bloomed
@@ -37,31 +50,31 @@ var current_level = 1
 			2:
 				call_deferred("change_scene", level2)
 			3:
-				pass
+				call_deferred("change_scene", level3)
 			4:
-				pass
+				call_deferred("change_scene", level4)
 			5:
-				pass
+				call_deferred("change_scene", level5)
 			6:
-				pass
+				call_deferred("change_scene", level6)
 			7:
-				pass
+				call_deferred("change_scene", level7)
 			8:
-				pass
+				call_deferred("change_scene", level8)
 			9:
-				pass
+				call_deferred("change_scene", level9)
 			10:
-				pass
+				call_deferred("change_scene", level10)
 			11:
-				pass
+				call_deferred("change_scene", level11)
 			12:
-				pass
+				call_deferred("change_scene", level12)
 			13:
-				pass
+				call_deferred("change_scene", level13)
 			14:
-				pass
+				call_deferred("change_scene", level14)
 			15:
-				pass
+				call_deferred("change_scene", level15)
 			_:
 				call_deferred("change_scene", level1)
 
