@@ -5,10 +5,15 @@ const sound_icon_pressed = preload("res://Assets/Sprites/sound_icon_pressed.png"
 const muted_icon = preload("res://Assets/Sprites/sound_icon_muted.png")
 const muted_icon_pressed = preload("res://Assets/Sprites/sound_icon_muted_pressed.png")
 
-@onready var audioButton = $CenterContainer2/TextureButton
+@onready var audioButton = $CenterContainer2/VBoxContainer/HBoxContainer/TextureButton
+@onready var checkButton = $CenterContainer2/VBoxContainer/HBoxContainer2/CheckButton
+
+var save_latest_level = 1
+var pressed = false
 
 func _ready():
 	update_textures()
+	checkButton.button_pressed = LevelSelect.latest_level == 15
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -37,3 +42,10 @@ func update_textures():
 		audioButton.texture_normal = sound_icon
 		audioButton.texture_pressed = sound_icon_pressed
 		audioButton.texture_hover = sound_icon_pressed
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		save_latest_level = LevelSelect.latest_level
+		LevelSelect.latest_level = 15
+	else:
+		LevelSelect.latest_level = save_latest_level

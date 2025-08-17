@@ -8,6 +8,9 @@ const lose_jingle = preload("res://SFX/LoseJingle.wav")
 @onready var musicPlayer = $Player
 @onready var jinglePlayer = $Jingle
 
+func _ready():
+	jinglePlayer.finished.connect(_on_jingle_finished)
+
 @export var jingle = "None":
 	set(value):
 		jingle = value
@@ -15,14 +18,18 @@ const lose_jingle = preload("res://SFX/LoseJingle.wav")
 			"None":
 				jinglePlayer.stop()
 			"Win":
-#				musicPlayer.pause()
+				musicPlayer.stream_paused = true
 				jinglePlayer.stream = win_jingle
 				jinglePlayer.play()
 			"Lose":
+				musicPlayer.stream_paused = true
 				jinglePlayer.stream = lose_jingle
 				jinglePlayer.play()
 			_:
 				jinglePlayer.stop()
+
+func _on_jingle_finished():
+	musicPlayer.stream_paused = false
 
 @export var music_on = true:
 	set(value):

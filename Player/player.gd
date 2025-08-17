@@ -155,6 +155,7 @@ func player_death():
 	var world = get_tree().current_scene
 	world.add_child(newCamera)
 	newCamera.set_owner(world)
+	blinkAnimationPlayer.play("Stop")
 	player_dead = true
 	burrow()
 
