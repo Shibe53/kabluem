@@ -32,6 +32,7 @@ MAX_ENEMIES = 3
 COOLDOWN = 999999.0
 SHOOT_RANGE = 100
 DETECTION_RANGE = 100
+HEALTH = 1
 
 [node name="EnemySpawner3" parent="." instance=ExtResource("3_4omtb")]
 position = Vector2(537, 503)
@@ -39,6 +40,7 @@ MAX_ENEMIES = 3
 COOLDOWN = 999999.0
 SHOOT_RANGE = 100
 DETECTION_RANGE = 100
+HEALTH = 1
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("3_4omtb")]
 position = Vector2(-161, 505)
@@ -46,6 +48,7 @@ MAX_ENEMIES = 3
 COOLDOWN = 999999.0
 SHOOT_RANGE = 100
 DETECTION_RANGE = 100
+HEALTH = 1
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")
