@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_ijnin"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="5_lr0ko"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="6_tdxkx"]
-[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="7_ojro4"]
+[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="7_ojro4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aqk2v"]
 vertices = PackedVector2Array(606, 30, 606, -34, 738, -34, 738, 30, 802, 30, 802, 162, 738, 162, 670, 162, 606, 98, 738, 414, 802, 414, 802, 546, 738, 546, 738, 610, 606, 610, 606, 546, 606, 478, 670, 414, 226, 546, 226, 610, 30, 610, 30, 414, 226, 414, 226, 478, 606, 414, 606, 162, 226, 30, 226, 98, 226, 162, 30, 162, 30, -34, 226, -34, 482, 222, 482, 354, 350, 354, 350, 290, 94, 290, 94, 286, 350, 286, 350, 222)
@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-46, -128, -56, 657, 89
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Tutorial2" type="Node2D"]
+[node name="Easy_level2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_dj5hn")
 level_number = 2
@@ -61,6 +61,6 @@ tile_map_data = PackedByteArray("AAD/////AAACAAEAAAALAAoAAAABAAAAAAD//woAAAAFAAI
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_tdxkx")]
 
 [node name="Endpoint" parent="." instance=ExtResource("7_ojro4")]
-position = Vector2(96, 96)
+position = Vector2(40, 69)
 
 [editable path="NavigationRegion2D/TileMap"]

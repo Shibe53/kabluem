@@ -16,7 +16,6 @@ agent_radius = 30.0
 [node name="LevelTemplate" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_14d57")
-level_number = 6
 bloom_needed = 50
 
 [node name="Player" parent="." instance=ExtResource("2_1tddr")]

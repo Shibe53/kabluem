@@ -73,6 +73,10 @@ position = Vector2(216, 487)
 
 [node name="Gui" parent="CanvasLayer" instance=ExtResource("6_w0mt4")]
 
+[node name="ObjectiveLabel" parent="CanvasLayer/Gui" index="0"]
+text = "Grenades can bounce!"
+
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("7_b38qx")]
 
 [editable path="NavigationRegion2D/TileMap"]
+[editable path="CanvasLayer/Gui"]

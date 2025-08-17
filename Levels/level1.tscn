@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cwpqt3le6raqc" path="res://Enemies/enemy_spawner.tscn" id="3_302sc"]
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="3_xy4tn"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="5_5j5gb"]
-[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="5_aunfx"]
+[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="5_aunfx"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="6_mx85b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aqk2v"]
@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -75, -47, 665, 801
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Tutorial1" type="Node2D"]
+[node name="Basic_tutorial" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_aunfx")
 bloom_percentage_needed = 60
@@ -29,7 +29,7 @@ DETECTION_RANGE = 400
 [node name="Player" parent="." instance=ExtResource("1_crycw")]
 y_sort_enabled = true
 position = Vector2(138, 548)
-collision_layer = 0
+DODGE_INV = 1.5
 
 [node name="Camera" type="Camera2D" parent="Player"]
 
