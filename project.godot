@@ -118,6 +118,7 @@ skip_level={
 2d_physics/layer_8="Soft Collisions"
 2d_physics/layer_9="Floor Tiles"
 2d_physics/layer_10="Grenade"
+2d_physics/layer_11="Barrells"
 
 [rendering]
 
