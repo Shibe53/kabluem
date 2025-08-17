@@ -1,5 +1,6 @@
 extends Node
 
+const main_menu = preload("res://UI/main_menu.tscn")
 const level1 = preload("res://Levels/level1.tscn")
 const level2 = preload("res://Levels/level2.tscn")
 const level3 = preload("res://Levels/level3.tscn")
@@ -31,8 +32,9 @@ var current_level = 1
 	set(value):
 		end = value
 		if end:
+			if level == latest_level:
+				latest_level += 1
 			level += 1
-			latest_level += 1
 
 @onready var level = 1:
 	set(value):
@@ -64,18 +66,8 @@ var current_level = 1
 				call_deferred("change_scene", level9)
 			10:
 				call_deferred("change_scene", level10)
-			11:
-				call_deferred("change_scene", level11)
-			12:
-				call_deferred("change_scene", level12)
-			13:
-				call_deferred("change_scene", level13)
-			14:
-				call_deferred("change_scene", level14)
-			15:
-				call_deferred("change_scene", level15)
 			_:
-				call_deferred("change_scene", level1)
+				call_deferred("change_scene", level10)
 
 @onready var bloom_needed = 80:
 	set(value):
@@ -101,7 +93,7 @@ func change_scene(scene : PackedScene):
 	get_tree().change_scene_to_packed(scene)
 	if not Music.music_playing == "Game":
 		Music.music_playing = "Game"
-		
+
 func _process(_delta):
 	if Input.is_action_just_pressed("skip_level"):
 		end = true

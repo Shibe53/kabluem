@@ -25,6 +25,7 @@ position = Vector2(499, 192)
 MAX_ENEMIES = 1
 COOLDOWN = 10.0
 DETECTION_RANGE = 400
+HEALTH = 1
 
 [node name="Player" parent="." instance=ExtResource("1_crycw")]
 y_sort_enabled = true
