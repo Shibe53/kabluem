@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-291, 398, -300, 1068, 
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Level5" type="Node2D"]
+[node name="Bounce Practice" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_fj68v")
 level_number = 5

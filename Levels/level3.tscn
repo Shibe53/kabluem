@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -75, -47, 665, 320
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Level3" type="Node2D"]
+[node name="Greater vegan intor" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ltsrt")
 level_number = 3
