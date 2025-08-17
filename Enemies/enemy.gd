@@ -114,11 +114,13 @@ func shoot_state():
 func has_los():
 	return (not mainRC.is_colliding()) or (mainRC.is_colliding() and is_instance_of(mainRC.get_collider(), Grenade))
 
-func set_values(shootRange, detectionRange, enemyType):
+func set_values(shootRange, detectionRange, enemyType, max_health):
 	SHOOT_RANGE = shootRange
 	DETECTION_RANGE = detectionRange
 	detection = DETECTION_RANGE
 	ENEMY_TYPE = enemyType
+	if max_health > 0:
+		get_node_or_null("Stats").max_health = max_health
 
 func set_bullet_values(speed, cooldown, damage, dimension, spread, spreadAngle):
 	bulletSpawner.set_values(speed, cooldown, damage, dimension, spread, spreadAngle)

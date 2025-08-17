@@ -13,10 +13,8 @@ var stats = PlayerStats
 var level_select = LevelSelect
 
 func _ready():
-	print(concrete_layer.get_used_cells().size())
 	if bloom_percentage_needed != 0:
 		bloom_needed = bloom_percentage_needed * concrete_layer.get_used_cells().size() / 100
-		print(bloom_needed)
 	level_select.room_bloomed.connect(kill_enemies)
 	level_select.no_enemies_left.connect(go_to_endpoint)
 	level_select.bloom_needed = bloom_needed
