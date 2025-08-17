@@ -29,7 +29,6 @@ DETECTION_RANGE = 400
 [node name="Player" parent="." instance=ExtResource("1_crycw")]
 y_sort_enabled = true
 position = Vector2(138, 548)
-DODGE_INV = 1.5
 
 [node name="Camera" type="Camera2D" parent="Player"]
 
