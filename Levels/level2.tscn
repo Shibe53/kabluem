@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b70bkts1qx47a" path="res://Levels/level.gd" id="1_dj5hn"]
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="2_ojro4"]
-[ext_resource type="PackedScene" uid="uid://cvpll4vdnq1xu" path="res://Enemies/lesser_vegan.tscn" id="3_xv7eh"]
+[ext_resource type="PackedScene" uid="uid://cwpqt3le6raqc" path="res://Enemies/enemy_spawner.tscn" id="3_ojro4"]
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_ijnin"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="5_lr0ko"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="6_tdxkx"]
-[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="7_ojro4"]
+[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="7_ojro4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_aqk2v"]
 vertices = PackedVector2Array(478, 98, 674, 30, 674, 418, 610, 418, 478, 414, 610, 546, 482, 546, 30, 414, 482, 610, 30, 610, 354, 98, 354, 290, 30, 290, 30, 30)
@@ -21,19 +21,20 @@ script = ExtResource("1_dj5hn")
 level_number = 2
 bloom_needed = 80
 
+[node name="EnemySpawner2" parent="." instance=ExtResource("3_ojro4")]
+position = Vector2(107, 238)
+COOLDOWN = 5.0
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_ojro4")]
+position = Vector2(613, 88)
+MAX_ENEMIES = 2
+COOLDOWN = 5.0
+
 [node name="Player" parent="." instance=ExtResource("2_ojro4")]
 y_sort_enabled = true
 position = Vector2(138, 548)
 
 [node name="Camera" type="Camera2D" parent="Player"]
-
-[node name="Enemy" parent="." instance=ExtResource("3_xv7eh")]
-y_sort_enabled = true
-position = Vector2(667, 81)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_xv7eh")]
-y_sort_enabled = true
-position = Vector2(127, 265)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")
@@ -58,14 +59,4 @@ tile_map_data = PackedByteArray("AAD/////AAAFAAEAAAAAAP//AAABAAIAAAABAP//AAABAAI
 [node name="Endpoint" parent="." instance=ExtResource("7_ojro4")]
 position = Vector2(96, 96)
 
-[editable path="Enemy"]
-[editable path="Enemy/Hurtbox"]
-[editable path="Enemy/Hitbox"]
-[editable path="Enemy/SoftCollision"]
-[editable path="Enemy/PlayerDetection"]
-[editable path="Enemy2"]
-[editable path="Enemy2/Hurtbox"]
-[editable path="Enemy2/Hitbox"]
-[editable path="Enemy2/SoftCollision"]
-[editable path="Enemy2/PlayerDetection"]
 [editable path="NavigationRegion2D/TileMap"]

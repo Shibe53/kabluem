@@ -15,7 +15,8 @@ shader = ExtResource("2_vtle1")
 shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4ntmi"]
-height = 40.0
+radius = 9.0
+height = 34.0
 
 [sub_resource type="Animation" id="Animation_lfmf2"]
 resource_name = "Burrow"
@@ -825,7 +826,7 @@ graph_offset = Vector2(-4, -18)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_btcbx"]
 radius = 13.0
-height = 36.0
+height = 68.0
 
 [sub_resource type="Animation" id="Animation_apopc"]
 length = 0.001
@@ -916,7 +917,7 @@ collision_layer = 4
 collision_mask = 80
 
 [node name="CollisionShape" parent="Hurtbox" index="0"]
-position = Vector2(0, 10)
+position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_btcbx")
 
 [node name="ThrowCooldownTimer" type="Timer" parent="."]
