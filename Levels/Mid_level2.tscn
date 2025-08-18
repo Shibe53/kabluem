@@ -18,7 +18,7 @@ agent_radius = 30.0
 [node name="Mid_level2" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5kn3p")
-level_number = 10
+level_number = 11
 bloom_needed = 50
 bloom_percentage_needed = 70
 

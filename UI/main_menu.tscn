@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bcb1jvpsfabrb"]
 
 [ext_resource type="Script" uid="uid://c256cy736peh7" path="res://UI/menu.gd" id="1_d8nwk"]
+[ext_resource type="Texture2D" uid="uid://blnvtrm17ed8s" path="res://Assets/Sprites/Game_icon.png" id="2_k0a0m"]
 [ext_resource type="Texture2D" uid="uid://cjeh7norysrcu" path="res://Assets/Sprites/play_button.png" id="3_4cwpn"]
-[ext_resource type="Texture2D" uid="uid://b8353sqmj3waa" path="res://Assets/Sprites/Title_trimmed.png" id="3_ev3b6"]
 [ext_resource type="Texture2D" uid="uid://dl6y2oe4w3sj" path="res://Assets/Sprites/play_button_pressed.png" id="4_4cwpn"]
 [ext_resource type="Texture2D" uid="uid://bs3awcs3kh5am" path="res://Assets/Sprites/level_select_button.png" id="5_8ctay"]
 [ext_resource type="Texture2D" uid="uid://bggptigli4ym1" path="res://Assets/Sprites/level_select_button_pressed.png" id="6_ev3b6"]
@@ -35,25 +35,25 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -400.0
 offset_right = 400.0
-offset_bottom = -201.0
+offset_bottom = -220.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect2" type="TextureRect" parent="CenterContainer2"]
 layout_mode = 2
-texture = ExtResource("3_ev3b6")
+texture = ExtResource("2_k0a0m")
 stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 372.0
-offset_right = 784.0
-offset_bottom = 651.0
+offset_left = 56.0
+offset_top = 464.0
+offset_right = 736.0
+offset_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 80
+theme_override_constants/separation = 60
 
 [node name="TextureButton" type="TextureButton" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2

@@ -18,7 +18,7 @@ agent_radius = 30.0
 [node name="Bullet_hell" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_pmsx2")
-level_number = 11
+level_number = 10
 bloom_needed = 10
 
 [node name="Player" parent="." instance=ExtResource("2_4jeot")]

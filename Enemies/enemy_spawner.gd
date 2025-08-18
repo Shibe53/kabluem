@@ -12,7 +12,7 @@ const GreaterVegan = preload("res://Enemies/greater_vegan.tscn")
 @export var SHOOT_RANGE = 300
 @export var DETECTION_RANGE = 300
 @export var DETECTION_CHANGE = 100
-@export var SPEED = 400
+@export var BULLET_SPEED = 400
 @export var BULLET_COOLDOWN = 3.0
 @export var DAMAGE = 1
 @export var HEALTH = 0
@@ -48,7 +48,7 @@ func _process(_delta: float) -> void:
 			enemy.enemy_dead.connect(enemy_dead)
 			main.add_child(enemy)
 			enemy.set_owner(main)
-			enemy.set_bullet_values(SPEED, BULLET_COOLDOWN, DAMAGE, SCALE, SPREAD, SPREAD_ANGLE)
+			enemy.set_bullet_values(BULLET_SPEED, BULLET_COOLDOWN, DAMAGE, SCALE, SPREAD, SPREAD_ANGLE)
 
 func has_body_inside() -> bool:
 	return area.get_overlapping_bodies().size() > 0

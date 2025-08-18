@@ -344,7 +344,6 @@ text = "5"
 label_settings = SubResource("LabelSettings_l87g5")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 30
 

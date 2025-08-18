@@ -34,7 +34,6 @@ MAX_ENEMIES = 1
 COOLDOWN = 9999.0
 SHOOT_RANGE = 2000
 DETECTION_RANGE = 2000
-SPEED = 500
 BULLET_COOLDOWN = 2.0
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
