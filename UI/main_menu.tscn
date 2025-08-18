@@ -46,20 +46,13 @@ stretch_mode = 5
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 56.0
 offset_top = 464.0
-offset_right = 736.0
+offset_right = 800.0
 offset_bottom = 720.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 60
-
-[node name="TextureButton" type="TextureButton" parent="CenterContainer/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("3_4cwpn")
-texture_pressed = ExtResource("4_4cwpn")
-texture_hover = ExtResource("4_4cwpn")
+theme_override_constants/separation = 50
 
 [node name="TextureButton2" type="TextureButton" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
@@ -67,12 +60,18 @@ texture_normal = ExtResource("5_8ctay")
 texture_pressed = ExtResource("6_ev3b6")
 texture_hover = ExtResource("6_ev3b6")
 
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_4cwpn")
+texture_pressed = ExtResource("4_4cwpn")
+texture_hover = ExtResource("4_4cwpn")
+
 [node name="TextureButton3" type="TextureButton" parent="CenterContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("7_k0a0m")
 texture_pressed = ExtResource("8_2mudq")
 texture_hover = ExtResource("8_2mudq")
 
-[connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]

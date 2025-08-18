@@ -29,8 +29,6 @@ func end_animation():
 	animation.play("explode")
 
 func play_menu_music():
-	audioPlayer.stream = menu_music
-	audioPlayer.play()
-
+	Music.music_playing = "Menu"
 func _on_explode_finished():
 	get_tree().change_scene_to_packed(load_scene)

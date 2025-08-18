@@ -48,7 +48,7 @@ func _on_jingle_finished():
 				musicPlayer.stream = menu_music
 				musicPlayer.play()
 			"Game":
-				musicPlayer.volume_db = -10.0
+				musicPlayer.volume_db = -13.0
 				musicPlayer.stream = game_music
 				musicPlayer.play()
 			_:
