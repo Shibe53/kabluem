@@ -11,10 +11,10 @@ func bloom(col_shape: CollisionShape2D):
 		var affected_tiles: Array[Vector2i] = []
 		for cell in get_used_cells():
 			if Geometry2D.is_point_in_circle(map_to_local(cell), to_local(col_shape.global_position), float_to_local(circle.radius*col_shape.global_scale.x)):
-				if get_cell_tile_data(cell).terrain != 0:
-					affected_tiles.append(cell)
+				affected_tiles.append(cell)
+				if get_cell_tile_data(cell).terrain == 1:
 					bloom_tiles += 1
-		
+					
 		LevelSelect.bloom += bloom_tiles
 		bloom_tiles = 0
 		set_cells_terrain_connect(affected_tiles, 0, 0, true)
