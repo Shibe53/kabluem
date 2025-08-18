@@ -19,7 +19,6 @@ agent_radius = 30.0
 y_sort_enabled = true
 script = ExtResource("1_u6ofr")
 level_number = 3
-bloom_needed = 5
 
 [node name="Node" type="Node" parent="."]
 

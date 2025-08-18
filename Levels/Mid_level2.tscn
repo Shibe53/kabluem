@@ -20,7 +20,7 @@ y_sort_enabled = true
 script = ExtResource("1_5kn3p")
 level_number = 11
 bloom_needed = 50
-bloom_percentage_needed = 70
+bloom_percentage_needed = 65
 
 [node name="Player" parent="." instance=ExtResource("2_uvd6n")]
 y_sort_enabled = true
