@@ -6,7 +6,8 @@ const muted_icon = preload("res://Assets/Sprites/sound_icon_muted.png")
 const muted_icon_pressed = preload("res://Assets/Sprites/sound_icon_muted_pressed.png")
 
 @onready var audioButton = $CenterContainer2/VBoxContainer/HBoxContainer/TextureButton
-@onready var checkButton = $CenterContainer2/VBoxContainer/HBoxContainer2/CheckButton
+@onready var unlockButton = $CenterContainer2/VBoxContainer/HBoxContainer2/CheckButton
+@onready var easyButton = $CenterContainer2/VBoxContainer/HBoxContainer3/CheckButton
 @onready var volumeSlider = $CenterContainer2/VBoxContainer/HBoxContainer/CenterContainer/HSlider
 
 var save_latest_level = 1
@@ -15,7 +16,8 @@ var old_value = 0.0
 
 func _ready():
 	update_textures()
-	checkButton.button_pressed = LevelSelect.latest_level == LevelSelect.max_level
+	unlockButton.button_pressed = LevelSelect.latest_level == LevelSelect.max_level
+	easyButton.button_pressed = PlayerStats.max_health != 3
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -55,3 +57,9 @@ func _on_check_button_toggled(toggled_on: bool) -> void:
 func _on_h_slider_value_changed(value: float) -> void:
 	Music.volume = value
 	update_textures()
+
+func _on_easy_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		PlayerStats.max_health = 6
+	else:
+		PlayerStats.max_health = 3

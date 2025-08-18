@@ -3,7 +3,6 @@ extends Node2D
 @export var level_number = 1
 @export var bloom_needed = 1
 @export var bloom_percentage_needed = 0
-@export var player_max_health = 3
 
 @onready var gui = $CanvasLayer/Gui
 @onready var endpoint = $Endpoint
@@ -19,8 +18,7 @@ func _ready():
 	level_select.room_bloomed.connect(kill_enemies)
 	level_select.no_enemies_left.connect(go_to_endpoint)
 	level_select.bloom_needed = bloom_needed
-	stats.max_health = player_max_health
-	stats.health = player_max_health
+	stats.health = stats.max_health
 	stats.no_health.connect(restart_level)
 	gui.visible = true
 	canvas_layer.visible = true
