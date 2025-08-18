@@ -19,6 +19,7 @@ agent_radius = 30.0
 y_sort_enabled = true
 script = ExtResource("1_u6ofr")
 level_number = 3
+bloom_needed = 5
 
 [node name="Node" type="Node" parent="."]
 
@@ -31,10 +32,10 @@ position = Vector2(-254, 544)
 [node name="EnemySpawner" parent="." instance=ExtResource("3_u38hl")]
 position = Vector2(1183, 417)
 MAX_ENEMIES = 1
-COOLDOWN = 9999.0
+COOLDOWN = 5.0
 SHOOT_RANGE = 2000
 DETECTION_RANGE = 2000
-BULLET_COOLDOWN = 2.0
+BULLET_COOLDOWN = 1.5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")

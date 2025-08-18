@@ -33,18 +33,24 @@ position = Vector2(477, 576)
 MAX_ENEMIES = 1
 COOLDOWN = 2.0
 DETECTION_RANGE = 400
+DETECTION_CHANGE = 200
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("3_f2qab")]
 position = Vector2(-227, 576)
 MAX_ENEMIES = 1
 COOLDOWN = 2.0
 DETECTION_RANGE = 400
+DETECTION_CHANGE = 200
 
 [node name="EnemySpawner3" parent="." instance=ExtResource("3_f2qab")]
 position = Vector2(125, -63)
 MAX_ENEMIES = 1
 COOLDOWN = 2.0
+SHOOT_RANGE = 500
 DETECTION_RANGE = 400
+DETECTION_CHANGE = 200
+BULLET_SPEED = 500
+SCALE = 0.2
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")

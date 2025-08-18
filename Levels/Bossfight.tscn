@@ -19,7 +19,7 @@ agent_radius = 30.0
 y_sort_enabled = true
 script = ExtResource("1_cg380")
 level_number = 15
-bloom_needed = 10
+bloom_percentage_needed = 60
 
 [node name="Player" parent="." instance=ExtResource("2_sf033")]
 y_sort_enabled = true
@@ -32,13 +32,13 @@ position = Vector2(352, 160)
 ENEMY = "Greater"
 MAX_ENEMIES = 1
 COOLDOWN = 5.0
-SHOOT_RANGE = 500
+SHOOT_RANGE = 400
+DETECTION_RANGE = 500
 DETECTION_CHANGE = 500
 BULLET_COOLDOWN = 1.0
 HEALTH = 10
 SCALE = 0.4
 SPREAD = true
-SPREAD_ANGLE = 15
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_aqk2v")

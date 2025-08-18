@@ -18,7 +18,7 @@ agent_radius = 30.0
 [node name="Minibossfight" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ky4ot")
-level_number = 13
+level_number = 12
 bloom_percentage_needed = 75
 
 [node name="Player" parent="." instance=ExtResource("2_26sct")]
@@ -31,7 +31,7 @@ position = Vector2(344, 544)
 position = Vector2(160, 160)
 MAX_ENEMIES = 1
 COOLDOWN = 3.0
-DETECTION_RANGE = 400
+DETECTION_RANGE = 500
 DETECTION_CHANGE = 500
 BULLET_SPEED = 500
 BULLET_COOLDOWN = 0.5
@@ -41,8 +41,8 @@ HEALTH = 1
 position = Vector2(552, 160)
 MAX_ENEMIES = 1
 COOLDOWN = 3.0
-SHOOT_RANGE = 500
-DETECTION_RANGE = 400
+SHOOT_RANGE = 400
+DETECTION_RANGE = 500
 DETECTION_CHANGE = 500
 BULLET_COOLDOWN = 5.0
 DAMAGE = 2

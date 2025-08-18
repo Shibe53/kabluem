@@ -19,8 +19,7 @@ agent_radius = 30.0
 y_sort_enabled = true
 script = ExtResource("1_g8lk6")
 level_number = 5
-bloom_needed = 80
-bloom_percentage_needed = 70
+bloom_percentage_needed = 80
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("2_w0qvd")]
 position = Vector2(183, 73)
