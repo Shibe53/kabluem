@@ -6,7 +6,7 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("unlock"):
-		LevelSelect.latest_level = 15
+		LevelSelect.latest_level = LevelSelect.max_level
 
 func _on_texture_button_pressed() -> void:
 	LevelSelect.level = LevelSelect.latest_level

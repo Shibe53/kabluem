@@ -13,7 +13,7 @@ const level9 = preload("res://Levels/Mid_level1.tscn")
 const level10 = preload("res://Levels/Mid_level2.tscn")
 const level11 = preload("res://Levels/Bullet_hell.tscn")
 const level12 = preload("res://Levels/Mid_level3.tscn")
-const level13 = preload("res://Levels/level13.tscn")
+const level13 = preload("res://Levels/Bossfight.tscn")
 const level14 = preload("res://Levels/level14.tscn")
 const level15 = preload("res://Levels/level15.tscn")
 
@@ -27,12 +27,13 @@ var bloomed = false
 var music_playing = false
 var latest_level = 1
 var current_level = 1
+var max_level = 12
 
 @export var end = false:
 	set(value):
 		end = value
 		if end:
-			if level == latest_level and latest_level < 10:
+			if level == latest_level and latest_level < max_level:
 				latest_level += 1
 			level += 1
 
@@ -66,6 +67,10 @@ var current_level = 1
 				call_deferred("change_scene", level9)
 			10:
 				call_deferred("change_scene", level10)
+			11:
+				call_deferred("change_scene", level11)
+			12:
+				call_deferred("change_scene", level12)
 			_:
 				call_deferred("change_scene", main_menu)
 

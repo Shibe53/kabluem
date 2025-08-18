@@ -15,7 +15,7 @@ var old_value = 0.0
 
 func _ready():
 	update_textures()
-	checkButton.button_pressed = LevelSelect.latest_level == 15
+	checkButton.button_pressed = LevelSelect.latest_level == LevelSelect.max_level
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause"):
@@ -48,7 +48,7 @@ func update_textures():
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		save_latest_level = LevelSelect.latest_level
-		LevelSelect.latest_level = 15
+		LevelSelect.latest_level = LevelSelect.max_level
 	else:
 		LevelSelect.latest_level = save_latest_level
 
