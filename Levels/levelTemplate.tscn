@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="2_1tddr"]
 [ext_resource type="PackedScene" uid="uid://cwpqt3le6raqc" path="res://Enemies/enemy_spawner.tscn" id="3_f2y0g"]
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_1uxay"]
-[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="5_w3jas"]
+[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="5_w3jas"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="6_va1y7"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="7_dfce3"]
 
@@ -37,7 +37,6 @@ navigation_polygon = SubResource("NavigationPolygon_aqk2v")
 z_index = -2
 
 [node name="Endpoint" parent="." instance=ExtResource("5_w3jas")]
-z_index = -1
 position = Vector2(416, 32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

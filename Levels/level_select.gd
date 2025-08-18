@@ -1,18 +1,18 @@
 extends Node
 
 const main_menu = preload("res://UI/main_menu.tscn")
-const level1 = preload("res://Levels/level1.tscn")
-const level2 = preload("res://Levels/level2.tscn")
-const level3 = preload("res://Levels/level3.tscn")
-const level4 = preload("res://Levels/level4.tscn")
-const level5 = preload("res://Levels/level5.tscn")
-const level6 = preload("res://Levels/level6.tscn")
-const level7 = preload("res://Levels/level7.tscn")
-const level8 = preload("res://Levels/level8.tscn")
-const level9 = preload("res://Levels/level9.tscn")
-const level10 = preload("res://Levels/level10.tscn")
-const level11 = preload("res://Levels/level11.tscn")
-const level12 = preload("res://Levels/level12.tscn")
+const level1 = preload("res://Levels/Bloom_tutorial.tscn")
+const level2 = preload("res://Levels/Enemy_tutorial.tscn")
+const level3 = preload("res://Levels/Dodge_tutorial.tscn")
+const level4 = preload("res://Levels/Easy_level1.tscn")
+const level5 = preload("res://Levels/Easy_level2.tscn")
+const level6 = preload("res://Levels/Bounce_practice.tscn")
+const level7 = preload("res://Levels/Easy_level3.tscn")
+const level8 = preload("res://Levels/Greater_vegan_intro.tscn")
+const level9 = preload("res://Levels/Mid_level1.tscn")
+const level10 = preload("res://Levels/Mid_level2.tscn")
+const level11 = preload("res://Levels/Bullet_hell.tscn")
+const level12 = preload("res://Levels/Mid_level3.tscn")
 const level13 = preload("res://Levels/level13.tscn")
 const level14 = preload("res://Levels/level14.tscn")
 const level15 = preload("res://Levels/level15.tscn")
@@ -32,7 +32,7 @@ var current_level = 1
 	set(value):
 		end = value
 		if end:
-			if level == latest_level:
+			if level == latest_level and latest_level < 10:
 				latest_level += 1
 			level += 1
 
@@ -67,7 +67,7 @@ var current_level = 1
 			10:
 				call_deferred("change_scene", level10)
 			_:
-				call_deferred("change_scene", level10)
+				call_deferred("change_scene", main_menu)
 
 @onready var bloom_needed = 80:
 	set(value):
