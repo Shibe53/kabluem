@@ -24,14 +24,14 @@ bloom_percentage_needed = 70
 
 [node name="EnemySpawner2" parent="." instance=ExtResource("2_w0qvd")]
 position = Vector2(183, 73)
-MAX_ENEMIES = 3
+MAX_ENEMIES = 2
 COOLDOWN = 10.0
 DETECTION_RANGE = 800
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_w0qvd")]
 position = Vector2(689, 62)
 MAX_ENEMIES = 1
-COOLDOWN = 5.0
+COOLDOWN = 10.0
 DETECTION_RANGE = 900
 
 [node name="Player" parent="." instance=ExtResource("3_7cmdm")]

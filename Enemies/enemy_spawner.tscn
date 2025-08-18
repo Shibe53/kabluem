@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwpqt3le6raqc"]
+[gd_scene load_steps=16 format=3 uid="uid://cwpqt3le6raqc"]
 
 [ext_resource type="Script" uid="uid://cunqyfgwww744" path="res://Enemies/enemy_spawner.gd" id="1_hhxbs"]
 [ext_resource type="Texture2D" uid="uid://brcjjsa4jy8hv" path="res://Assets/Sprites/Vegan_tent-Sheet.png" id="2_mu1kv"]
+[ext_resource type="Texture2D" uid="uid://c6u15f073i6ki" path="res://Assets/Sprites/warning_icon.png" id="3_cydl1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hhxbs"]
-radius = 37.054
+radius = 50.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cydl1"]
 atlas = ExtResource("2_mu1kv")
@@ -52,8 +53,37 @@ animations = [{
 "texture": SubResource("AtlasTexture_mymmk")
 }],
 "loop": false,
-"name": &"default",
+"name": &"destroy",
 "speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30cj0"]
+atlas = ExtResource("3_cydl1")
+region = Rect2(0, 0, 110, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6lct"]
+atlas = ExtResource("3_cydl1")
+region = Rect2(110, 0, 110, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fsms"]
+atlas = ExtResource("3_cydl1")
+region = Rect2(220, 0, 110, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0yegy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30cj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6lct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fsms")
+}],
+"loop": true,
+"name": &"warn",
+"speed": 6.0
 }]
 
 [node name="EnemySpawner" type="Node2D"]
@@ -67,9 +97,22 @@ collision_mask = 18
 shape = SubResource("CircleShape2D_hhxbs")
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_30cj0")
+animation = &"destroy"
+
+[node name="WarningSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -60)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_0yegy")
+animation = &"warn"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_warning_timeout"]

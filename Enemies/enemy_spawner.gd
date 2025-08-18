@@ -3,8 +3,10 @@ extends Node2D
 const LesserVegan = preload("res://Enemies/lesser_vegan.tscn")
 const GreaterVegan = preload("res://Enemies/greater_vegan.tscn")
 @onready var timerCD = $Timer
+@onready var warning_timer = $Timer2
 @onready var area = $Area2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var warning_sprite = $WarningSprite
 
 @export var ENEMY : String = "Lesser"
 @export var MAX_ENEMIES = 5
@@ -27,31 +29,37 @@ var current_enemies = 0
 
 func _ready():
 	level_select.room_bloomed.connect(stop_spawner)
+	warning_sprite.visible = false
 
 func _process(_delta: float) -> void:
 	if not onCooldown:
 		onCooldown = true
 		timerCD.start(COOLDOWN)
 		if not has_body_inside() and current_enemies < MAX_ENEMIES:
-			match ENEMY:
-				"Lesser":
-					enemy = LesserVegan.instantiate()
-				"Greater":
-					enemy = GreaterVegan.instantiate()
-				_:
-					enemy = LesserVegan.instantiate()
-			var main = get_tree().current_scene
-			enemy.global_position = global_position
-			enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, DETECTION_CHANGE, ENEMY, HEALTH)
-			level_select.enemies += 1
-			current_enemies += 1
-			enemy.enemy_dead.connect(enemy_dead)
-			main.add_child(enemy)
-			enemy.set_owner(main)
-			enemy.set_bullet_values(BULLET_SPEED, BULLET_COOLDOWN, DAMAGE, SCALE, SPREAD, SPREAD_ANGLE)
+			warning_sprite.visible = true
+			warning_sprite.play("warn")
+			warning_timer.start(1.0)
 
 func has_body_inside() -> bool:
 	return area.get_overlapping_bodies().size() > 0
+
+func spawn_enemies():
+	match ENEMY:
+		"Lesser":
+			enemy = LesserVegan.instantiate()
+		"Greater":
+			enemy = GreaterVegan.instantiate()
+		_:
+			enemy = LesserVegan.instantiate()
+	var main = get_tree().current_scene
+	enemy.global_position = global_position
+	enemy.set_values(SHOOT_RANGE, DETECTION_RANGE, DETECTION_CHANGE, ENEMY, HEALTH)
+	level_select.enemies += 1
+	current_enemies += 1
+	enemy.enemy_dead.connect(enemy_dead)
+	main.add_child(enemy)
+	enemy.set_owner(main)
+	enemy.set_bullet_values(BULLET_SPEED, BULLET_COOLDOWN, DAMAGE, SCALE, SPREAD, SPREAD_ANGLE)
 
 func enemy_dead():
 	LevelSelect.enemies -= 1
@@ -60,8 +68,11 @@ func enemy_dead():
 func stop_spawner():
 	MAX_ENEMIES = 0
 	if animated_sprite_2d.frame == 0:
-		animated_sprite_2d.play("default")
+		animated_sprite_2d.play("destroy")
 	
-
 func _on_timer_timeout() -> void:
 	onCooldown = false
+
+func _on_timer_warning_timeout() -> void:
+	warning_sprite.visible = false
+	spawn_enemies()

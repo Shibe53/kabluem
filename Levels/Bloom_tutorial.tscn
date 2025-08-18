@@ -17,7 +17,7 @@ agent_radius = 30.0
 [node name="Bloom_tutorial" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0xi12")
-bloom_percentage_needed = 60
+bloom_percentage_needed = 80
 
 [node name="Player" parent="." instance=ExtResource("3_02eih")]
 y_sort_enabled = true
