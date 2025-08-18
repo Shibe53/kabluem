@@ -19,7 +19,7 @@ agent_radius = 30.0
 y_sort_enabled = true
 script = ExtResource("1_pmsx2")
 level_number = 10
-bloom_needed = 10
+bloom_needed = 15
 
 [node name="Player" parent="." instance=ExtResource("2_4jeot")]
 y_sort_enabled = true

@@ -15,10 +15,10 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -75, -47, 665, 801
 parsed_collision_mask = 4294967039
 agent_radius = 30.0
 
-[node name="Bossfight" type="Node2D"]
+[node name="Minibossfight" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_ky4ot")
-level_number = 15
+level_number = 13
 bloom_percentage_needed = 80
 
 [node name="Player" parent="." instance=ExtResource("2_26sct")]

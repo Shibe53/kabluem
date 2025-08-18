@@ -27,7 +27,7 @@ var bloomed = false
 var music_playing = false
 var latest_level = 1
 var current_level = 1
-var max_level = 12
+var max_level = 15
 
 @export var end = false:
 	set(value):
@@ -71,6 +71,12 @@ var max_level = 12
 				call_deferred("change_scene", level11)
 			12:
 				call_deferred("change_scene", level12)
+			13:
+				call_deferred("change_scene", level13)
+			14:
+				call_deferred("change_scene", level14)
+			15:
+				call_deferred("change_scene", level15)
 			_:
 				call_deferred("change_scene", main_menu)
 

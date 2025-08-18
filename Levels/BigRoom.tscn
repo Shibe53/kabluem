@@ -18,6 +18,7 @@ agent_radius = 30.0
 [node name="BigRoom" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_64jho")
+level_number = 14
 bloom_percentage_needed = 75
 
 [node name="Player" parent="." instance=ExtResource("2_b58xn")]
