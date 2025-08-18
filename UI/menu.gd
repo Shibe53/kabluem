@@ -11,6 +11,8 @@ func _process(_delta):
 func _on_texture_button_pressed() -> void:
 	if LevelSelect.latest_level == LevelSelect.max_level:
 		LevelSelect.level = 1
+	else:
+		LevelSelect.level = LevelSelect.latest_level
 
 func _on_texture_button_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://UI/level_select_screen.tscn")

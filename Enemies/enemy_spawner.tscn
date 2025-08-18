@@ -108,9 +108,8 @@ sprite_frames = SubResource("SpriteFrames_30cj0")
 animation = &"destroy"
 
 [node name="WarningSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(0, -60)
-scale = Vector2(0.2, 0.2)
+position = Vector2(-4, -67)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_0yegy")
 animation = &"warn"
 
