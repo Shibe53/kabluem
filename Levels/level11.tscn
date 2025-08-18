@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d07s8as7l50io"]
+[gd_scene load_steps=9 format=3 uid="uid://dypmt44lcx60b"]
 
 [ext_resource type="Script" uid="uid://b70bkts1qx47a" path="res://Levels/level.gd" id="1_0k7ab"]
 [ext_resource type="PackedScene" uid="uid://cwxgusqqwr28s" path="res://Player/player.tscn" id="2_kgcum"]
 [ext_resource type="PackedScene" uid="uid://cwpqt3le6raqc" path="res://Enemies/enemy_spawner.tscn" id="3_o8n7s"]
 [ext_resource type="PackedScene" uid="uid://cvcndvy84qr8e" path="res://Room/tile_map.tscn" id="4_ekubr"]
-[ext_resource type="PackedScene" path="res://Room/endpoint.tscn" id="5_kkglu"]
+[ext_resource type="PackedScene" uid="uid://bu5w07yuwrmvq" path="res://Room/endpoint.tscn" id="5_kkglu"]
 [ext_resource type="PackedScene" uid="uid://cv43bkyxn4rr5" path="res://UI/GUI.tscn" id="6_mlphh"]
 [ext_resource type="PackedScene" uid="uid://b7w2nsv2yrior" path="res://UI/pause_menu.tscn" id="7_aovax"]
 
@@ -38,7 +38,6 @@ navigation_polygon = SubResource("NavigationPolygon_aqk2v")
 z_index = -2
 
 [node name="Endpoint" parent="." instance=ExtResource("5_kkglu")]
-z_index = -1
 position = Vector2(416, 32)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

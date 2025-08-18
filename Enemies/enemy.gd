@@ -184,3 +184,9 @@ func move_toward_int(current: int, target: int, step: int) -> int:
 	elif current > target:
 		return max(current - step, target)
 	return current
+
+
+func _on_hurtbox_body_entered(body):
+	if is_instance_of(body, Grenade):
+		print("uwu")
+		body.exuplode()
