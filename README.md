@@ -1,5 +1,7 @@
 <div style="text-align: center">
-<h3><img src="https://img.itch.zone/aW1nLzIyNzkxNTg4LnBuZw==/original/JZDfbE.png"></h3><h3>Are you ready to take on a challenge?&nbsp;</h3><h3>Will your skills bloom higher than those pesky humans, or will they wither like roses with no sunlight?</h3><h3>Save your kind. The plants...you're their only hope...</h3><h1>Controls</h1>
+<h4><img src="https://img.itch.zone/aW1nLzIyNzkxNTg4LnBuZw==/original/JZDfbE.png"></h4><h4>Are you ready to take on a challenge?&nbsp;</h4><h4>Will your skills bloom higher than those pesky humans, or will they wither like roses with no sunlight?</h4><h4>Save your kind. The plants...you're their only hope...</h4>
+  <h3><a href="https://shibe53.itch.io/kabluem">Playable on itch.io</a></h3>
+  <h1>Controls</h1>
 <p><strong>WASD or ARROW KEYS&nbsp;</strong>- Move your plant</p>
 <p><strong>Mouse </strong>- Aim</p>
 <p><strong>LMB (hold) </strong>- Charge your bloom seed!</p><p><strong>LMB (release) </strong>- BLOOM!</p>
